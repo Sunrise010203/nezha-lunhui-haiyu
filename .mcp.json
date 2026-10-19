@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "blender": {
+      "command": "C:\\Users\\Sunrise\\AppData\\Local\\Programs\\Python\\Python311\\Scripts\\uvx.exe",
+      "args": ["blender-mcp"]
+    }
+  }
+}
