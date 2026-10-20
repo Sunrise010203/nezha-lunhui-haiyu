@@ -1,7 +1,7 @@
-"""Download Poly Haven models, clean them up, and export game-ready GLBs.
+﻿"""Download Poly Haven models, clean them up, and export game-ready GLBs.
 
 Run headless:
-    E:\\blender.exe --background --factory-startup --python prepare_props.py -- --only lantern,rock_a
+    E:\\blender\\app\\blender.exe --background --factory-startup --python prepare_props.py -- --only lantern,rock_a
 
 Why not use the addon's downloader: it imports into the live scene and leaves the
 job of decimating / re-exporting to the caller. Here everything is done in one

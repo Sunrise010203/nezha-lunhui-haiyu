@@ -4,7 +4,7 @@
 
 | 项 | 值 |
 |---|---|
-| Blender | 5.1.2 便携版 `E:\blender.exe`（build 2026-05-19） |
+| Blender | 5.1.2 便携版 `E:\blender\app\blender.exe`（build 2026-05-19；2026-10-20 已从 `E:\blender.exe` 迁到 `E:\blender\app\`） |
 | 内置 Python | 3.13.9 |
 | CPU | Intel Core Ultra 9 275HX，24 核 |
 | 内存 | 31.4 GB |
@@ -21,7 +21,7 @@
 不需要任何插件，也不需要开窗口。
 
 ```powershell
-& E:\blender.exe --background --factory-startup --python "tools\blender\example_build_prop.py"
+& E:\blender\app\blender.exe --background --factory-startup --python "tools\blender\example_build_prop.py"
 ```
 
 - 退出码 0 表示成功；脚本里的 `print(...)` 直接出现在 stdout。

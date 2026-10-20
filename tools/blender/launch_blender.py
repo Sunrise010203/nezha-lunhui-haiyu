@@ -15,7 +15,7 @@ import subprocess
 import sys
 import time
 
-DEFAULT_EXE = r"E:\blender.exe"
+DEFAULT_EXE = r"E:\blender\app\blender.exe"
 
 
 def port_open(port, host="127.0.0.1", timeout=0.35):

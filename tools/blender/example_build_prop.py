@@ -1,7 +1,7 @@
-"""Headless example: build a game-ready prop, render a preview, export GLB.
+﻿"""Headless example: build a game-ready prop, render a preview, export GLB.
 
 Run:
-    E:\\blender.exe --background --factory-startup --python example_build_prop.py
+    E:\\blender\\app\\blender.exe --background --factory-startup --python example_build_prop.py
 
 Outputs (next to this script, in out/):
     crystal_prop.glb   - import straight into Godot
