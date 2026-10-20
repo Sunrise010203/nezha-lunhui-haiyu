@@ -2,6 +2,21 @@
 
 本仓库是《哪吒·轮回海域》Godot 工程的版本化备份，**只收源码与源资产**，不收可再生成的产物。
 
+## 远端与日常备份
+
+- 远端：<https://github.com/Sunrise010203/nezha-lunhui-haiyu>（私有仓库）
+- 默认分支 `main`，首次备份 613 文件 / 252 MB，单文件最大 10.5 MB（`001/art/models/shooter.glb`）
+- 一键备份：
+
+```powershell
+powershell -NoProfile -ExecutionPolicy Bypass -File .\tools\backup.ps1
+powershell -NoProfile -ExecutionPolicy Bypass -File .\tools\backup.ps1 -Message "feat: 第四关 Boss 调整"
+```
+
+脚本做三件事：`git add -A` → 提交 → `git push origin main`，失败自动重试 3 次。
+
+> **网络注意**：本机访问 GitHub 走 Clash（`127.0.0.1:65372`）。某些节点上行会被重置 —— 下载正常、上传 >300 KB 报 `Send failure: Connection was reset`。换个节点重跑即可。自查命令：向 `https://httpbin.org/post` POST 1 MB，`up=1048576` 才说明上行可用。
+
 ## 收进来的
 
 - `001/`：Godot 工程本体 —— `scripts/`、`scenes/`、`shaders/`、`autoload/`、`theme/`、`project.godot`、`art/`（glb + 贴图）、`audio/`、`tools/`
