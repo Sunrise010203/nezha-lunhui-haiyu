@@ -1,4 +1,4 @@
-# 一键备份到 GitHub
+﻿# 一键备份到 GitHub
 #
 # 用法（在仓库根目录或任意位置）：
 #   powershell -NoProfile -ExecutionPolicy Bypass -File .\tools\backup.ps1
