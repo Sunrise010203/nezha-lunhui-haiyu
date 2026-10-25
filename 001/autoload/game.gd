@@ -791,7 +791,12 @@ func _load_stream(path: String, fallback: Callable) -> AudioStream:
 
 # ---------------------------------------------------------------- 加载预热
 
+func _exit_tree() -> void:
+	CombatVFX.release_cache()
+
+
 func prewarm_fx(parent: Node) -> void:
+	CombatVFX.warm(parent)
 	## 在屏幕外把一次性特效各跑一遍：D3D12 首次遇到新 shader 管线会有 ~94ms
 	## 编译卡顿（实测出现在 Boss 第一次弹幕/砸地时）。放在黑屏加载期间预热，
 	## 战斗中就不会再卡。

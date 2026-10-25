@@ -1,0 +1,33 @@
+--- HEAD:001/art/raw/boss_idle.png.import
++++ worktree:001/art/raw/boss_idle.png.import
+@@ -3,19 +3,20 @@
+ importer="texture"
+ type="CompressedTexture2D"
+ uid="uid://cy6h7ilu0h5pl"
+-path="res://.godot/imported/boss_idle.png-a08c23fbc3aca245b6a6d0d2f2e7cd83.ctex"
++path.s3tc="res://.godot/imported/boss_idle.png-a08c23fbc3aca245b6a6d0d2f2e7cd83.s3tc.ctex"
+ metadata={
+-"vram_texture": false
++"imported_formats": ["s3tc_bptc"],
++"vram_texture": true
+ }
+ 
+ [deps]
+ 
+ source_file="res://art/raw/boss_idle.png"
+-dest_files=["res://.godot/imported/boss_idle.png-a08c23fbc3aca245b6a6d0d2f2e7cd83.ctex"]
++dest_files=["res://.godot/imported/boss_idle.png-a08c23fbc3aca245b6a6d0d2f2e7cd83.s3tc.ctex"]
+ 
+ [params]
+ 
+-compress/mode=0
++compress/mode=2
+ compress/high_quality=false
+ compress/lossy_quality=0.7
+ compress/uastc_level=0
+@@ -37,4 +38,4 @@
+ process/hdr_as_srgb=false
+ process/hdr_clamp_exposure=false
+ process/size_limit=0
+-detect_3d/compress_to=1
++detect_3d/compress_to=0

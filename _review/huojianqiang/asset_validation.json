@@ -1,0 +1,49 @@
+{
+  "source_sha256": "128fcbb198aa277b467b8809f8b42a894cd5edc2eabff1c9a9e69ae57d83ff78",
+  "original_vertices": 601730,
+  "welded_vertices": 507209,
+  "original_triangles": 1014603,
+  "game_triangles": 44999,
+  "source_grip": [
+    -0.00029490888118743896,
+    0.00022494792938232422,
+    0.15274368226528168
+  ],
+  "scale": 1.8253885386570607,
+  "local_grip_y": -0.25,
+  "bounds_z_up": [
+    [
+      -0.07477857917547226,
+      -0.07561973482370377,
+      -0.5289832949638367
+    ],
+    [
+      0.07158316671848297,
+      0.07459751516580582,
+      1.2699987888336182
+    ]
+  ],
+  "textures": [
+    {
+      "name": "huojianqiang_basecolor",
+      "size": [
+        2048,
+        2048
+      ]
+    },
+    {
+      "name": "huojianqiang_normal",
+      "size": [
+        2048,
+        2048
+      ]
+    },
+    {
+      "name": "huojianqiang_rm",
+      "size": [
+        2048,
+        2048
+      ]
+    }
+  ]
+}

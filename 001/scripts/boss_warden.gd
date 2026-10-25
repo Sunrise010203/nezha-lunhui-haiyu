@@ -67,6 +67,7 @@ var _spr_base := Color.WHITE
 
 # 外观引用（模型 / 立绘 / 程序化三种模式下会有不同的一批为 null）
 var model: Node3D = null
+var boss_motion: RefCounted
 var body_mat: StandardMaterial3D
 var plate_mat: StandardMaterial3D
 var core_mat: StandardMaterial3D
@@ -97,6 +98,13 @@ func _setup() -> void:
 # ================================================================ 外观
 
 func _build_gfx() -> void:
+	model = Game.load_model("res://art/models/bosses_arp/02_warden.glb", 3.9, 90.0,
+		0.0, 0.0, true, false)
+	if model:
+		gfx.add_child(model)
+		boss_motion = preload("res://scripts/boss_motion.gd").new(model, "warden")
+		_add_aura()
+		return
 	## 优先级：专属模型 > 立绘 > 程序化重甲（本项目第二章用最后一级兜底）
 	model = Game.load_model("res://art/models/warden.glb", 3.9, 180.0,
 		-90.0, 0.0, true, false)
@@ -772,6 +780,8 @@ func reset_fight() -> void:
 	if dead:
 		return
 	active = false
+	if boss_motion:
+		boss_motion.reset()
 	hp = max_hp
 	phase = 1
 	state = "dormant"
@@ -797,7 +807,7 @@ func reset_fight() -> void:
 		_spr_base = Color.WHITE
 		_set_glow(0.0)
 	if model:
-		_apply_model_tint(MODEL_TINT_P1, Color(0.5, 0.08, 0.03), 0.25)
+		_apply_model_tint(Color.WHITE if boss_motion else MODEL_TINT_P1, Color(0.5, 0.08, 0.03), 0.0 if boss_motion else 0.25)
 	if body_mat:
 		body_mat.emission = Color(0.28, 0.05, 0.02)
 	if plate_mat:
@@ -825,6 +835,8 @@ func die() -> void:
 	if dead:
 		return
 	dead = true
+	if boss_motion:
+		boss_motion.die()
 	hp = 0.0
 	_clear_telegraph()
 	boss_hp_changed.emit(0.0, max_hp)
@@ -847,3 +859,8 @@ func die() -> void:
 	tw.tween_property(self, "global_position:y", ground_y - 2.5, 1.6) \
 		.set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN)
 	tw.chain().tween_callback(queue_free)
+
+
+func _advance_enemy_motion(delta: float) -> void:
+	if boss_motion and not dead:
+		boss_motion.step_encounter(delta, self)

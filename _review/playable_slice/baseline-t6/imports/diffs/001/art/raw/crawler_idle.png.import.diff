@@ -1,0 +1,33 @@
+--- HEAD:001/art/raw/crawler_idle.png.import
++++ worktree:001/art/raw/crawler_idle.png.import
+@@ -3,19 +3,20 @@
+ importer="texture"
+ type="CompressedTexture2D"
+ uid="uid://ree811cr7sui"
+-path="res://.godot/imported/crawler_idle.png-ab772fe19650819eb03d899bdd4751d0.ctex"
++path.s3tc="res://.godot/imported/crawler_idle.png-ab772fe19650819eb03d899bdd4751d0.s3tc.ctex"
+ metadata={
+-"vram_texture": false
++"imported_formats": ["s3tc_bptc"],
++"vram_texture": true
+ }
+ 
+ [deps]
+ 
+ source_file="res://art/raw/crawler_idle.png"
+-dest_files=["res://.godot/imported/crawler_idle.png-ab772fe19650819eb03d899bdd4751d0.ctex"]
++dest_files=["res://.godot/imported/crawler_idle.png-ab772fe19650819eb03d899bdd4751d0.s3tc.ctex"]
+ 
+ [params]
+ 
+-compress/mode=0
++compress/mode=2
+ compress/high_quality=false
+ compress/lossy_quality=0.7
+ compress/uastc_level=0
+@@ -37,4 +38,4 @@
+ process/hdr_as_srgb=false
+ process/hdr_clamp_exposure=false
+ process/size_limit=0
+-detect_3d/compress_to=1
++detect_3d/compress_to=0

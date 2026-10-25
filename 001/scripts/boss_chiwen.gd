@@ -1,5 +1,7 @@
 class_name BossChiwen
 extends EnemyBase
+var model: Node3D
+var boss_motion: RefCounted
 ## 潮心 · 螭吻 —— 第四章 Boss（P1 吞潮 / P2 腾潮 / P3 潮心显形）
 ##
 ## 结构照 boss_sea_eye.gd：三段血量 + 多受击点 + 状态机 + 预警环 + reset_fight() + 自定义 die()。
@@ -171,6 +173,18 @@ var _ucore: HitPoint
 
 # ================================================================ 外观
 func _build_gfx() -> void:
+	model = Game.load_model("res://art/models/bosses_arp/05_chiwen.glb", 4.5,
+		90.0, 0.0, 0.0, true, false)
+	if model:
+		gfx.add_child(model)
+		boss_motion = preload("res://scripts/boss_motion.gd").new(model, "chiwen")
+		_core_mat = Game.std_mat(C_CORE, C_CORE, 1.5, 0.25)
+		var pearl := SphereMesh.new()
+		pearl.radius = 0.32
+		pearl.height = 0.64
+		core_mi = Game.add_mesh(gfx, pearl, _core_mat, Vector3(1.96, 1.4, 0.38))
+		core_mi.visible = false
+		return
 	# 玉青主体 / 骨白甲 / 朽金饰环，全部程序化材质（art 里没有第四章模型）
 	var jade: StandardMaterial3D = Game.std_mat(C_JADE, C_JADE_LIT, 0.10, 0.62)
 	var jade_dark: StandardMaterial3D = Game.std_mat(C_JADE_DARK, C_JADE_LIT, 0.05, 0.72)
@@ -376,6 +390,9 @@ func _build_gfx() -> void:
 
 
 func _apply_rim() -> void:
+	if model:
+		super._apply_rim()
+		return
 	## 只给本体 / 头挂轮廓光：暗场可读性够用，每网格少一次 overlay pass（draw call 预算 ≤40）
 	_rim = Game.make_rim(rim_color)
 	if _rim == null:
@@ -412,6 +429,10 @@ func _setup() -> void:
 	_ucore = _make_hitpoint("core", 1.00, 0.0, Vector3(0.95, 2.35, 0.0))
 	_uscale.set_active(false)
 	_ucore.set_active(false)
+	if model:
+		_uhead.position = Vector3(2.9, 2.35, 0.0)
+		_uscale.position = Vector3(-2.5, 1.9, 0.0)
+		_ucore.position = Vector3(1.96, 1.4, 0.0)
 
 
 func _make_hitpoint(zone: String, radius: float, height: float, at: Vector3) -> HitPoint:
@@ -1324,6 +1345,8 @@ func _enter_phase(p: int) -> void:
 
 
 func _core_open(on: bool) -> void:
+	if boss_motion:
+		boss_motion.open_core(on)
 	if core_mi != null:
 		core_mi.visible = on
 	if _ucore != null:
@@ -1427,6 +1450,8 @@ func _spawn_orb(pos: Vector3, vel: Vector3, dmg: float, muddy: bool, life: float
 
 
 func _mouth_pos() -> Vector3:
+	if model:
+		return gfx.global_transform * Vector3(3.3, 2.15, 0.0)
 	if gfx == null:
 		return global_position + Vector3(_face * 3.6, 2.3, 0.0)
 	return gfx.global_transform * Vector3(4.05, 2.28, 0.0)
@@ -1494,6 +1519,8 @@ func die() -> void:
 	if dead:
 		return
 	dead = true
+	if boss_motion:
+		boss_motion.die()
 	is_dead = true
 	active = false
 	hp = 0.0
@@ -1537,6 +1564,8 @@ func reset_fight() -> void:
 	if dead:
 		return
 	active = false
+	if boss_motion:
+		boss_motion.reset()
 	is_dead = false
 	hp = max_hp
 	phase = 1
@@ -1604,6 +1633,11 @@ func _clear_all() -> void:
 		_mouth_mat.emission_energy_multiplier = 0.3
 	if _scale_mat != null:
 		_scale_mat.emission_energy_multiplier = 0.25
+
+
+func _advance_enemy_motion(delta: float) -> void:
+	if boss_motion and not dead:
+		boss_motion.step_encounter(delta, self)
 
 
 # ================================================================ 内部类

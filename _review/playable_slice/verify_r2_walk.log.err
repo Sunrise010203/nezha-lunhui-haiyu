@@ -1,0 +1,2 @@
+ERROR: Can't load script: res://tools/probe_walk.tscn
+   at: start (main/main.cpp:4271)

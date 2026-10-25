@@ -1,0 +1,78 @@
+{
+  "chapters": {
+    "1": {
+      "built": true,
+      "finite_poses": true,
+      "new_boss_rig": true,
+      "observed_clips": [
+        "Idle",
+        "Windup",
+        "Attack"
+      ],
+      "observed_states": [
+        "hover",
+        "barrage"
+      ],
+      "physics_frames": 360
+    },
+    "2": {
+      "built": true,
+      "finite_poses": true,
+      "new_boss_rig": true,
+      "observed_clips": [
+        "Idle",
+        "Move",
+        "Windup",
+        "Attack",
+        "Recover"
+      ],
+      "observed_states": [
+        "idle",
+        "barrage_aim",
+        "barrage",
+        "recover",
+        "charge_aim"
+      ],
+      "physics_frames": 360
+    },
+    "3": {
+      "built": true,
+      "finite_poses": true,
+      "new_boss_rig": true,
+      "observed_clips": [
+        "Idle",
+        "core_Idle",
+        "core_Windup",
+        "core_Attack"
+      ],
+      "observed_states": [
+        "idle",
+        "tele",
+        "recover"
+      ],
+      "physics_frames": 360
+    },
+    "4": {
+      "built": true,
+      "finite_poses": true,
+      "new_boss_rig": true,
+      "observed_clips": [
+        "Idle",
+        "Phase",
+        "Move",
+        "Windup",
+        "Attack",
+        "Recover"
+      ],
+      "observed_states": [
+        "intro",
+        "idle",
+        "fan_aim",
+        "fan_end",
+        "recover"
+      ],
+      "physics_frames": 360
+    }
+  },
+  "failed": false
+}

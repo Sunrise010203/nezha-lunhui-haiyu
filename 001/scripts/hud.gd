@@ -47,6 +47,9 @@ var _boss_frame: Panel = null
 var _msg_label: Label
 var _vignette_mat: ShaderMaterial
 var _overlay: Control = null
+## 当前面板种类："" / "pause" / "death" / "campaign_death" / "victory"。
+## 用它而不是"有没有面板"来判断能否 Esc 暂停，否则普通暂停菜单自己都退不掉。
+var _overlay_kind := ""
 var _paused := false
 var _ended := false
 var _hp_ratio := 1.0
@@ -57,6 +60,8 @@ var _max_combo := 0
 var _combo_label: Label
 var _soul_label: Label
 var _hint_label: Label
+## 灵力恢复说明（"脱战 3 秒后缓慢回复"）
+var regen_hint_label: Label = null
 var _msg_tween: Tween = null
 ## 本章龙魂残片总数（由关卡设置）
 var soul_total := 3
@@ -193,6 +198,19 @@ func _build_player_bars() -> void:
 	_energy_fill.size = Vector2(_energy_w * 0.3, 10)
 	_energy_fill.color = Color(0.3, 0.85, 0.85)
 	en_bg.add_child(_energy_fill)
+
+	# 灵力恢复说明：让"脱战后会慢慢回"这条规则在屏幕上可见，
+	# 否则玩家只会以为灵力是一次性资源（HUD 说明，不改任何数值）。
+	var regen_lbl := Label.new()
+	regen_lbl.text = "脱战 3 秒后缓慢回复"
+	regen_lbl.position = Vector2(bar_x + _energy_w + 22, 92)
+	regen_lbl.add_theme_font_size_override("font_size", 14)
+	regen_lbl.add_theme_color_override("font_color", Color(0.55, 0.74, 0.74, 0.6))
+	regen_lbl.add_theme_color_override("font_shadow_color", Color(0, 0, 0, 0.65))
+	regen_lbl.add_theme_constant_override("shadow_offset_y", 1)
+	regen_lbl.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	_root.add_child(regen_lbl)
+	regen_hint_label = regen_lbl
 
 	# 技能图标：三昧真火
 	_skill_panel = Panel.new()
@@ -701,13 +719,18 @@ func show_message(text: String, dur := 2.2, size := 54) -> void:
 # ---------------------------------------------------------------- 暂停 / 结算
 
 func _input(event: InputEvent) -> void:
-	if _ended:
+	if not event.is_action_pressed("pause"):
 		return
-	if event.is_action_pressed("pause"):
-		if _paused:
-			_unpause()
-		else:
-			_show_pause()
+	if _ended:
+		# 死亡/结算面板正在出现（或已出现）：Esc 不再叠暂停菜单
+		return
+	if _overlay_kind != "" and _overlay_kind != "pause":
+		# 死亡/通关面板已经打开，不允许用 Esc 再盖一层
+		return
+	if _paused:
+		_unpause()
+	else:
+		_show_pause()
 
 
 func _make_button(text: String) -> Button:
@@ -732,8 +755,9 @@ func _make_button(text: String) -> Button:
 
 
 func _show_overlay(title: String, title_color: Color, sub: String,
-		buttons: Array) -> void:
+		buttons: Array, kind := "generic") -> void:
 	_clear_overlay()
+	_overlay_kind = kind
 	_overlay = Control.new()
 	_overlay.set_anchors_preset(Control.PRESET_FULL_RECT)
 	_root.add_child(_overlay)
@@ -793,6 +817,12 @@ func _clear_overlay() -> void:
 	if _overlay:
 		_overlay.queue_free()
 		_overlay = null
+	_overlay_kind = ""
+
+
+func overlay_kind() -> String:
+	## 供测试与关卡逻辑查询当前面板种类
+	return _overlay_kind
 
 
 func _show_pause() -> void:
@@ -803,10 +833,11 @@ func _show_pause() -> void:
 		["继 续", _unpause],
 		["重新挑战本关", func() -> void:
 			get_tree().paused = false
+			_paused = false
 			restart_callback.call()],
 		["返回主菜单", func() -> void:
 			Game.change_scene("res://scenes/main_menu.tscn")],
-	])
+	], "pause")
 
 
 func _unpause() -> void:
@@ -817,7 +848,13 @@ func _unpause() -> void:
 
 
 func show_death() -> void:
+	## 选关模式：莲台复活。同一时刻只允许一块死亡面板，重复调用直接忽略。
+	if _ended or _overlay_kind == "death" or _overlay_kind == "campaign_death":
+		return
 	_ended = true
+	# 死亡面板出现前先解除暂停，避免"暂停中死去 → 面板卡在暂停帧"
+	_paused = false
+	get_tree().paused = false
 	await get_tree().create_timer(1.1, false).timeout
 	_ended = false
 	_show_overlay("命 陨 潮 渊", Color(0.9, 0.3, 0.3),
@@ -827,12 +864,16 @@ func show_death() -> void:
 			respawn_callback.call()],
 		["返回主菜单", func() -> void:
 			Game.change_scene("res://scenes/main_menu.tscn")],
-	])
+	], "death")
 
 
 func show_campaign_death(chapter_title := "") -> void:
 	## 闯关模式死亡：整关刷新，从本章出生点重来（不是莲台复活）
+	if _ended or _overlay_kind == "death" or _overlay_kind == "campaign_death":
+		return
 	_ended = true
+	_paused = false
+	get_tree().paused = false
 	await get_tree().create_timer(1.1, false).timeout
 	_ended = false
 	var cname := chapter_title if chapter_title != "" else "本 章"
@@ -843,11 +884,16 @@ func show_campaign_death(chapter_title := "") -> void:
 			restart_callback.call()],
 		["返回主菜单", func() -> void:
 			Game.change_scene("res://scenes/main_menu.tscn")],
-	])
+	], "campaign_death")
 
 
 func show_victory() -> void:
+	if _ended and _overlay_kind == "victory":
+		return
 	_ended = true
+	# 结算优先级最高：先把暂停解除，否则 Tab/暂停中通关会卡死在暂停帧
+	_paused = false
+	get_tree().paused = false
 	var mins := int(Game.run_time) / 60
 	var secs := int(Game.run_time) % 60
 	_show_overlay("关 卡 通 关", GOLD,
@@ -858,4 +904,4 @@ func show_victory() -> void:
 			Game.change_scene("res://scenes/level_select.tscn")],
 		["返 回 主 菜 单", func() -> void:
 			Game.change_scene("res://scenes/main_menu.tscn")],
-	])
+	], "victory")

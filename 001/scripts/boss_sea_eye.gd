@@ -1,5 +1,7 @@
 class_name BossSeaEye
 extends EnemyBase
+var boss_motion: RefCounted
+var model: Node3D
 ## 归墟海眼 · 第三章 Boss（三核封印 → 巨瞳）
 ## ------------------------------------------------------------------
 ## 一阶段「三核」：
@@ -206,6 +208,18 @@ func _build_p2_visual() -> void:
 	_p2_root.name = "GiantEye"
 	_p2_root.visible = false
 	gfx.add_child(_p2_root)
+	model = Game.load_model("res://art/models/bosses_arp/04_giant_eye.glb", 3.2,
+		0.0, 0.0, 0.0, true, false)
+	if model:
+		model.position.y = -1.6
+		_p2_root.add_child(model)
+		boss_motion = preload("res://scripts/boss_motion.gd").new(model, "giant_eye")
+		_p2_light = OmniLight3D.new()
+		_p2_light.light_color = Color(0.45, 0.75, 0.85)
+		_p2_light.light_energy = 1.5
+		_p2_light.omni_range = 8.0
+		_p2_root.add_child(_p2_light)
+		return
 
 	_eye_mat = Game.std_mat(Color(0.68, 0.9, 1.0),
 		Color(0.6, 0.42, 1.0), 1.2, 0.2)
@@ -1062,6 +1076,8 @@ func die() -> void:
 	if dead:
 		return
 	dead = true
+	if boss_motion:
+		boss_motion.die()
 	active = false
 	hp = 0.0
 	_clear_telegraph()
@@ -1105,6 +1121,8 @@ func reset_fight() -> void:
 	if dead:
 		return
 	active = false
+	if boss_motion:
+		boss_motion.reset()
 	hp = max_hp
 	phase = 1
 	state = "dormant"
@@ -1174,6 +1192,14 @@ func reset_fight() -> void:
 	boss_hp_changed.emit(hp, max_hp)
 
 
+func _advance_enemy_motion(delta: float) -> void:
+	if boss_motion and not dead:
+		boss_motion.step_encounter(delta, self)
+		if phase == 2 and player_alive():
+			var aim := player.global_position + Vector3.UP - global_position
+			boss_motion.look(aim.x * 0.004, -aim.y * 0.01)
+
+
 # ================================================================ 内部类：封印之瞳
 
 class Sealoore extends Area3D:
@@ -1198,6 +1224,10 @@ class Sealoore extends Area3D:
 	var _rune_b: MeshInstance3D = null
 	var _t := 0.0
 	var _glow := 0.0
+	var model: Node3D
+	var motion: RefCounted
+	var _cast_left := 0.0
+	var _hurt_left := 0.0
 
 
 	func setup_core(b, idx: int, yaw_off: float) -> void:
@@ -1214,6 +1244,19 @@ class Sealoore extends Area3D:
 		sph.radius = 0.75       # 约等于 BossSeaEye.CORE_RADIUS
 		cs.shape = sph
 		add_child(cs)
+		model = Game.load_model("res://art/models/bosses_arp/03_seal_core.glb", 1.3,
+			0.0, 0.0, 0.0, true, false)
+		if model:
+			model.position.y = -0.65
+			add_child(model)
+			motion = preload("res://scripts/boss_motion.gd").new(model, "seal_core")
+			light = OmniLight3D.new()
+			light.light_color = Color(0.45, 0.9, 1.0)
+			light.light_energy = 0.5
+			light.omni_range = 3.6
+			add_child(light)
+			set_process(true)
+			return
 
 		# 珍珠青白主球
 		mat = Game.std_mat(Color(0.42, 0.78, 0.90), Color(0.30, 0.72, 0.90), 0.9, 0.16)
@@ -1281,6 +1324,11 @@ class Sealoore extends Area3D:
 			return
 		# 上下浮动 ±0.15
 		position = base_local + Vector3(0, sin(_t * 1.1 + bob_phase) * 0.15, 0)
+		if motion:
+			_cast_left = maxf(0.0, _cast_left - delta)
+			_hurt_left = maxf(0.0, _hurt_left - delta)
+			var clip := "Hit" if _hurt_left > 0.0 else "Attack" if _cast_left > 0.0 else "Windup" if _glow > 0.0 else "Idle"
+			motion.step(delta, clip, _glow if clip == "Windup" else -1.0)
 		# 自转 / 符环反旋（破核越多转越快，由 boss 调 spin）
 		if _shell_holder and is_instance_valid(_shell_holder):
 			_shell_holder.rotation.y += delta * 0.9 * spin
@@ -1297,6 +1345,8 @@ class Sealoore extends Area3D:
 
 	func set_glow(c: float) -> void:
 		## 蓄力预警：破核前核心越来越亮
+		if motion and c <= 0.0 and _glow > 0.8:
+			_cast_left = 0.35
 		_glow = clampf(c, 0.0, 1.2)
 		if mat:
 			mat.emission_energy_multiplier = 2.2 + _glow * 5.0
@@ -1318,6 +1368,7 @@ class Sealoore extends Area3D:
 		if actual <= 0.0:
 			return
 		hp -= actual
+		_hurt_left = 0.18
 		boss.take_damage_on_core(index, actual, dir, heavy)
 		Game.flash_meshes(self, Color(1.0, 1.0, 1.0), 0.07)
 		Game.play_sfx("hit", -7.0, 1.35)
@@ -1349,6 +1400,10 @@ class Sealoore extends Area3D:
 
 	func reset_core() -> void:
 		broken = false
+		_cast_left = 0.0
+		_hurt_left = 0.0
+		if motion:
+			motion.reset()
 		hp = max_hp
 		visible = true
 		collision_layer = 4

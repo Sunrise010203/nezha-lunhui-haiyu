@@ -34,10 +34,13 @@ var _mlight: OmniLight3D = null
 
 
 func _build_gfx() -> void:
-	model = Game.load_model("res://art/models/shooter.glb", 1.6, 0.0)
+	model = load_enemy_model("002_shooter", 1.6)
+	if not model:
+		model = Game.load_model("res://art/models/shooter.glb", 1.6, 0.0)
 	if model:
 		model.position.y = -0.8
-		gfx.add_child(model)
+		if not model.get_parent():
+			gfx.add_child(model)
 		_mlight = OmniLight3D.new()
 		_mlight.light_color = Color(0.7, 0.3, 1.0)
 		_mlight.light_energy = 1.0
@@ -99,7 +102,7 @@ func _behave(delta: float) -> void:
 	var target_y := hover_y + sin(_t * 1.8) * 0.35
 	velocity.y = (target_y - global_position.y) * 4.0
 	# 触须摆动 / 精灵与模型轻摆
-	if spr or model:
+	if (spr or model) and not enemy_motion:
 		gfx.rotation.z = sin(_t * 1.6) * 0.07
 	else:
 		for i in _tentacles.size():
@@ -155,7 +158,8 @@ func _set_charge_visual(c: float) -> void:
 		core_mat.emission_energy_multiplier = 2.0 + c * 7.0
 		core.scale = Vector3.ONE * (1.0 + c * 0.8)
 	else:
-		gfx.scale = Vector3.ONE * (1.0 + c * 0.15)
+		if not enemy_motion:
+			gfx.scale = Vector3.ONE * (1.0 + c * 0.15)
 		if _mlight:
 			_mlight.light_energy = 1.0 + c * 4.0
 
@@ -164,6 +168,8 @@ func _shoot() -> void:
 	if not player_alive():
 		return
 	Game.play_sfx("shoot", -8.0)
+	if enemy_motion:
+		enemy_motion.attack()
 	var proj := Projectile.new()
 	proj.dmg = 10.0
 	var origin := global_position + Vector3(0, 0.1, 0)
@@ -178,3 +184,9 @@ func _on_hurt() -> void:
 	# 受击打断蓄力
 	charging = 0.0
 	shoot_cd = maxf(shoot_cd, 0.6)
+
+
+func _rig_animation() -> Array:
+	if charging > 0.0:
+		return ["Windup", charging / 0.55]
+	return super._rig_animation()

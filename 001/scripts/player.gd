@@ -9,6 +9,8 @@ signal died
 signal runes_changed(v: float, max_v: float)
 
 const CharLook := preload("res://scripts/char_look.gd")
+const NezhaMotion := preload("res://scripts/nezha_motion.gd")
+const EnergyRegen := preload("res://scripts/energy_regen.gd")
 
 const L_WORLD := 1
 const L_ENEMY := 4
@@ -29,6 +31,9 @@ const SKILL3_COST := 60.0
 const WHEEL_TIME := 5.0        # 腾空后强化下砸的窗口（落地即结束）
 const RING_CHARGE_MAX := 1.0   # 乾坤圈蓄力上限（秒）
 const RING_CHARGE_DMG := 9.0   # 蓄满额外伤害：dmg = 基础 + 蓄力秒数 * 9
+## 单次动作输入缓冲：被硬直/动作打断时按下的跳跃/攻击，
+## 在 0.12 秒内恢复可控就补执行一次（只消费一次，不重复出招）
+const INPUT_BUFFER := 0.12
 
 # ---------------------------------------------------------------- 第四章：定潮
 const TIDE_PARRY_WINDOW := 0.30   # 按下后总防护窗口（原 0.20，实机弹反成功率太低）
@@ -58,11 +63,10 @@ const RUNE_SLAM := 0.30
 const RUNE_SKILL := 0.20
 const RUNE_SWING_CAP := 0.30      # 单次挥击最多攒多少
 const RUNE_CAST_CAP := 0.60       # 单次施法最多攒多少
-# 3D 模型路径：nezha_opt.glb 是 Blender 优化版（清理减面 + 材质分金银绸），
-# 原始未优化版保留为 nezha_source.glb，改回只需换这一行。
-const MODEL_PATH := "res://art/models/nezha_lit.glb"
-# 模型整体抬升：让角色悬浮在脚下风火轮之上（轮子由 Blender 拆成 nezha_ring 后下移）
-const MODEL_LIFT := 0.34
+# Standard Y-up glTF, with Mixamo motions retargeted to the ARP deform skeleton.
+const MODEL_PATH := "res://art/models/nezha_arp.glb"
+# The new model has no baked foot wheel; its soles rest at y=0.
+const MODEL_LIFT := 0.0
 # 圈再相对模型额外下压（一般保持 0：轮子的下移量已经在 Blender 里烘焙好了）
 const RING_DROP := 0.0
 
@@ -81,6 +85,7 @@ var _ring_charge_fx := 0.0
 var _slow_amount := 0.0     # 海眼引力井减速（关卡写入，逐渐恢复）
 var _slow_t := 0.0
 var _ring_out := false
+var _ring_throw: Node3D = null   # 在途乾坤圈：复活时必须销毁，否则会带着旧判定飞回来
 var _pd_done := false      # 本次冲刺是否已触发完美闪身
 var _foot_ring: Node3D = null  # 旧方案拆出的脚环网格；现在模型里没有这个节点，留作兼容
 var _foot_ring_base := Vector3.ZERO
@@ -89,6 +94,11 @@ var act_t := 0.0
 var act_hit_done := false
 var attack_queued := false
 var combo_cd := 0.0
+## 攻击缓冲（0.12s）：真正执行时清空，保证一次按键只补一招
+var attack_buffer_t := 0.0
+## 灵力脱战计时：受击/出招/施法消耗后归零，死亡期间不累计
+var energy_idle := 0.0
+var _energy_prev := 30.0
 
 # ---- 混天绫（第三章新机制）
 const SWING_RANGE := 10.0        # 锚点搜索半径
@@ -158,6 +168,7 @@ var _target_yaw := 0.0
 # AI 3D 模型 / 立绘精灵模式
 var model: Node3D = null
 var skel: Skeleton3D = null
+var _motion: RefCounted
 var _bones := {}          # 骨骼名 -> 索引
 var _pose_cur := {}       # 骨骼名 -> 当前欧拉角（平滑过渡用）
 var use_sprites := false
@@ -202,15 +213,17 @@ func _build_gfx() -> void:
 	add_child(gfx)
 
 	# 优先级：AI 3D 模型 > AI 立绘精灵 > 程序化网格
-	model = Game.load_model(MODEL_PATH, 1.9, 90.0)
+	model = Game.load_model(MODEL_PATH, 2.2, 90.0, 0.0, 0.0, true, false)
 	if model:
 		gfx.add_child(model)
 		# 整体上浮：脚不再插进乾坤圈里，视觉上"踩在/悬在圈上"
 		model.position.y += MODEL_LIFT
 		_build_model_equipment()
-		# P2/P3：烘焙贴图 + PBR 着色器 + 角色三点光（贴图缺失时静默回退到 toon 材质）
-		if CharLook.apply(model):
-			CharLook.attach_lights(gfx)
+		_motion = NezhaMotion.new(model)
+		# Keep the new model's own UVs and brightened PBR textures.
+		CharLook.attach_lights(gfx)
+		(gfx.get_node("CharKey") as OmniLight3D).light_energy = 1.6
+		(gfx.get_node("CharRim") as OmniLight3D).light_energy = 0.8
 		return
 	_tex_idle = Game.tex("res://art/sprites/nezha_idle.png")
 	if _tex_idle:
@@ -290,27 +303,7 @@ func _build_gfx() -> void:
 		Vector3(-0.75, 1.25, -0.18), Vector3(0, 0, 12))
 
 	# 火尖枪
-	spear = Node3D.new()
-	spear.position = Vector3(0.3, 0.95, 0.06)
-	spear.rotation_degrees = Vector3(0, 0, -18)
-	gfx.add_child(spear)
-	var shaft := CylinderMesh.new()
-	shaft.top_radius = 0.035
-	shaft.bottom_radius = 0.035
-	shaft.height = 1.9
-	Game.add_mesh(spear, shaft, Game.std_mat(Color(0.45, 0.1, 0.08),
-		Color(0.3, 0.05, 0.02), 0.3, 0.5), Vector3.ZERO)
-	var tip := CylinderMesh.new()
-	tip.top_radius = 0.0
-	tip.bottom_radius = 0.07
-	tip.height = 0.34
-	Game.add_mesh(spear, tip, gold, Vector3(0, 1.1, 0))
-	var tassel := SphereMesh.new()
-	tassel.radius = 0.06
-	tassel.height = 0.12
-	Game.add_mesh(spear, tassel, fire_mat, Vector3(0, 0.93, 0))
-	# 枪尖火苗
-	spear.add_child(_make_flame(Vector3(0, 1.15, 0), 0.35, 6))
+	_build_spear(Vector3(0.3, 0.95, 0.06))
 
 	# 风火轮 x2
 	var wheel := TorusMesh.new()
@@ -334,10 +327,21 @@ func _build_gfx() -> void:
 	Game.tune_light(light, 0.75, 4.2, 0.15)
 
 
+func _build_spear(at: Vector3) -> void:
+	spear = Node3D.new()
+	spear.name = "FireTipSpear"
+	spear.position = at
+	spear.rotation_degrees = Vector3(0, 0, -18)
+	gfx.add_child(spear)
+	var visual := (load("res://art/models/huojianqiang.glb") as PackedScene).instantiate() as Node3D
+	visual.name = "HuojianqiangModel"
+	spear.add_child(visual)
+	spear.add_child(_make_flame(Vector3(0, 1.15, 0), 0.35, 6))
+
+
 func _build_model_equipment() -> void:
 	## 3D 模型的装备动画层：手持火尖枪 + 背挂乾坤圈 + 风火轮烈焰 + 火光
 	var gold := Game.std_mat(C_GOLD, C_GOLD, 0.9, 0.25, 0.9)
-	var fire_mat := Game.std_mat(C_FIRE, C_FIRE, 2.2, 0.4)
 
 	# 骨骼（程序化动作驱动 + 武器跟手）
 	for sk: Skeleton3D in model.find_children("*", "Skeleton3D", true, false):
@@ -352,28 +356,16 @@ func _build_model_equipment() -> void:
 	ring_mesh.outer_radius = 0.335
 	ring = Game.add_mesh(gfx, ring_mesh, gold, Vector3(-0.24, 1.18, 0),
 		Vector3(0, 0, 78))
+	var back := BoneAttachment3D.new()
+	back.name = "BackRingSocket"
+	back.bone_name = "spine_02.x"
+	skel.add_child(back)
+	ring.reparent(back, false)
+	var ring_rest := Transform3D(Basis.from_euler(Vector3(PI / 2.0, 0.0, 0.0)), Vector3(0.0, 1.10, -0.13))
+	ring.transform = skel.get_bone_global_rest(_bones["spine_02.x"]).affine_inverse() * ring_rest
 
 	# 火尖枪（平时跟随右手，攻击时突刺/横扫）
-	spear = Node3D.new()
-	spear.position = Vector3(0.3, 0.95, 0.3)
-	spear.rotation_degrees = Vector3(0, 0, -18)
-	gfx.add_child(spear)
-	var shaft := CylinderMesh.new()
-	shaft.top_radius = 0.035
-	shaft.bottom_radius = 0.035
-	shaft.height = 1.9
-	Game.add_mesh(spear, shaft, Game.std_mat(Color(0.45, 0.1, 0.08),
-		Color(0.3, 0.05, 0.02), 0.3, 0.5), Vector3.ZERO)
-	var tip := CylinderMesh.new()
-	tip.top_radius = 0.0
-	tip.bottom_radius = 0.07
-	tip.height = 0.34
-	Game.add_mesh(spear, tip, gold, Vector3(0, 1.1, 0))
-	var tassel := SphereMesh.new()
-	tassel.radius = 0.06
-	tassel.height = 0.12
-	Game.add_mesh(spear, tassel, fire_mat, Vector3(0, 0.93, 0))
-	spear.add_child(_make_flame(Vector3(0, 1.15, 0), 0.35, 6))
+	_build_spear(Vector3(0.3, 0.95, 0.3))
 
 	# 风火轮烈焰（脚下，偏向镜头侧更醒目）
 	wheel_glow = _make_flame(Vector3(0, 0.15, 0.18), 1.0, 22)
@@ -459,15 +451,15 @@ func _make_flame(pos: Vector3, scale_v: float, amount: int) -> GPUParticles3D:
 	gt.gradient = grad
 	mat.color_ramp = gt
 	p.process_material = mat
-	var m := SphereMesh.new()
-	m.radius = 0.07 * scale_v
-	m.height = 0.14 * scale_v
-	m.radial_segments = 6
-	m.rings = 3
+	var m := QuadMesh.new()
+	m.size = Vector2(0.45, 0.75) * scale_v
 	var sm := StandardMaterial3D.new()
 	sm.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
 	sm.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA
 	sm.vertex_color_use_as_albedo = true
+	sm.albedo_texture = CombatVFX.texture("flame_tongue")
+	sm.billboard_mode = BaseMaterial3D.BILLBOARD_PARTICLES
+	p.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
 	sm.albedo_color = Color(1, 1, 1)
 	sm.emission_enabled = true
 	sm.emission = Color(1.0, 0.5, 0.1)
@@ -481,10 +473,19 @@ func _make_flame(pos: Vector3, scale_v: float, amount: int) -> GPUParticles3D:
 
 func _physics_process(delta: float) -> void:
 	if act == "dead":
+		# 死亡期间不累计脱战计时，也不允许任何输入缓冲穿透死亡
+		energy_idle = 0.0
+		_energy_prev = energy
+		attack_buffer_t = 0.0
+		jump_buffer = 0.0
+		if _motion:
+			_motion.update(self, delta)
+			_update_spear_follow()
 		return
 	_anim_time += delta
 	coyote = maxf(coyote - delta, 0.0)
 	jump_buffer = maxf(jump_buffer - delta, 0.0)
+	attack_buffer_t = maxf(attack_buffer_t - delta, 0.0)
 	dash_cd_t = maxf(dash_cd_t - delta, 0.0)
 	invuln = maxf(invuln - delta, 0.0)
 	combo_cd = maxf(combo_cd - delta, 0.0)
@@ -498,11 +499,17 @@ func _physics_process(delta: float) -> void:
 		_slow_amount = move_toward(_slow_amount, 0.0, 1.6 * delta)
 	_update_wheel(delta)
 	_tide_tick(delta)
+	_tick_energy_regen(delta)
 
 	var axis := Input.get_axis("move_left", "move_right")
 
 	if Input.is_action_just_pressed("jump"):
-		jump_buffer = 0.13
+		jump_buffer = INPUT_BUFFER
+	# 0.12s 单次动作缓冲：冲刺/摆荡/蓄力/硬直期间按下的攻击先记下来，
+	# 恢复可控后补一次。当前能立刻出招时不记，避免和连击队列重复消费。
+	if Input.is_action_just_pressed("attack") \
+			and (dash_t > 0.0 or act not in ["free", "atk1", "atk2", "atk3"]):
+		attack_buffer_t = INPUT_BUFFER
 
 	# ---- 混天绫摆荡中（独立于普通移动/重力）
 	if act == "swing":
@@ -595,6 +602,10 @@ func _physics_process(delta: float) -> void:
 			pass   # 定潮进行中：攻击/技能/摆荡全部让位（冲刺仍然优先）
 		elif Input.is_action_just_pressed("attack"):
 			_try_attack(axis)
+		elif attack_buffer_t > 0.0 and act == "free":
+			# 缓冲到点：只补一次普通攻击（连击/解锁/冷却校验仍在 _try_attack 内）
+			attack_buffer_t = 0.0
+			_try_attack(axis)
 		elif Input.is_action_just_pressed("heavy") and act == "free" and combo_cd <= 0.0:
 			if is_on_floor():
 				_start_action("heavy")
@@ -637,6 +648,43 @@ func _physics_process(delta: float) -> void:
 func apply_external_force(v: Vector3) -> void:
 	## 关卡机制（海眼引力井等）给玩家的持续外力；下一帧生效一次
 	_external_vel += v
+
+
+func is_dead() -> bool:
+	## 外部（关卡/陷阱）判断用的唯一接口：不要再读并不存在的 body.dead 属性
+	return act == "dead"
+
+
+# ---------------------------------------------------------------- 灵力自然恢复
+
+func _reset_energy_idle() -> void:
+	## 参与战斗（受击 / 出招 / 施法消耗）就重新开始 3 秒脱战计时
+	energy_idle = 0.0
+	_energy_prev = energy
+
+
+func _tick_energy_regen(delta: float) -> void:
+	if act == "dead":
+		# 死亡期间不恢复，也不把死亡时长累计成脱战时间
+		energy_idle = 0.0
+		_energy_prev = energy
+		return
+	# 任何灵力消耗（真火 / 乾坤圈 / 风火轮 / 擒拿 / 引潮）都重置计时，
+	# 用"数值变少"统一兜住，避免以后新增技能忘记调用 _reset_energy_idle()
+	if energy < _energy_prev - 0.001:
+		energy_idle = 0.0
+	_energy_prev = energy
+	# 战斗动作（蓄力 / 出招 / 硬直 / 摆荡 / 擒拿）期间不算脱战：计时归零不累积，
+	# 动作结束回到 free 之后才重新开始数 3 秒。act == "free" 是唯一"完全可控"的状态。
+	if act != "free":
+		energy_idle = 0.0
+		return
+	energy_idle += delta
+	var next := EnergyRegen.step(energy, MAX_ENERGY, energy_idle, delta, true,
+		get_tree().paused)
+	if not is_equal_approx(next, energy):
+		energy = next
+		energy_changed.emit(energy, MAX_ENERGY)
 
 
 # ---------------------------------------------------------------- 混天绫（第三章）
@@ -770,9 +818,8 @@ func _update_wheel(delta: float) -> void:
 	if velocity.y > 4.0:
 		_wheel_trail_t -= delta
 		if _wheel_trail_t <= 0.0:
-			_wheel_trail_t = 0.05
-			Game.burst(get_parent(), global_position + Vector3(0, 0.15, 0),
-				Color(1.0, 0.5, 0.12), 3, 2.2, 0.05, 0.28)
+			_wheel_trail_t = 0.09
+			CombatVFX.flame_wisp(get_parent(), global_position + Vector3(0, 0.15, 0.2))
 
 
 func apply_slow(amount: float, dur: float) -> void:
@@ -994,6 +1041,8 @@ func _grapple_enemy(e: Node3D) -> void:
 
 
 func _do_jump(double := false) -> void:
+	if _motion:
+		_motion.trigger("jump")
 	velocity.y = JUMP_V * (0.92 if double else 1.0)
 	jump_buffer = 0.0
 	coyote = 0.0
@@ -1003,6 +1052,8 @@ func _do_jump(double := false) -> void:
 
 
 func _do_dash(axis: float) -> void:
+	if _motion:
+		_motion.trigger("dash")
 	if absf(axis) > 0.1:
 		facing = signf(axis)
 	dash_t = DASH_TIME
@@ -1024,6 +1075,9 @@ func _do_dash(axis: float) -> void:
 func _on_land() -> void:
 	Game.burst(get_parent(), global_position + Vector3(0, 0.1, 0),
 		Color(0.5, 0.8, 0.8, 0.6), 8, 2.5, 0.05, 0.3)
+	if _motion:
+		_motion.trigger("land")
+		return
 	var tw := gfx.create_tween()
 	gfx.scale = Vector3(1.15, 0.82, 1.15)
 	tw.tween_property(gfx, "scale", Vector3.ONE, 0.16) \
@@ -1044,6 +1098,10 @@ func _try_attack(axis: float) -> void:
 
 
 func _start_action(new_act: String) -> void:
+	if _motion:
+		_motion.trigger(new_act)
+	# 出招即视为交战：脱战灵力的 3 秒计时重新开始
+	_reset_energy_idle()
 	act = new_act
 	act_t = 0.0
 	act_hit_done = false
@@ -1056,14 +1114,10 @@ func _start_action(new_act: String) -> void:
 			Game.play_sfx("swing", -6.0)
 			_anim_thrust(0.55, 0.13)
 			velocity.x = facing * 4.5
-			Game.burst(get_parent(), global_position +
-				Vector3(facing * 1.0, 1.0, 0.2), C_FIRE, 8, 3.0, 0.05, 0.3)
 		"atk3":
 			Game.play_sfx("swing", -3.0, 0.85)
 			_anim_thrust(0.85, 0.18)
 			velocity.x = facing * 6.5
-			Game.burst(get_parent(), global_position +
-				Vector3(facing * 1.2, 1.0, 0.2), C_FIRE, 14, 4.5, 0.06, 0.35)
 		"heavy":
 			velocity.x = -facing * 2.0
 			_anim_heavy()
@@ -1083,6 +1137,7 @@ func _process_action() -> void:
 		"atk1", "atk2":
 			if not act_hit_done and act_t >= 0.1:
 				act_hit_done = true
+				CombatVFX.slash(get_parent(), global_position, facing, false, 2 if act == "atk2" else 1)
 				_strike(10.0, Vector3(2.4, 1.8, 2.0), Vector3(1.25, 0.95, 0), 4.0)
 			if act_t >= 0.3:
 				if attack_queued:
@@ -1094,6 +1149,7 @@ func _process_action() -> void:
 		"atk3":
 			if not act_hit_done and act_t >= 0.15:
 				act_hit_done = true
+				CombatVFX.slash(get_parent(), global_position, facing, false)
 				if _strike(18.0, Vector3(2.8, 2.0, 2.2), Vector3(1.4, 0.95, 0), 7.5):
 					Game.hitstop(0.08, 0.05)
 			if act_t >= 0.42:
@@ -1102,15 +1158,13 @@ func _process_action() -> void:
 		"heavy":
 			if not act_hit_done and act_t >= 0.32:
 				act_hit_done = true
+				CombatVFX.slash(get_parent(), global_position, facing, true)
 				if _strike(30.0, Vector3(3.4, 2.4, 2.6), Vector3(1.5, 1.0, 0),
 						11.0, true):
 					Game.hitstop(0.1, 0.04)
 					Game.shake(0.45)
 				Game.play_sfx("heavy", -3.0)
 				velocity.x = facing * 8.0
-				Game.burst(get_parent(), global_position +
-					Vector3(facing * 1.4, 1.1, 0.2), Color(1.0, 0.7, 0.2),
-					20, 6.0, 0.08, 0.4)
 			if act_t >= 0.6:
 				act = "free"
 				combo_cd = 0.3
@@ -1128,10 +1182,7 @@ func _process_action() -> void:
 					Game.hitstop(0.1 if boosted else 0.08, 0.05)
 				Game.play_sfx("heavy", -3.0, 0.8 if boosted else 1.0)
 				Game.shake(0.9 if boosted else 0.5)
-				Game.burst(get_parent(), global_position + Vector3(0, 0.25, 0),
-					Color(1.0, 0.55, 0.12) if boosted else C_FIRE,
-					46 if boosted else 26, 10.0 if boosted else 7.0, 0.12, 0.75)
-				_slash_fx(Vector3(0.0, 0.3, 0), 2.2 if boosted else 1.6)
+				CombatVFX.slam(get_parent(), global_position, boosted)
 				act = "free"
 				combo_cd = 0.25
 		"skill":
@@ -1230,73 +1281,15 @@ func _spawn_ghost() -> void:
 
 
 func _slash_fx(offset: Vector3, scale_v: float) -> void:
-	var torus := TorusMesh.new()
-	torus.inner_radius = 0.45
-	torus.outer_radius = 0.55
-	var mat := StandardMaterial3D.new()
-	mat.albedo_color = Color(1.0, 0.7, 0.25, 0.85)
-	mat.emission_enabled = true
-	mat.emission = C_FIRE
-	mat.emission_energy_multiplier = 3.0
-	mat.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
-	mat.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA
-	var mi := MeshInstance3D.new()
-	mi.mesh = torus
-	mi.material_override = mat
-	mi.position = global_position + Vector3(offset.x * facing, offset.y, 0.3)
-	mi.rotation_degrees = Vector3(90, 0, 0)
-	mi.scale = Vector3(0.3, 0.3, 0.3) * scale_v
-	get_parent().add_child(mi)
-	var tw := mi.create_tween()
-	tw.set_parallel(true)
-	tw.tween_property(mi, "scale", Vector3(1.4, 1.4, 1.4) * scale_v, 0.22) \
-		.set_trans(Tween.TRANS_QUART).set_ease(Tween.EASE_OUT)
-	tw.tween_property(mat, "albedo_color:a", 0.0, 0.22)
-	tw.chain().tween_callback(mi.queue_free)
+	CombatVFX.impact(get_parent(), global_position + Vector3(offset.x * facing, offset.y, 0), CombatVFX.FIRE, scale_v > 1.0)
 
 
 func _do_nova() -> void:
 	## 三昧真火：烈焰新星
 	var origin := global_position + Vector3(0, 0.9, 0)
-	Game.burst(get_parent(), origin, Color(1.0, 0.5, 0.1), 60, 11.0, 0.13, 0.8)
-	Game.burst(get_parent(), origin, Color(1.0, 0.85, 0.3), 30, 7.0, 0.1, 0.6)
+	CombatVFX.nova(get_parent(), global_position)
 	Game.shake(0.6)
 	Game.hitstop(0.09, 0.08)
-	# 扩散火环
-	var torus := TorusMesh.new()
-	torus.inner_radius = 0.9
-	torus.outer_radius = 1.0
-	var mat := StandardMaterial3D.new()
-	mat.albedo_color = Color(1.0, 0.55, 0.15, 0.9)
-	mat.emission_enabled = true
-	mat.emission = C_FIRE
-	mat.emission_energy_multiplier = 4.0
-	mat.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
-	mat.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA
-	var mi := MeshInstance3D.new()
-	mi.mesh = torus
-	mi.material_override = mat
-	mi.position = global_position + Vector3(0, 0.25, 0)
-	mi.scale = Vector3(0.2, 0.6, 0.2)
-	get_parent().add_child(mi)
-	var tw := mi.create_tween()
-	tw.set_parallel(true)
-	tw.tween_property(mi, "scale", Vector3(4.8, 1.2, 4.8), 0.5) \
-		.set_trans(Tween.TRANS_QUART).set_ease(Tween.EASE_OUT)
-	tw.tween_property(mat, "albedo_color:a", 0.0, 0.5)
-	tw.chain().tween_callback(mi.queue_free)
-	# 闪光
-	var light := OmniLight3D.new()
-	light.light_color = C_FIRE
-	light.light_energy = 8.0
-	light.omni_range = 10.0
-	light.position = origin
-	get_parent().add_child(light)
-	Game.tune_light(light, 4.0, 6.0, 0.0)
-	var lt := light.create_tween()
-	lt.tween_property(light, "light_energy", 0.0, 0.5)
-	lt.tween_callback(light.queue_free)
-	# 范围伤害 + 灼烧
 	var space := get_world_3d().direct_space_state
 	var q := PhysicsShapeQueryParameters3D.new()
 	var shape := SphereShape3D.new()
@@ -1339,6 +1332,9 @@ func _do_nova() -> void:
 
 func _start_ring_charge() -> void:
 	## 乾坤圈蓄力起手：按住 E 蓄力（上限 1 秒），期间人物定格（空中悬停）
+	# 起手即战斗动作：立刻重置脱战计时。否则"已脱战 3 秒"时起手，会一边蓄力一边按 5/s 回灵。
+	# （松手扣 25 灵力的数值兜底会再重置一次）
+	_reset_energy_idle()
 	act = "charge_ring"
 	act_t = 0.0
 	_ring_charge = 0.0
@@ -1391,6 +1387,7 @@ func _throw_ring(charge := 0.0) -> void:
 	rt.max_dist = 8.5 + c * 8.0
 	rt.position = global_position + Vector3(facing * 0.7, 1.1, 0)
 	get_parent().add_child(rt)
+	_ring_throw = rt
 	Game.play_sfx("swing", -4.0, 1.4 - 0.3 * c)
 	if c > 0.3:
 		Game.shake(0.15 + 0.2 * c)
@@ -1398,6 +1395,7 @@ func _throw_ring(charge := 0.0) -> void:
 
 func ring_returned() -> void:
 	_ring_out = false
+	_ring_throw = null
 	if ring:
 		ring.visible = true
 
@@ -1576,6 +1574,14 @@ func _update_model_pose(delta: float) -> void:
 
 
 func _update_spear_follow() -> void:
+	if _motion and spear:
+		var hand_index: int = _bones["hand.r"]
+		var hand_transform := skel.global_transform * skel.get_bone_global_pose(hand_index)
+		var grip_basis := Basis(Quaternion(Vector3.UP, _motion.weapon_axis()))
+		var grip := Transform3D(grip_basis, NezhaMotion.GRIP)
+		grip.origin += grip_basis.y * 0.25
+		spear.transform = gfx.global_transform.affine_inverse() * hand_transform * grip
+		return
 	## 非攻击状态下火尖枪握于右手：枪杆穿过手掌，握点在杆的下三分之一。
 	## 只跟随"手的位置 + 固定倾角"，不跟手骨自身旋转（否则枪会乱甩）；
 	## 攻击动作期间由 Tween 接管突刺/横扫。
@@ -1598,7 +1604,7 @@ func _update_spear_follow() -> void:
 
 
 func _anim_thrust(reach: float, dur: float) -> void:
-	if spear == null:
+	if spear == null or _motion:
 		return
 	var tw := spear.create_tween()
 	tw.tween_property(spear, "rotation_degrees", Vector3(0, 0, -90), dur * 0.5)
@@ -1611,7 +1617,7 @@ func _anim_thrust(reach: float, dur: float) -> void:
 
 
 func _anim_heavy() -> void:
-	if spear == null:
+	if spear == null or _motion:
 		return
 	var tw := spear.create_tween()
 	tw.tween_property(spear, "rotation_degrees", Vector3(0, 0, 50), 0.3)
@@ -1641,7 +1647,10 @@ func _update_anim(delta: float, axis: float) -> void:
 		_target_yaw = 0.0 if facing > 0.0 else PI
 		gfx.rotation.y = lerp_angle(gfx.rotation.y, _target_yaw, 14.0 * delta)
 		if skel:
-			_update_model_pose(delta)
+			if _motion:
+				_motion.update(self, delta)
+			else:
+				_update_model_pose(delta)
 			_update_spear_follow()
 		# 脚下乾坤圈自转 + 轻微上下浮动（像踩着转轮悬浮）
 		if _foot_ring:
@@ -1655,7 +1664,9 @@ func _update_anim(delta: float, axis: float) -> void:
 				local_down = (fparent.global_transform.basis.inverse() * Vector3.DOWN).normalized()
 			var bob := sin(_anim_time * 3.1) * 0.015
 			_foot_ring.position = _foot_ring_base + local_down * (RING_DROP - bob)
-		if not is_on_floor():
+		if _motion:
+			gfx.scale = Vector3.ONE
+		elif not is_on_floor():
 			gfx.scale = gfx.scale.lerp(Vector3(0.97, 1.04, 0.97), 8.0 * delta)
 		else:
 			gfx.scale = gfx.scale.lerp(Vector3.ONE, 8.0 * delta)
@@ -1678,14 +1689,18 @@ func _update_anim(delta: float, axis: float) -> void:
 		ribbon_l.position.y = 1.35 + sin(wv * 0.8) * 0.05
 		ribbon_r.position.y = 1.25 + sin(wv * 0.8 + 2.0) * 0.05
 	# 奔跑前倾 + 浮动
-	var lean := clampf(velocity.x * facing * 0.022, -0.05, 0.18)
-	gfx.rotation.z = lerpf(gfx.rotation.z,
-		-lean * (facing if use_sprites else 1.0), 10.0 * delta)
-	if is_on_floor() and absf(velocity.x) > 0.5:
-		gfx.position.y = absf(sin(_anim_time * 9.0)) * 0.06
+	if _motion:
+		gfx.rotation.z = 0.0
+		gfx.position.y = 0.0
 	else:
-		gfx.position.y = lerpf(gfx.position.y, 0.03 + sin(_anim_time * 2.0) * 0.03,
-			6.0 * delta)
+		var lean := clampf(velocity.x * facing * 0.022, -0.05, 0.18)
+		gfx.rotation.z = lerpf(gfx.rotation.z,
+			-lean * (facing if use_sprites else 1.0), 10.0 * delta)
+		if is_on_floor() and absf(velocity.x) > 0.5:
+			gfx.position.y = absf(sin(_anim_time * 9.0)) * 0.06
+		else:
+			gfx.position.y = lerpf(gfx.position.y, 0.03 + sin(_anim_time * 2.0) * 0.03,
+				6.0 * delta)
 	# 无敌帧闪烁
 	if invuln > 0.0 and dash_t <= 0.0:
 		gfx.visible = fmod(_anim_time, 0.14) > 0.05
@@ -1717,6 +1732,10 @@ func take_damage(dmg: float, from_x: float = 0.0) -> void:
 	hp_changed.emit(hp, MAX_HP)
 	invuln = 0.9
 	act = "hurt"
+	# 受击 = 交战：灵力脱战恢复重新计时
+	_reset_energy_idle()
+	if _motion:
+		_motion.trigger("hurt")
 	act_t = 0.0
 	attack_queued = false
 	var dir := signf(global_position.x - from_x)
@@ -1733,19 +1752,34 @@ func take_damage(dmg: float, from_x: float = 0.0) -> void:
 
 
 func _die() -> void:
+	for fx in _tide_fx:
+		fx.visible = false
 	act = "dead"
 	Game.death_count += 1
 	velocity = Vector3.ZERO
+	# 死亡瞬间清空输入缓冲，避免复活第一帧就自动出招
+	attack_buffer_t = 0.0
+	jump_buffer = 0.0
+	attack_queued = false
 	Game.play_sfx("enemy_die", -2.0, 0.6)
 	Game.burst(get_parent(), global_position + Vector3(0, 1, 0),
 		C_FIRE, 50, 9.0, 0.12, 1.0)
 	Game.burst(get_parent(), global_position + Vector3(0, 1, 0),
 		Color(0.9, 0.2, 0.2), 30, 6.0, 0.1, 0.8)
-	gfx.visible = false
+	if _motion:
+		_motion.trigger("dead")
+		gfx.visible = true
+	else:
+		gfx.visible = false
 	died.emit()
 
 
 func respawn(pos: Vector3) -> void:
+	## 复活（莲台复活 / 闯关重开都会走到这里）：
+	## 清掉在途乾坤圈、蓄力、输入队列、冷却、冲刺、风火轮窗口与减速，
+	## 但保留灵力数值、潮纹与已解锁技能——重生不是换角色。
+	if _motion:
+		_motion.reset()
 	global_position = pos
 	velocity = Vector3.ZERO
 	hp = MAX_HP
@@ -1753,6 +1787,46 @@ func respawn(pos: Vector3) -> void:
 	act_t = 0.0
 	invuln = 1.2
 	gfx.visible = true
+	# --- 在途乾坤圈：销毁实体并复位手持环（否则旧圈还会带着判定飞回来）
+	_ring_charging = false
+	_ring_charge = 0.0
+	_ring_charge_fx = 0.0
+	_ring_out = false
+	if _ring_throw != null and is_instance_valid(_ring_throw):
+		_ring_throw.queue_free()
+	_ring_throw = null
+	if ring:
+		ring.visible = true
+		ring.scale = Vector3.ONE
+	# --- 风火轮腾空窗口
+	wheel_t = 0.0
+	_wheel_airborne = false
+	_wheel_trail_t = 0.0
+	if _wheel_hold != null and is_instance_valid(_wheel_hold):
+		_wheel_hold.visible = false
+	# --- 输入队列与动作冷却
+	attack_queued = false
+	attack_buffer_t = 0.0
+	jump_buffer = 0.0
+	combo_cd = 0.0
+	dash_t = 0.0
+	dash_cd_t = 0.0
+	air_dash_used = false
+	air_jumps = 1
+	coyote = 0.0
+	was_airborne = false
+	_pd_done = false
+	_swing_cd = 0.0
+	_grapple_cd = 0.0
+	_swing_drop_pending = false
+	_swing_drop_t = 0.0
+	# --- 关卡外力 / 减速
+	_external_vel = Vector3.ZERO
+	_slow_amount = 0.0
+	_slow_t = 0.0
+	# --- 灵力：数值保留，只把脱战计时归零（不默认回满）
+	energy_idle = 0.0
+	_energy_prev = energy
 	# 定潮状态复位：潮纹不回满（本关莲台复活属于同一个"段落"），但窗口/吸附必须清掉
 	_tide_cancel()
 	_tide_guard_t = 0.0
@@ -1763,6 +1837,7 @@ func respawn(pos: Vector3) -> void:
 	_guard_mode = "neutral"
 	_tide_hold_t = 0.0
 	hp_changed.emit(hp, MAX_HP)
+	energy_changed.emit(energy, MAX_ENERGY)
 	Game.burst(get_parent(), pos + Vector3(0, 0.8, 0),
 		Color(0.5, 0.95, 0.85), 30, 5.0, 0.09, 0.7)
 
@@ -1941,11 +2016,13 @@ func _tide_release() -> void:
 		Game.play_sfx("tide_volley", -4.0)
 		Game.hitstop(0.03, 0.05)
 		Game.shake(0.20)
-		Game.burst(get_parent(), global_position + Vector3(facing * 1.6, 1.0, 0),
-			Color(0.42, 0.95, 0.86), 18, 5.0, 0.07, 0.4)
+		CombatVFX.volley(get_parent(), global_position + Vector3(facing * 0.6, 1, 0), facing)
 
 
 func _tide_cancel() -> void:
+	_guard_blend = 0.0
+	_parry_flash_t = 0.0
+	_update_tide_fx(0.0)
 	if _pulling:
 		for pr in _pull_list:
 			if is_instance_valid(pr) and pr is Projectile:
@@ -2031,6 +2108,7 @@ func _parry_success(perfect: bool, mode: String) -> void:
 	# 成功即返还这 1 格：空挥照扣，"弹中了"不该还倒贴资源。
 	# 完美不再额外加格，避免无脑连弹把资源刷满。
 	_gain_rune(1.0)
+	CombatVFX.splash(get_parent(), global_position + Vector3(facing * 0.9, 1, 0), facing, perfect)
 	if mode == "front":
 		if perfect:
 			Game.parry_moment(0.11, 0.35)   # 时间稀释：让"弹中了"这一下被看见
@@ -2098,43 +2176,24 @@ func _build_tide_fx() -> void:
 	_tide_fx_root = Node3D.new()
 	_tide_fx_root.position.y = 1.0
 	add_child(_tide_fx_root)
-	var mat := Game.std_mat(Color(0.32, 0.9, 0.86, 0.55),
-		Color(0.35, 0.95, 0.9), 2.0, 0.35)
-	mat.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA
-	mat.cull_mode = BaseMaterial3D.CULL_DISABLED
-	mat.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
-	for i in 3:
-		var torus := TorusMesh.new()
-		torus.inner_radius = 0.92
-		torus.outer_radius = 1.0
-		torus.rings = 24
-		torus.ring_segments = 4
-		var mi := Game.add_mesh(_tide_fx_root, torus, mat, Vector3.ZERO)
-		mi.rotation_degrees.z = 90.0
-		mi.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
-		mi.visible = false
-		_tide_fx.append(mi)
+	_tide_fx = CombatVFX.guard(_tide_fx_root)
 
 
 func _update_tide_fx(_delta: float) -> void:
-	if _tide_fx.is_empty():
-		return
-	var vis := _guard_blend > 0.03
 	for i in _tide_fx.size():
-		var mi: MeshInstance3D = _tide_fx[i]
-		mi.visible = vis
-		if not vis:
-			continue
-		var r := lerpf(0.30, 1.0, _guard_blend)
-		var push := 0.30 + 0.22 * float(i)
-		if _guard_mode == "front":
-			r *= 1.0 + 0.9 * (1.0 - _tide_guard_t / TIDE_PARRY_WINDOW)
-			push = 0.55 + 0.35 * float(i) + 0.5 * (1.0 - _tide_guard_t / TIDE_PARRY_WINDOW)
-		elif _guard_mode == "cross":
-			r *= 0.55
-			push = 0.30
-		mi.scale = Vector3.ONE * r * (1.0 + 0.06 * float(i))
-		mi.position = Vector3(facing * push, 0.0, 0.0)
+		var mi := _tide_fx[i]
+		mi.visible = _guard_blend > 0.03 and act != "dead"
+		if i == 0:
+			mi.position = Vector3(facing * 0.35, 0, 0)
+			mi.rotation_degrees = Vector3(0, 0, -90 * facing)
+			mi.scale = Vector3(1.05, 0.65, 1.0)
+		else:
+			mi.position = Vector3(facing * 0.85, 0, 0.35)
+			mi.rotation.z = _anim_time * 0.4
+			mi.scale = Vector3.ONE * (1.8 if _pulling else 1.5)
+		var mat := mi.material_override as ShaderMaterial
+		mat.set_shader_parameter("opacity", _guard_blend)
+		mat.set_shader_parameter("phase", _anim_time)
 
 
 func _guard_pose(p: Dictionary, w: float) -> Dictionary:

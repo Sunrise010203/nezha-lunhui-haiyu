@@ -1,0 +1,49 @@
+{
+ "appdata": "C:\\Users\\Sunrise\\AppData\\Roaming",
+ "pid": 7236,
+ "t": "17:38:26",
+ "list_ud": {
+  "ok": true,
+  "value": [
+   "logs",
+   "objectdb_snapshots",
+   "progress.cfg",
+   "shader_cache",
+   "vulkan"
+  ]
+ },
+ "list_logs": {
+  "ok": true,
+  "value": [
+   "godot.log",
+   "godot2026-10-22T16.34.52.log",
+   "godot2026-10-22T16.35.11.log",
+   "godot2026-10-22T16.35.23.log",
+   "godot2026-10-22T16.35.42.log"
+  ]
+ },
+ "create_file_in_logs": {
+  "ok": true,
+  "value": 7
+ },
+ "append_godot_log": {
+  "ok": true,
+  "value": 1001
+ },
+ "mkdir_in_ud": {
+  "ok": true,
+  "value": true
+ },
+ "mkdir_tree_in_roaming": {
+  "ok": false,
+  "err": "OSError: [WinError 145] 目录不是空的。: 'C:\\\\Users\\\\Sunrise\\\\AppData\\\\Roaming\\\\Godot_probe_tree'"
+ },
+ "icacls_logs": {
+  "ok": true,
+  "value": "C:\\Users\\Sunrise\\AppData\\Roaming\\Godot\\app_userdata\\哪吒·轮回海域\\logs LAPTOP-3GAMS39N\\CodexSandboxUsers:(I)(OI)(CI)(RX)\n                                                                 S-1-15-3-2968813833-811790644-2202111208-3784096404-1081847329-2708967783-1438471679:(I)(F)\n                                                                 S-1-15-3-2968813833-811790644-2202111208-3784096404-1081847329-2708967783-1438471679:(I)(OI)(CI)(IO)(F)\n                                                                 LAPTOP-3GAMS39N\\Sunrise:(I)(OI)(CI)(F)\n                                                                 NT AUTHORITY\\SYSTEM:(I)(OI)(CI)(F)\n                                                                 BUILTIN\\Administrators:(I)(OI)(CI)(F)\n\n已成功处理 1 个文件; 处理 0 个文件时失败\r\n"
+ },
+ "icacls_ud": {
+  "ok": true,
+  "value": "C:\\Users\\Sunrise\\AppData\\Roaming\\Godot\\app_userdata\\哪吒·轮回海域 LAPTOP-3GAMS39N\\CodexSandboxUsers:(I)(OI)(CI)(RX)\n                                                            S-1-15-3-2968813833-811790644-2202111208-3784096404-1081847329-2708967783-1438471679:(I)(F)\n                                                            S-1-15-3-2968813833-811790644-2202111208-3784096404-1081847329-2708967783-1438471679:(I)(OI)(CI)(IO)(F)\n                                                            LAPTOP-3GAMS39N\\Sunrise:(I)(OI)(CI)(F)\n                                                            NT AUTHORITY\\SYSTEM:(I)(OI)(CI)(F)\n                                                            BUILTIN\\Administrators:(I)(OI)(CI)(F)\n\n已成功处理 1 个文件; 处理 0 个文件时失败\r\n"
+ }
+}

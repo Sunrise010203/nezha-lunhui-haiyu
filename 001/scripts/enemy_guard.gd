@@ -46,6 +46,9 @@ func _setup() -> void:
 
 
 func _build_gfx() -> void:
+	if load_enemy_model("004_guard", 1.7):
+		_light = make_enemy_light(Color(1.0, 0.35, 0.12), Vector3(0.45, 1.02, 0.35))
+		return
 	var iron := Game.std_mat(Color(0.27, 0.29, 0.33), Color(0.04, 0.05, 0.07),
 		0.5, 0.72, 0.55)
 	var dark := Game.std_mat(Color(0.13, 0.14, 0.17), Color(0.02, 0.02, 0.03),
@@ -269,7 +272,8 @@ func _behave(delta: float) -> void:
 		_light.light_energy = lerpf(_light.light_energy,
 			0.7 + 1.4 * _shield_lift, 10.0 * delta)
 	# 沉重呼吸
-	gfx.position.y = sin(_t * 2.2) * 0.015
+	if not enemy_motion:
+		gfx.position.y = sin(_t * 2.2) * 0.015
 
 
 func _face_player() -> void:
@@ -285,7 +289,7 @@ func _enter_tele() -> void:
 	state_t = 0.0
 	velocity.x = 0.0
 	Game.play_sfx("swing", -10.0, 0.55)
-	Game.flash_meshes(_shield_arm, Color(1.0, 0.55, 0.3), 0.12)
+	Game.flash_meshes(_shield_arm if _shield_arm else gfx, Color(1.0, 0.55, 0.3), 0.12)
 	Game.burst(get_parent(), global_position + Vector3(facing * 0.6, 1.0, 0),
 		Color(1.0, 0.4, 0.15), 10, 2.5, 0.06, 0.3)
 
@@ -310,3 +314,11 @@ func _on_hurt() -> void:
 	# 受击时盾牌火光一颤（数值形态不被打断，体现"抗打"）
 	if _shield_red_mat:
 		_shield_red_mat.emission_energy_multiplier = 3.6
+
+
+func _rig_animation() -> Array:
+	match state:
+		"tele": return ["Windup", state_t / TELE_TIME]
+		"bash": return ["Attack", state_t / BASH_TIME]
+		"recover": return ["Recover", state_t / RECOVER_TIME]
+	return super._rig_animation()

@@ -1,0 +1,286 @@
+{
+ "tag": "dbg_default",
+ "pid": 40788,
+ "exit_code": null,
+ "events": [
+  {
+   "t": 0.015,
+   "ev": "create_process"
+  },
+  {
+   "t": 0.031,
+   "ev": "exception",
+   "code": 2147483651,
+   "first_chance": 1,
+   "address": 140732644972477,
+   "params": [
+    0
+   ],
+   "thread": 47080
+  },
+  {
+   "t": 0.097,
+   "ev": "exception",
+   "code": 3221225477,
+   "first_chance": 1,
+   "address": 140696583374247,
+   "params": [
+    0,
+    80
+   ],
+   "thread": 47080
+  }
+ ],
+ "captured": {
+  "pid": 40788,
+  "t_s": 0.098,
+  "exc": {
+   "code": 3221225477,
+   "address": 140696583374247,
+   "first_chance": 1,
+   "params": [
+    0,
+    80
+   ],
+   "address_resolved": "nezha_ch1_playable_r2.exe+0x2d985a7",
+   "access": "READ"
+  },
+  "regs": {
+   "Rip": 140696583374247,
+   "Rsp": 960959083792,
+   "Rbp": 140696630867488,
+   "Rax": 0,
+   "Rbx": 2537082802592,
+   "Rcx": 0,
+   "Rdx": 0,
+   "Rsi": 5,
+   "Rdi": 0,
+   "R8": 9223372036854775804,
+   "R9": 2537082813888,
+   "R10": 2537064955904,
+   "R11": 960959083136,
+   "R12": 960959084280,
+   "R13": 960959084296,
+   "R14": 960959084320,
+   "R15": 2537064986512
+  },
+  "modules": [
+   {
+    "base": 140696535564288,
+    "size": 106004480,
+    "name": "nezha_ch1_playable_r2.exe"
+   },
+   {
+    "base": 140732643803136,
+    "size": 2514944,
+    "name": "ntdll.dll"
+   },
+   {
+    "base": 140732613066752,
+    "size": 823296,
+    "name": "KERNEL32.DLL"
+   },
+   {
+    "base": 140732599304192,
+    "size": 4186112,
+    "name": "KERNELBASE.dll"
+   },
+   {
+    "base": 140732607627264,
+    "size": 3682304,
+    "name": "combase.dll"
+   },
+   {
+    "base": 140732597862400,
+    "size": 1359872,
+    "name": "ucrtbase.dll"
+   },
+   {
+    "base": 140732613984256,
+    "size": 1146880,
+    "name": "RPCRT4.dll"
+   },
+   {
+    "base": 140732624273408,
+    "size": 888832,
+    "name": "oleaut32.dll"
+   },
+   {
+    "base": 140732605792256,
+    "size": 667648,
+    "name": "msvcp_win.dll"
+   },
+   {
+    "base": 140732622372864,
+    "size": 1863680,
+    "name": "user32.dll"
+   },
+   {
+    "base": 140732605595648,
+    "size": 159744,
+    "name": "win32u.dll"
+   },
+   {
+    "base": 140732627943424,
+    "size": 176128,
+    "name": "GDI32.dll"
+   },
+   {
+    "base": 140731449671680,
+    "size": 4321280,
+    "name": "uiautomationcore.dll"
+   },
+   {
+    "base": 140732603564032,
+    "size": 1220608,
+    "name": "gdi32full.dll"
+   },
+   {
+    "base": 140732619948032,
+    "size": 749568,
+    "name": "ADVAPI32.dll"
+   },
+   {
+    "base": 140732633776128,
+    "size": 692224,
+    "name": "msvcrt.dll"
+   },
+   {
+    "base": 140732617064448,
+    "size": 696320,
+    "name": "sechost.dll"
+   },
+   {
+    "base": 140732595699712,
+    "size": 1540096,
+    "name": "CRYPT32.dll"
+   },
+   {
+    "base": 140732621914112,
+    "size": 204800,
+    "name": "IMM32.dll"
+   },
+   {
+    "base": 140732611362816,
+    "size": 1675264,
+    "name": "ole32.dll"
+   },
+   {
+    "base": 140732618375168,
+    "size": 1011712,
+    "name": "SHCORE.dll"
+   },
+   {
+    "base": 140732634497024,
+    "size": 7938048,
+    "name": "SHELL32.dll"
+   },
+   {
+    "base": 140732619489280,
+    "size": 421888,
+    "name": "SHLWAPI.dll"
+   },
+   {
+    "base": 140732621324288,
+    "size": 524288,
+    "name": "WS2_32.dll"
+   },
+   {
+    "base": 140732541698048,
+    "size": 192512,
+    "name": "dwmapi.dll"
+   },
+   {
+    "base": 140732594585600,
+    "size": 172032,
+    "name": "bcrypt.dll"
+   },
+   {
+    "base": 140732552773632,
+    "size": 1302528,
+    "name": "dxgi.dll"
+   },
+   {
+    "base": 140732554412032,
+    "size": 45056,
+    "name": "AVRT.dll"
+   },
+   {
+    "base": 140732538159104,
+    "size": 2519040,
+    "name": "DWrite.dll"
+   },
+   {
+    "base": 140732569550848,
+    "size": 208896,
+    "name": "IPHLPAPI.DLL"
+   },
+   {
+    "base": 140732565422080,
+    "size": 61440,
+    "name": "HID.DLL"
+   },
+   {
+    "base": 140732504866816,
+    "size": 221184,
+    "name": "WINMM.dll"
+   },
+   {
+    "base": 140731635138560,
+    "size": 40960,
+    "name": "WSOCK32.dll"
+   },
+   {
+    "base": 140732592160768,
+    "size": 385024,
+    "name": "powrprof.dll"
+   },
+   {
+    "base": 140732604809216,
+    "size": 704512,
+    "name": "bcryptPrimitives.dll"
+   },
+   {
+    "base": 140732592029696,
+    "size": 81920,
+    "name": "UMPDC.dll"
+   },
+   {
+    "base": 140730584924160,
+    "size": 307200,
+    "name": "dinput8.dll"
+   },
+   {
+    "base": 140731621376000,
+    "size": 1982464,
+    "name": "inputhost.dll"
+   },
+   {
+    "base": 140732525051904,
+    "size": 1200128,
+    "name": "CoreMessaging.dll"
+   },
+   {
+    "base": 140732575514624,
+    "size": 110592,
+    "name": "kernel.appcore.dll"
+   },
+   {
+    "base": 140732530556928,
+    "size": 692224,
+    "name": "uxtheme.dll"
+   },
+   {
+    "base": 140732584886272,
+    "size": 49152,
+    "name": "CRYPTBASE.DLL"
+   },
+   {
+    "base": 140732527935488,
+    "size": 655360,
+    "name": "apphelp.dll"
+   }
+  ],
+  "stack_words": []
+ }
+}

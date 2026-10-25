@@ -1,0 +1,7 @@
+{
+  "checks": 34,
+  "max_grip_error_m": 0.000000238418579101563,
+  "passed": true,
+  "pose_samples": 280,
+  "triangles": 44999
+}

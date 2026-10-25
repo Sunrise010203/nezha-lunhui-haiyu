@@ -9,6 +9,7 @@ extends StaticBody3D
 var drop_heal := false
 ## "urn"（青瓷瓮）/ "barrel"（木桶）
 var style := "urn"
+var _debris_kind := "stone"
 
 const PROP_URN_BRONZE := "res://art/models/props/urn_bronze.glb"
 const PROP_URN_PORCELAIN := "res://art/models/props/urn_porcelain.glb"
@@ -63,6 +64,7 @@ func _spawn_prop() -> bool:
 	if style == "urn":
 		path = PROP_URN_PORCELAIN if randf() < 0.5 else PROP_URN_BRONZE
 		h = 0.78
+	_debris_kind = "stone" if path == PROP_URN_PORCELAIN else "bronze"
 	var model := Game.load_model(path, h, randf() * 360.0, 0.0, 45.0,
 		true, false)
 	if model == null:
@@ -83,10 +85,8 @@ func _spawn_prop() -> bool:
 
 func take_damage(_dmg: float, _dir: float, _heavy := false) -> void:
 	Game.play_sfx("hit", -6.0, 0.7)
-	Game.burst(get_parent(), global_position + Vector3(0, 0.5, 0),
-		Color(0.25, 0.6, 0.65), 18, 5.0, 0.08, 0.55)
-	Game.burst(get_parent(), global_position + Vector3(0, 0.5, 0),
-		Color(0.4, 0.85, 0.85), 10, 3.0, 0.06, 0.4)
+	CombatVFX.debris(get_parent(), global_position + Vector3(0, 0.5, 0), _debris_kind, 4)
+	CombatVFX.smoke(get_parent(), global_position, 0.9)
 	if drop_heal:
 		var p := Pickup.new()
 		p.kind = Pickup.Kind.HEAL

@@ -1,0 +1,296 @@
+{
+  "Idle": {
+    "passed": true,
+    "frames": [
+      {
+        "frame": 1,
+        "max_error_m": 9.129075278707028e-06
+      },
+      {
+        "frame": 99,
+        "max_error_m": 1.1494547603501124e-05
+      },
+      {
+        "frame": 199,
+        "max_error_m": 8.982768017228134e-06
+      },
+      {
+        "frame": 299,
+        "max_error_m": 9.187239606157135e-06
+      }
+    ]
+  },
+  "FightIdle": {
+    "passed": true,
+    "frames": [
+      {
+        "frame": 1,
+        "max_error_m": 2.667051857779042e-05
+      },
+      {
+        "frame": 24,
+        "max_error_m": 2.4591882521958648e-05
+      },
+      {
+        "frame": 48,
+        "max_error_m": 2.561648301557908e-05
+      },
+      {
+        "frame": 72,
+        "max_error_m": 2.66608551190736e-05
+      }
+    ]
+  },
+  "Run": {
+    "passed": true,
+    "frames": [
+      {
+        "frame": 1,
+        "max_error_m": 3.8878139039626664e-05
+      },
+      {
+        "frame": 9,
+        "max_error_m": 3.072619799499231e-05
+      },
+      {
+        "frame": 18,
+        "max_error_m": 2.8260789788235663e-05
+      },
+      {
+        "frame": 28,
+        "max_error_m": 3.89266883062556e-05
+      }
+    ]
+  },
+  "Jump": {
+    "passed": true,
+    "frames": [
+      {
+        "frame": 1,
+        "max_error_m": 1.313039273996186e-05
+      },
+      {
+        "frame": 4,
+        "max_error_m": 1.6501376376566303e-05
+      },
+      {
+        "frame": 8,
+        "max_error_m": 1.9762336390483524e-05
+      },
+      {
+        "frame": 13,
+        "max_error_m": 1.9802127053918924e-05
+      }
+    ]
+  },
+  "Fall": {
+    "passed": true,
+    "frames": [
+      {
+        "frame": 1,
+        "max_error_m": 1.9802127053918924e-05
+      },
+      {
+        "frame": 4,
+        "max_error_m": 1.9802127053918924e-05
+      },
+      {
+        "frame": 8,
+        "max_error_m": 1.9802127053918924e-05
+      },
+      {
+        "frame": 13,
+        "max_error_m": 1.9802127053918924e-05
+      }
+    ]
+  },
+  "Land": {
+    "passed": true,
+    "frames": [
+      {
+        "frame": 1,
+        "max_error_m": 2.015095438514469e-05
+      },
+      {
+        "frame": 8,
+        "max_error_m": 3.770957522508776e-05
+      },
+      {
+        "frame": 16,
+        "max_error_m": 1.8266277122140483e-05
+      },
+      {
+        "frame": 25,
+        "max_error_m": 1.3437989109689036e-05
+      }
+    ]
+  },
+  "Roll": {
+    "passed": true,
+    "frames": [
+      {
+        "frame": 1,
+        "max_error_m": 3.723623752349935e-05
+      },
+      {
+        "frame": 13,
+        "max_error_m": 2.79237423596555e-05
+      },
+      {
+        "frame": 26,
+        "max_error_m": 3.4972898341234026e-05
+      },
+      {
+        "frame": 39,
+        "max_error_m": 3.639365421030507e-05
+      }
+    ]
+  },
+  "Stab": {
+    "passed": true,
+    "frames": [
+      {
+        "frame": 1,
+        "max_error_m": 2.3011581040937505e-05
+      },
+      {
+        "frame": 10,
+        "max_error_m": 2.9088059026369343e-05
+      },
+      {
+        "frame": 20,
+        "max_error_m": 3.442199199091378e-05
+      },
+      {
+        "frame": 31,
+        "max_error_m": 1.927698898902721e-05
+      }
+    ]
+  },
+  "Slash": {
+    "passed": true,
+    "frames": [
+      {
+        "frame": 1,
+        "max_error_m": 2.7522860211776744e-05
+      },
+      {
+        "frame": 8,
+        "max_error_m": 2.071403444517649e-05
+      },
+      {
+        "frame": 16,
+        "max_error_m": 2.1853365758642763e-05
+      },
+      {
+        "frame": 25,
+        "max_error_m": 2.435120115390486e-05
+      }
+    ]
+  },
+  "ThrustSlash": {
+    "passed": true,
+    "frames": [
+      {
+        "frame": 1,
+        "max_error_m": 1.647543570297426e-05
+      },
+      {
+        "frame": 9,
+        "max_error_m": 2.6565624723506044e-05
+      },
+      {
+        "frame": 18,
+        "max_error_m": 2.5510204792598805e-05
+      },
+      {
+        "frame": 27,
+        "max_error_m": 2.5774892413916478e-05
+      }
+    ]
+  },
+  "UpwardThrust": {
+    "passed": true,
+    "frames": [
+      {
+        "frame": 1,
+        "max_error_m": 2.4922398128356396e-05
+      },
+      {
+        "frame": 13,
+        "max_error_m": 2.682149409585514e-05
+      },
+      {
+        "frame": 26,
+        "max_error_m": 3.4495505857620164e-05
+      },
+      {
+        "frame": 39,
+        "max_error_m": 2.7297804816668848e-05
+      }
+    ]
+  },
+  "Hit": {
+    "passed": true,
+    "frames": [
+      {
+        "frame": 1,
+        "max_error_m": 1.6130217914105363e-05
+      },
+      {
+        "frame": 9,
+        "max_error_m": 1.3673071988667517e-05
+      },
+      {
+        "frame": 18,
+        "max_error_m": 2.1651993559340046e-05
+      },
+      {
+        "frame": 28,
+        "max_error_m": 2.3391849252433964e-05
+      }
+    ]
+  },
+  "Death": {
+    "passed": true,
+    "frames": [
+      {
+        "frame": 1,
+        "max_error_m": 2.6221644949759728e-05
+      },
+      {
+        "frame": 26,
+        "max_error_m": 4.0095566513089316e-05
+      },
+      {
+        "frame": 52,
+        "max_error_m": 3.773439205506404e-05
+      },
+      {
+        "frame": 79,
+        "max_error_m": 3.0843006434788204e-05
+      }
+    ]
+  },
+  "Plunge": {
+    "passed": true,
+    "frames": [
+      {
+        "frame": 1,
+        "max_error_m": 2.8769650731017433e-05
+      },
+      {
+        "frame": 4,
+        "max_error_m": 2.8769650731017433e-05
+      },
+      {
+        "frame": 8,
+        "max_error_m": 2.8769650731017433e-05
+      },
+      {
+        "frame": 13,
+        "max_error_m": 2.8769650731017433e-05
+      }
+    ]
+  }
+}

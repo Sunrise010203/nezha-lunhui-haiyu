@@ -1,0 +1,31 @@
+{
+  "tag": "L1",
+  "exe": "E:/godot_game_by_fable/builds/playable-slice/nezha_ch1_playable_r2.exe",
+  "cwd": "E:/godot_game_by_fable/builds/playable-slice",
+  "env_mode": "clean-explorer-like APPDATA=E:/_expLbl",
+  "APPDATA": "E:/_expLbl",
+  "LOCALAPPDATA": "C:\\Users\\Sunrise/AppData/Local",
+  "extra_args": [
+    "--quit-after",
+    "120"
+  ],
+  "via": "create",
+  "started": "2026-10-22T17:45:18",
+  "userdata_before": {
+    "path": "E:/_expLbl/Godot/app_userdata/哪吒·轮回海域",
+    "exists": false
+  },
+  "pid": 42536,
+  "exit_code": 3221225477,
+  "windows_seen": null,
+  "windows_final": [],
+  "elapsed_s": 0.26,
+  "exit_hex": "0xc0000005",
+  "exit_ntstatus_guess": "ACCESS_VIOLATION",
+  "userdata_after": {
+    "path": "E:/_expLbl/Godot/app_userdata/哪吒·轮回海域",
+    "exists": false
+  },
+  "stdout_text": "",
+  "stderr_text": "ERROR: Could not create directory: 'E:/_expLbl/Godot/app_userdata'.\n   at: make_dir_recursive (core/io/dir_access.cpp:178)\nERROR: Error attempting to create data dir: E:/_expLbl/Godot/app_userdata/哪吒·轮回海域.\n   at: ensure_user_data_dir (core/os/os.cpp:437)\nERROR: Could not create directory: 'user://logs'.\n   at: make_dir_recursive (core/io/dir_access.cpp:178)\n"
+}

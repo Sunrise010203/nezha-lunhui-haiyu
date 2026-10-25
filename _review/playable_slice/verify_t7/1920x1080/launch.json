@@ -1,0 +1,114 @@
+{
+  "size": [
+    1920,
+    1080
+  ],
+  "exe": "E:\\godot_game_by_fable\\builds\\playable-slice\\nezha_ch1_playable_r2.exe",
+  "exe_sha256": "5551152b922f7dd02dde168eaf93b0730439f2ee7305608257c07e10c371ca35",
+  "exe_bytes": 557508232,
+  "cmd": [
+    "E:\\godot_game_by_fable\\builds\\playable-slice\\nezha_ch1_playable_r2.exe"
+  ],
+  "cwd": "E:\\godot_game_by_fable\\builds\\playable-slice",
+  "env_before": {
+    "APPDATA": "C:\\Users\\Sunrise\\AppData\\Roaming",
+    "LOCALAPPDATA": "C:\\Users\\Sunrise\\AppData\\Local",
+    "USERPROFILE": "C:\\Users\\Sunrise",
+    "TEMP": "C:\\Users\\Sunrise\\AppData\\Local\\Temp\\dsh-win-bash-38312-4f00b7d0"
+  },
+  "env_override": {
+    "APPDATA": "E:\\godot_game_by_fable\\_tmp_t7\\appdata"
+  },
+  "dpi_awareness": "per-monitor-v2",
+  "started": "2026-10-22T16:16:50",
+  "pid": 41392,
+  "window_found": true,
+  "screen": [
+    2560,
+    1600
+  ],
+  "dpi": 144,
+  "client_after_resize": [
+    1920,
+    1080
+  ],
+  "client_aligned": [
+    0,
+    0
+  ],
+  "shots": [
+    {
+      "step": "menu",
+      "file": "menu.png",
+      "client": [
+        1920,
+        1080
+      ],
+      "origin": [
+        0,
+        0
+      ],
+      "image": [
+        1920,
+        1080
+      ],
+      "printwindow_ok": null,
+      "blank_fallback": false
+    },
+    {
+      "step": "select",
+      "file": "select.png",
+      "client": [
+        1920,
+        1080
+      ],
+      "origin": [
+        0,
+        0
+      ],
+      "image": [
+        1920,
+        1080
+      ],
+      "printwindow_ok": null,
+      "blank_fallback": false
+    },
+    {
+      "step": "ch1",
+      "file": "ch1.png",
+      "client": [
+        1920,
+        1080
+      ],
+      "origin": [
+        0,
+        0
+      ],
+      "image": [
+        1920,
+        1080
+      ],
+      "printwindow_ok": null,
+      "blank_fallback": false
+    }
+  ],
+  "click_select": [
+    960,
+    631
+  ],
+  "click_ch1": [
+    960,
+    330
+  ],
+  "client_after_ch1": [
+    1920,
+    1080
+  ],
+  "client_final": [
+    1920,
+    1080
+  ],
+  "exit_live": null,
+  "exit_after_terminate": 1,
+  "exit_after_terminate_hex": "0x1"
+}

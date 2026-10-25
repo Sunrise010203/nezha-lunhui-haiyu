@@ -1,0 +1,77 @@
+{
+  "purpose": "playable-slice 2026-10-22 安全基线：工作区字节副本，不依赖 HEAD",
+  "sampled_at": "2026-10-22T05:49:09.593134+00:00",
+  "repo_root": "E:/godot_game_by_fable",
+  "head": "d26d3bc8ce6a1b92e0f33508c353953548a93bdf",
+  "branch": "main",
+  "files": [
+    {
+      "path": "001/scripts/player.gd",
+      "size": 73944,
+      "mtime": "2026-10-21T13:55:41.768626+00:00",
+      "sha256": "a84c38c3af3627dc80b2dbfb05f6458c70bad04f4b62b839f1b9344c7d07a869",
+      "head_blob": "299825ea8cea1fcf1b4f847b82749a04444feaf2"
+    },
+    {
+      "path": "001/scripts/level_base.gd",
+      "size": 75153,
+      "mtime": "2026-10-21T13:49:47.787591+00:00",
+      "sha256": "8c9118d73c0ba2c52cdd7e7b65b00cc774c756636b8c69af168b0364c9d5a1bf",
+      "head_blob": "ece9d56ba161739a5b750b72b105fa67e5169c6f"
+    },
+    {
+      "path": "001/scripts/level_1.gd",
+      "size": 10141,
+      "mtime": "2026-10-21T14:03:50.878320+00:00",
+      "sha256": "f8d063ddd851bab04fefec7caaca61345e39e16234d6817f3a6ca3cfbbb43071",
+      "head_blob": "8b162ca4f5c495713b007a7a82e3b67cd0e4bafb"
+    },
+    {
+      "path": "001/scripts/hud.gd",
+      "size": 31086,
+      "mtime": "2026-10-19T15:00:16.430061+00:00",
+      "sha256": "c83f0fbc15791c8b6aaed54f93c6cec54570a0a4ea4bcc44329ca9677f7ca890",
+      "head_blob": "92dfd14d5cbfb6c4c33162dd5f265691c56f7ed8"
+    },
+    {
+      "path": "001/autoload/game.gd",
+      "size": 29894,
+      "mtime": "2026-10-21T13:55:41.766836+00:00",
+      "sha256": "231807c00a36be35cb85ad88444ce05bdb7cafe0c2e3bcd71fa39f46338c1315",
+      "head_blob": "6e85424dec5a43d7f0442abda2a39647fe6c550f"
+    },
+    {
+      "path": "001/project.godot",
+      "size": 998,
+      "mtime": "2026-10-19T08:47:23.379114+00:00",
+      "sha256": "af0d06a746719c72005c0ab702c276b1d2d657fa9350d5ce9ad50edf65c9a6b8",
+      "head_blob": "fbae9fd1410faf9b5febb349cc084da18a28abcb"
+    },
+    {
+      "path": "001/.gitignore",
+      "size": 46,
+      "mtime": "2026-06-11T06:05:22.026522+00:00",
+      "sha256": "d6194b1a176268740a0b7f153bd4926908b4a0955a9a311181c0200b4329bc94",
+      "head_blob": "0af181cfb5442f01fdce3df056639e861f574a84"
+    },
+    {
+      "path": ".gitignore",
+      "size": 874,
+      "mtime": "2026-10-19T16:52:46.917486+00:00",
+      "sha256": "b9cdcd8240ca6db7ef400d01c8f87fe18d5e7054f37c4757672ecc5274ffd1a2",
+      "head_blob": "998a2bfafcd1d3e1f63613dc479a746564fa9063"
+    },
+    {
+      "path": "tools/backup.ps1",
+      "size": 1647,
+      "mtime": "2026-10-20T04:46:26.922266+00:00",
+      "sha256": "672e710d24feb07257ec7547efbd4ce9add4952cdcfe5e8136f8564f0e1f8796",
+      "head_blob": "1b23fa35626bef5706761527b92d8a51e70f7865"
+    }
+  ],
+  "missing_at_sampling": [
+    "001/export_presets.cfg",
+    "export_presets.cfg",
+    "docs/plans/2026-10-22-playable-slice.md"
+  ]
+}

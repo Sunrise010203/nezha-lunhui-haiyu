@@ -1,0 +1,27 @@
+{
+ "ch4_whale_bone_arch": {
+  "task_id": "task_01M5ETV9FEG0F5M272EQ96F2P7",
+  "status": "ok",
+  "file": "E:\\godot_game_by_fable\\art_assets\\ch4_whale_bone_arch.png"
+ },
+ "ch4_chiwen": {
+  "task_id": "task_01M5ETWH83W10REP09WYFP8PJR",
+  "status": "ok",
+  "file": "E:\\godot_game_by_fable\\art_assets\\ch4_chiwen.png"
+ },
+ "ch4_drowned_statue": {
+  "task_id": "task_01M5ETXKH2E66VBFYX6P9Y1TDS",
+  "status": "ok",
+  "file": "E:\\godot_game_by_fable\\art_assets\\ch4_drowned_statue.png"
+ },
+ "ch4_coral_mutation": {
+  "task_id": "task_01M5ETYP2GN4DV9TA30J4FPCES",
+  "status": "ok",
+  "file": "E:\\godot_game_by_fable\\art_assets\\ch4_coral_mutation.png"
+ },
+ "ch4_bell_dragon_knob": {
+  "task_id": "task_01M5ETZY5W1NWT5JXYRFP7ETCG",
+  "status": "ok",
+  "file": "E:\\godot_game_by_fable\\art_assets\\ch4_bell_dragon_knob.png"
+ }
+}

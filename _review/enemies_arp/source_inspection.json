@@ -1,0 +1,971 @@
+{
+  "001": {
+    "sha256": "378b61b200c46a0f0eb5fa710d99bafad8f0d1cd9d84d26e28e285f3a3dd0290",
+    "bounds": [
+      [
+        -0.415771484375,
+        -0.499755859375,
+        0.0
+      ],
+      [
+        0.415771484375,
+        0.499755859375,
+        0.57080078125
+      ]
+    ],
+    "vertices": 43939,
+    "triangles": 46255,
+    "meshes": [
+      {
+        "name": "tripo_node_06d51ea7-f410-42e8-8be0-c62ad3ef8c39",
+        "vertices": 43939,
+        "groups": 0,
+        "modifiers": [],
+        "materials": [
+          "tripo_mat_06d51ea7-f410-42e8-8be0-c62ad3ef8c39"
+        ]
+      }
+    ],
+    "armatures": [],
+    "images": [
+      {
+        "name": "001_metallic-001_roughness",
+        "size": [
+          4096,
+          4096
+        ]
+      },
+      {
+        "name": "Color",
+        "size": [
+          8192,
+          8192
+        ]
+      },
+      {
+        "name": "Normal",
+        "size": [
+          4096,
+          4096
+        ]
+      },
+      {
+        "name": "Render Result",
+        "size": [
+          0,
+          0
+        ]
+      },
+      {
+        "name": "Viewer Node",
+        "size": [
+          256,
+          256
+        ]
+      }
+    ]
+  },
+  "002": {
+    "sha256": "ed495253d7221cfc89fa5235b79e24bd03052df8376d537704ee31b6d5f5a302",
+    "bounds": [
+      [
+        -0.349365234375,
+        -0.372314453125,
+        0.0
+      ],
+      [
+        0.349365234375,
+        0.372314453125,
+        0.99951171875
+      ]
+    ],
+    "vertices": 46378,
+    "triangles": 47143,
+    "meshes": [
+      {
+        "name": "tripo_node_d29e37f0-8947-491c-9b18-58fa4e045365",
+        "vertices": 46378,
+        "groups": 0,
+        "modifiers": [],
+        "materials": [
+          "tripo_mat_d29e37f0-8947-491c-9b18-58fa4e045365"
+        ]
+      }
+    ],
+    "armatures": [],
+    "images": [
+      {
+        "name": "001_metallic-001_roughness",
+        "size": [
+          4096,
+          4096
+        ]
+      },
+      {
+        "name": "002_metallic-002_roughness",
+        "size": [
+          4096,
+          4096
+        ]
+      },
+      {
+        "name": "Color",
+        "size": [
+          8192,
+          8192
+        ]
+      },
+      {
+        "name": "Color.001",
+        "size": [
+          8192,
+          8192
+        ]
+      },
+      {
+        "name": "Normal",
+        "size": [
+          4096,
+          4096
+        ]
+      },
+      {
+        "name": "Normal.001",
+        "size": [
+          4096,
+          4096
+        ]
+      },
+      {
+        "name": "Render Result",
+        "size": [
+          0,
+          0
+        ]
+      },
+      {
+        "name": "Viewer Node",
+        "size": [
+          256,
+          256
+        ]
+      }
+    ]
+  },
+  "003": {
+    "sha256": "d059da78d3a39977fc84580815bf3d04930cfe0e42d48e358e174a0a7371a9a7",
+    "bounds": [
+      [
+        -0.279052734375,
+        -0.499755859375,
+        0.0
+      ],
+      [
+        0.279052734375,
+        0.499755859375,
+        0.95263671875
+      ]
+    ],
+    "vertices": 36150,
+    "triangles": 48613,
+    "meshes": [
+      {
+        "name": "tripo_node_2a22abe4-895b-4997-b952-b75f6ad5e3a9",
+        "vertices": 36150,
+        "groups": 0,
+        "modifiers": [],
+        "materials": [
+          "tripo_mat_2a22abe4-895b-4997-b952-b75f6ad5e3a9"
+        ]
+      }
+    ],
+    "armatures": [],
+    "images": [
+      {
+        "name": "001_metallic-001_roughness",
+        "size": [
+          4096,
+          4096
+        ]
+      },
+      {
+        "name": "002_metallic-002_roughness",
+        "size": [
+          4096,
+          4096
+        ]
+      },
+      {
+        "name": "003_metallic-003_roughness",
+        "size": [
+          4096,
+          4096
+        ]
+      },
+      {
+        "name": "Color",
+        "size": [
+          8192,
+          8192
+        ]
+      },
+      {
+        "name": "Color.001",
+        "size": [
+          8192,
+          8192
+        ]
+      },
+      {
+        "name": "Color.002",
+        "size": [
+          8192,
+          8192
+        ]
+      },
+      {
+        "name": "Normal",
+        "size": [
+          4096,
+          4096
+        ]
+      },
+      {
+        "name": "Normal.001",
+        "size": [
+          4096,
+          4096
+        ]
+      },
+      {
+        "name": "Normal.002",
+        "size": [
+          4096,
+          4096
+        ]
+      },
+      {
+        "name": "Render Result",
+        "size": [
+          0,
+          0
+        ]
+      },
+      {
+        "name": "Viewer Node",
+        "size": [
+          256,
+          256
+        ]
+      }
+    ]
+  },
+  "004": {
+    "sha256": "30f94769144f1eaa2f5b6a5b3aaadfeec8dfc8bc37297d46de5c0f8520a622ff",
+    "bounds": [
+      [
+        -0.180419921875,
+        -0.347412109375,
+        0.0
+      ],
+      [
+        0.180419921875,
+        0.347412109375,
+        0.99951171875
+      ]
+    ],
+    "vertices": 49171,
+    "triangles": 47254,
+    "meshes": [
+      {
+        "name": "tripo_node_3669961e-2b9f-4dbb-bc87-3542d83a80c1",
+        "vertices": 49171,
+        "groups": 0,
+        "modifiers": [],
+        "materials": [
+          "tripo_mat_3669961e-2b9f-4dbb-bc87-3542d83a80c1"
+        ]
+      }
+    ],
+    "armatures": [],
+    "images": [
+      {
+        "name": "001_metallic-001_roughness",
+        "size": [
+          4096,
+          4096
+        ]
+      },
+      {
+        "name": "002_metallic-002_roughness",
+        "size": [
+          4096,
+          4096
+        ]
+      },
+      {
+        "name": "003_metallic-003_roughness",
+        "size": [
+          4096,
+          4096
+        ]
+      },
+      {
+        "name": "004_metallic-004_roughness",
+        "size": [
+          4096,
+          4096
+        ]
+      },
+      {
+        "name": "Color",
+        "size": [
+          8192,
+          8192
+        ]
+      },
+      {
+        "name": "Color.001",
+        "size": [
+          8192,
+          8192
+        ]
+      },
+      {
+        "name": "Color.002",
+        "size": [
+          8192,
+          8192
+        ]
+      },
+      {
+        "name": "Color.003",
+        "size": [
+          8192,
+          8192
+        ]
+      },
+      {
+        "name": "Normal",
+        "size": [
+          4096,
+          4096
+        ]
+      },
+      {
+        "name": "Normal.001",
+        "size": [
+          4096,
+          4096
+        ]
+      },
+      {
+        "name": "Normal.002",
+        "size": [
+          4096,
+          4096
+        ]
+      },
+      {
+        "name": "Normal.003",
+        "size": [
+          4096,
+          4096
+        ]
+      },
+      {
+        "name": "Render Result",
+        "size": [
+          0,
+          0
+        ]
+      },
+      {
+        "name": "Viewer Node",
+        "size": [
+          256,
+          256
+        ]
+      }
+    ]
+  },
+  "005": {
+    "sha256": "c7ade4e199d3f0e310782014360df9b48cd4b72ae20c86974e555eb88fe6749e",
+    "bounds": [
+      [
+        -0.499755859375,
+        -0.378662109375,
+        0.0
+      ],
+      [
+        0.499755859375,
+        0.378662109375,
+        0.99951171875
+      ]
+    ],
+    "vertices": 22280,
+    "triangles": 27086,
+    "meshes": [
+      {
+        "name": "tripo_node_4aee7ebb-9e31-40c7-9d64-d3eba631f514",
+        "vertices": 22280,
+        "groups": 0,
+        "modifiers": [],
+        "materials": [
+          "tripo_mat_4aee7ebb-9e31-40c7-9d64-d3eba631f514"
+        ]
+      }
+    ],
+    "armatures": [],
+    "images": [
+      {
+        "name": "001_metallic-001_roughness",
+        "size": [
+          4096,
+          4096
+        ]
+      },
+      {
+        "name": "002_metallic-002_roughness",
+        "size": [
+          4096,
+          4096
+        ]
+      },
+      {
+        "name": "003_metallic-003_roughness",
+        "size": [
+          4096,
+          4096
+        ]
+      },
+      {
+        "name": "004_metallic-004_roughness",
+        "size": [
+          4096,
+          4096
+        ]
+      },
+      {
+        "name": "005_metallic-005_roughness",
+        "size": [
+          4096,
+          4096
+        ]
+      },
+      {
+        "name": "Color",
+        "size": [
+          8192,
+          8192
+        ]
+      },
+      {
+        "name": "Color.001",
+        "size": [
+          8192,
+          8192
+        ]
+      },
+      {
+        "name": "Color.002",
+        "size": [
+          8192,
+          8192
+        ]
+      },
+      {
+        "name": "Color.003",
+        "size": [
+          8192,
+          8192
+        ]
+      },
+      {
+        "name": "Color.004",
+        "size": [
+          8192,
+          8192
+        ]
+      },
+      {
+        "name": "Normal",
+        "size": [
+          4096,
+          4096
+        ]
+      },
+      {
+        "name": "Normal.001",
+        "size": [
+          4096,
+          4096
+        ]
+      },
+      {
+        "name": "Normal.002",
+        "size": [
+          4096,
+          4096
+        ]
+      },
+      {
+        "name": "Normal.003",
+        "size": [
+          4096,
+          4096
+        ]
+      },
+      {
+        "name": "Normal.004",
+        "size": [
+          4096,
+          4096
+        ]
+      },
+      {
+        "name": "Render Result",
+        "size": [
+          0,
+          0
+        ]
+      },
+      {
+        "name": "Viewer Node",
+        "size": [
+          256,
+          256
+        ]
+      }
+    ]
+  },
+  "006": {
+    "sha256": "0004bee9a11f0ad8f9bab945555e4aa486ff4bc11cb2f33821e0731767eff89b",
+    "bounds": [
+      [
+        -0.499755859375,
+        -0.382568359375,
+        0.0
+      ],
+      [
+        0.499755859375,
+        0.382568359375,
+        0.59423828125
+      ]
+    ],
+    "vertices": 35278,
+    "triangles": 53443,
+    "meshes": [
+      {
+        "name": "tripo_node_32c7a455-f760-4e4c-a28b-b2f53cc84ea4",
+        "vertices": 35278,
+        "groups": 0,
+        "modifiers": [],
+        "materials": [
+          "tripo_mat_32c7a455-f760-4e4c-a28b-b2f53cc84ea4"
+        ]
+      }
+    ],
+    "armatures": [],
+    "images": [
+      {
+        "name": "001_metallic-001_roughness",
+        "size": [
+          4096,
+          4096
+        ]
+      },
+      {
+        "name": "002_metallic-002_roughness",
+        "size": [
+          4096,
+          4096
+        ]
+      },
+      {
+        "name": "003_metallic-003_roughness",
+        "size": [
+          4096,
+          4096
+        ]
+      },
+      {
+        "name": "004_metallic-004_roughness",
+        "size": [
+          4096,
+          4096
+        ]
+      },
+      {
+        "name": "005_metallic-005_roughness",
+        "size": [
+          4096,
+          4096
+        ]
+      },
+      {
+        "name": "006_metallic-006_roughness",
+        "size": [
+          4096,
+          4096
+        ]
+      },
+      {
+        "name": "Color",
+        "size": [
+          8192,
+          8192
+        ]
+      },
+      {
+        "name": "Color.001",
+        "size": [
+          8192,
+          8192
+        ]
+      },
+      {
+        "name": "Color.002",
+        "size": [
+          8192,
+          8192
+        ]
+      },
+      {
+        "name": "Color.003",
+        "size": [
+          8192,
+          8192
+        ]
+      },
+      {
+        "name": "Color.004",
+        "size": [
+          8192,
+          8192
+        ]
+      },
+      {
+        "name": "Color.005",
+        "size": [
+          8192,
+          8192
+        ]
+      },
+      {
+        "name": "Normal",
+        "size": [
+          4096,
+          4096
+        ]
+      },
+      {
+        "name": "Normal.001",
+        "size": [
+          4096,
+          4096
+        ]
+      },
+      {
+        "name": "Normal.002",
+        "size": [
+          4096,
+          4096
+        ]
+      },
+      {
+        "name": "Normal.003",
+        "size": [
+          4096,
+          4096
+        ]
+      },
+      {
+        "name": "Normal.004",
+        "size": [
+          4096,
+          4096
+        ]
+      },
+      {
+        "name": "Normal.005",
+        "size": [
+          4096,
+          4096
+        ]
+      },
+      {
+        "name": "Render Result",
+        "size": [
+          0,
+          0
+        ]
+      },
+      {
+        "name": "Viewer Node",
+        "size": [
+          256,
+          256
+        ]
+      }
+    ]
+  },
+  "007": {
+    "sha256": "d2fe6a635ae2a3c4a1e52aab74b1bf51c11d883e01a45364de94028689deda9e",
+    "bounds": [
+      [
+        -0.445068359375,
+        -0.445556640625,
+        0.0
+      ],
+      [
+        0.445068359375,
+        0.445556640625,
+        0.99951171875
+      ]
+    ],
+    "vertices": 35619,
+    "triangles": 51049,
+    "meshes": [
+      {
+        "name": "tripo_node_dc57b079-5fa5-4ae7-8641-1f4dbce176cd",
+        "vertices": 35619,
+        "groups": 0,
+        "modifiers": [],
+        "materials": [
+          "tripo_mat_dc57b079-5fa5-4ae7-8641-1f4dbce176cd"
+        ]
+      }
+    ],
+    "armatures": [],
+    "images": [
+      {
+        "name": "001_metallic-001_roughness",
+        "size": [
+          4096,
+          4096
+        ]
+      },
+      {
+        "name": "002_metallic-002_roughness",
+        "size": [
+          4096,
+          4096
+        ]
+      },
+      {
+        "name": "003_metallic-003_roughness",
+        "size": [
+          4096,
+          4096
+        ]
+      },
+      {
+        "name": "004_metallic-004_roughness",
+        "size": [
+          4096,
+          4096
+        ]
+      },
+      {
+        "name": "005_metallic-005_roughness",
+        "size": [
+          4096,
+          4096
+        ]
+      },
+      {
+        "name": "006_metallic-006_roughness",
+        "size": [
+          4096,
+          4096
+        ]
+      },
+      {
+        "name": "007_metallic-007_roughness",
+        "size": [
+          4096,
+          4096
+        ]
+      },
+      {
+        "name": "Color",
+        "size": [
+          8192,
+          8192
+        ]
+      },
+      {
+        "name": "Color.001",
+        "size": [
+          8192,
+          8192
+        ]
+      },
+      {
+        "name": "Color.002",
+        "size": [
+          8192,
+          8192
+        ]
+      },
+      {
+        "name": "Color.003",
+        "size": [
+          8192,
+          8192
+        ]
+      },
+      {
+        "name": "Color.004",
+        "size": [
+          8192,
+          8192
+        ]
+      },
+      {
+        "name": "Color.005",
+        "size": [
+          8192,
+          8192
+        ]
+      },
+      {
+        "name": "Color.006",
+        "size": [
+          8192,
+          8192
+        ]
+      },
+      {
+        "name": "Normal",
+        "size": [
+          4096,
+          4096
+        ]
+      },
+      {
+        "name": "Normal.001",
+        "size": [
+          4096,
+          4096
+        ]
+      },
+      {
+        "name": "Normal.002",
+        "size": [
+          4096,
+          4096
+        ]
+      },
+      {
+        "name": "Normal.003",
+        "size": [
+          4096,
+          4096
+        ]
+      },
+      {
+        "name": "Normal.004",
+        "size": [
+          4096,
+          4096
+        ]
+      },
+      {
+        "name": "Normal.005",
+        "size": [
+          4096,
+          4096
+        ]
+      },
+      {
+        "name": "Normal.006",
+        "size": [
+          4096,
+          4096
+        ]
+      },
+      {
+        "name": "Render Result",
+        "size": [
+          0,
+          0
+        ]
+      },
+      {
+        "name": "Viewer Node",
+        "size": [
+          256,
+          256
+        ]
+      }
+    ]
+  },
+  "008": {
+    "sha256": "34cf619ef42ea4226d6171402579202434c4244eea4ddd9b33a3c5a712d30668",
+    "bounds": [
+      [
+        -0.499755859375,
+        -0.245361328125,
+        0.0
+      ],
+      [
+        0.499755859375,
+        0.245361328125,
+        0.45458984375
+      ]
+    ],
+    "vertices": 59029,
+    "triangles": 58627,
+    "meshes": [
+      {
+        "name": "tripo_node_62449c58-bb68-4db0-b082-dbe948643ff0",
+        "vertices": 59029,
+        "groups": 0,
+        "modifiers": [],
+        "materials": [
+          "tripo_mat_62449c58-bb68-4db0-b082-dbe948643ff0"
+        ]
+      }
+    ],
+    "armatures": [],
+    "images": [
+      {
+        "name": "008_metallic-008_roughness",
+        "size": [
+          4096,
+          4096
+        ]
+      },
+      {
+        "name": "Color",
+        "size": [
+          8192,
+          8192
+        ]
+      },
+      {
+        "name": "Normal",
+        "size": [
+          4096,
+          4096
+        ]
+      },
+      {
+        "name": "Render Result",
+        "size": [
+          0,
+          0
+        ]
+      },
+      {
+        "name": "Viewer Node",
+        "size": [
+          256,
+          256
+        ]
+      }
+    ]
+  }
+}

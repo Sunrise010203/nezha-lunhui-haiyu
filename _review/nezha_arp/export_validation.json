@@ -1,0 +1,38 @@
+{
+  "meshes": 1,
+  "armatures": 1,
+  "imported_vertices": 54253,
+  "max_rest_position_error_m": 4.922462721879128e-07,
+  "unweighted_vertices": 0,
+  "poses": {
+    "RaiseArms": {
+      "max_error_m": 1.9231408054506352e-05,
+      "mean_error_m": 1.7941184601408459e-07
+    },
+    "ArmsOverhead": {
+      "max_error_m": 2.346647649463323e-05,
+      "mean_error_m": 1.824852370000016e-07
+    },
+    "Elbows": {
+      "max_error_m": 8.189340496015724e-06,
+      "mean_error_m": 1.7317618343333458e-07
+    },
+    "LeftKnee": {
+      "max_error_m": 3.195693593930444e-05,
+      "mean_error_m": 3.631098656560876e-07
+    },
+    "RightKnee": {
+      "max_error_m": 3.3008611535098385e-05,
+      "mean_error_m": 3.675971241083212e-07
+    },
+    "TorsoTwist": {
+      "max_error_m": 5.236576319707766e-06,
+      "mean_error_m": 1.5791366278963314e-07
+    },
+    "Turn": {
+      "max_error_m": 5.979061915796661e-07,
+      "mean_error_m": 1.1680755931280254e-07
+    }
+  },
+  "passed": true
+}

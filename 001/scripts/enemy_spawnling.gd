@@ -46,10 +46,12 @@ func on_parried(from_x: float) -> void:
 
 
 func _build_gfx() -> void:
-	# 复用爬行者模型（同族生物），只换轮廓光与体色氛围，省一份资产
-	model = Game.load_model("res://art/models/crawler.glb", 0.95, 180.0)
+	model = load_enemy_model("008_spawnling", 0.95)
+	if not model:
+		model = Game.load_model("res://art/models/crawler.glb", 0.95, 180.0)
 	if model:
-		gfx.add_child(model)
+		if not model.get_parent():
+			gfx.add_child(model)
 		var ml := OmniLight3D.new()
 		ml.light_color = Color(0.35, 0.95, 0.8)
 		ml.light_energy = 0.7
@@ -111,8 +113,9 @@ func _behave(delta: float) -> void:
 				velocity.x = 0.0
 				# 起手三通道：下蹲蓄势 + 红光 + 吸气音（open_parry_window 负责红闪与音效）
 				open_parry_window(PARRY_WINDOW)
-				var tw := gfx.create_tween()
-				tw.tween_property(gfx, "scale", Vector3(0.88, 0.78, 0.88), WINDUP)
+				if not enemy_motion:
+					var tw := gfx.create_tween()
+					tw.tween_property(gfx, "scale", Vector3(0.88, 0.78, 0.88), WINDUP)
 		"windup":
 			velocity.x = move_toward(velocity.x, 0.0, 22.0 * delta)
 			if state_t >= WINDUP:
@@ -120,9 +123,10 @@ func _behave(delta: float) -> void:
 				state_t = 0.0
 				velocity.x = move_dir * LUNGE_V
 				velocity.y = 3.0
-				var tw := gfx.create_tween()
-				tw.tween_property(gfx, "scale", Vector3(1.25, 0.75, 1.05), 0.1)
-				tw.tween_property(gfx, "scale", Vector3.ONE, 0.22)
+				if not enemy_motion:
+					var tw := gfx.create_tween()
+					tw.tween_property(gfx, "scale", Vector3(1.25, 0.75, 1.05), 0.1)
+					tw.tween_property(gfx, "scale", Vector3.ONE, 0.22)
 				Game.play_sfx("swing", -9.0, 0.75)
 		"lunge":
 			velocity.x = move_toward(velocity.x, 0.0, 9.0 * delta)
@@ -148,5 +152,17 @@ func _behave(delta: float) -> void:
 	if absf(velocity.x) > 0.2:
 		var yaw := 0.0 if move_dir > 0.0 else PI
 		gfx.rotation.y = lerp_angle(gfx.rotation.y, yaw, 10.0 * delta)
+	if enemy_motion:
+		return
 	gfx.position.y = sin(state_t * 7.0) * 0.03 * \
 		clampf(absf(velocity.x), 0.0, 1.0)
+
+
+func _rig_animation() -> Array:
+	if state == "windup":
+		return ["Windup", state_t / WINDUP]
+	if state == "lunge":
+		return ["Attack", state_t / 0.45]
+	if state == "recover":
+		return ["Recover", state_t / 0.3]
+	return super._rig_animation()

@@ -69,6 +69,9 @@ func _build_gfx() -> void:
 	_art = Node3D.new()
 	_art.name = "art"
 	gfx.add_child(_art)
+	if load_enemy_model("003_divider", 0.95, 0.0, _art):
+		_light = make_enemy_light(Color(0.2, 1.0, 0.8), Vector3(0, 0.6, 0.3))
+		return
 
 	# 两个半透明青绿叶球（水母伞盖）
 	var lobe_mat := Game.std_mat(Color(0.1, 0.76, 0.6, 0.62),
@@ -184,9 +187,10 @@ func _behave(delta: float) -> void:
 				velocity.x = move_dir * 6.0
 				velocity.y = 2.0
 				Game.play_sfx("swing", -8.0, 1.2)
-				var tw := gfx.create_tween()
-				tw.tween_property(gfx, "scale", Vector3(1.3, 0.72, 1.0), 0.08)
-				tw.tween_property(gfx, "scale", Vector3.ONE, 0.22)
+				if not enemy_motion:
+					var tw := gfx.create_tween()
+					tw.tween_property(gfx, "scale", Vector3(1.3, 0.72, 1.0), 0.08)
+					tw.tween_property(gfx, "scale", Vector3.ONE, 0.22)
 		"bite":
 			velocity.x = move_toward(velocity.x, 0.0, 10.0 * delta)
 			if d < BITE_RANGE + 0.25 and dy < 1.5 and _contact_cd <= 0.0 \
@@ -229,7 +233,7 @@ func _behave(delta: float) -> void:
 		_tentacles[i].rotation.z = base.z + sin(_t * 4.0 + i * 1.7) * 0.22
 		_tentacles[i].rotation.x = sin(_t * 3.1 + i * 0.8) * 0.16
 	# 身体起伏
-	if _art:
+	if _art and not enemy_motion:
 		_art.position.y = absf(sin(_t * 5.0)) * 0.06
 	# 核心呼吸 + 前摇增亮
 	if _core_mat:
@@ -243,6 +247,14 @@ func _ensure_player() -> void:
 	## 关卡里敌人可能先于玩家 _ready：延迟补绑一次
 	if player == null or not is_instance_valid(player):
 		player = get_tree().get_first_node_in_group("player") as Player
+
+
+func _rig_animation() -> Array:
+	if state == "windup":
+		return ["Windup", state_t / BITE_WINDUP]
+	if state == "bite":
+		return ["Attack", state_t / BITE_TIME]
+	return super._rig_animation()
 
 
 # ---------------------------------------------------------------- 分裂

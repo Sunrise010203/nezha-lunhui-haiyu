@@ -1,0 +1,15 @@
+SCRIPT ERROR: Parse Error: Class "Player" hides a global script class.
+   at: GDScript::reload (E:/godot_game_by_fable/_review/playable_slice/baseline/files/001/scripts/player.gd:1)
+   GDScript backtrace (most recent call first):
+       [0] _spawn (E:/godot_game_by_fable/_review/playable_slice/verify/probe_motion_start.gd:15)
+       [1] _run (E:/godot_game_by_fable/_review/playable_slice/verify/probe_motion_start.gd:49)
+ERROR: Failed to load script "E:/godot_game_by_fable/_review/playable_slice/baseline/files/001/scripts/player.gd" with error "Parse error".
+   at: load (modules/gdscript/gdscript.cpp:2907)
+   GDScript backtrace (most recent call first):
+       [0] _spawn (E:/godot_game_by_fable/_review/playable_slice/verify/probe_motion_start.gd:15)
+       [1] _run (E:/godot_game_by_fable/_review/playable_slice/verify/probe_motion_start.gd:49)
+SCRIPT ERROR: Invalid call. Nonexistent function 'new' in base 'GDScript'.
+   at: _spawn (E:/godot_game_by_fable/_review/playable_slice/verify/probe_motion_start.gd:29)
+   GDScript backtrace (most recent call first):
+       [0] _spawn (E:/godot_game_by_fable/_review/playable_slice/verify/probe_motion_start.gd:29)
+       [1] _run (E:/godot_game_by_fable/_review/playable_slice/verify/probe_motion_start.gd:49)

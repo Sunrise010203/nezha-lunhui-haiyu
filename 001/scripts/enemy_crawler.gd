@@ -34,9 +34,12 @@ var model: Node3D = null
 
 
 func _build_gfx() -> void:
-	model = Game.load_model("res://art/models/crawler.glb", 1.1, 180.0)
+	model = load_enemy_model("001_crawler", 1.1)
+	if not model:
+		model = Game.load_model("res://art/models/crawler.glb", 1.1, 180.0)
 	if model:
-		gfx.add_child(model)
+		if not model.get_parent():
+			gfx.add_child(model)
 		var ml := OmniLight3D.new()
 		ml.light_color = Color(0.7, 0.3, 1.0)
 		ml.light_energy = 0.8
@@ -150,8 +153,9 @@ func _behave(delta: float) -> void:
 				Game.flash_meshes(gfx, Color(1.0, 0.35, 0.5), 0.14)
 				# 第四章：这段起手可以被「定潮 · 架」弹反（前三章 parryable_melee 为 false，无效）
 				open_parry_window(0.7)
-				var tw := gfx.create_tween()
-				tw.tween_property(gfx, "scale", Vector3(0.85, 1.25, 0.85), 0.32)
+				if not enemy_motion:
+					var tw := gfx.create_tween()
+					tw.tween_property(gfx, "scale", Vector3(0.85, 1.25, 0.85), 0.32)
 		"windup":
 			velocity.x = move_toward(velocity.x, 0.0, 20.0 * delta)
 			if state_t >= 0.38:
@@ -159,9 +163,10 @@ func _behave(delta: float) -> void:
 				state_t = 0.0
 				velocity.x = move_dir * 11.0
 				velocity.y = 3.0
-				var tw := gfx.create_tween()
-				tw.tween_property(gfx, "scale", Vector3(1.3, 0.7, 1.0), 0.1)
-				tw.tween_property(gfx, "scale", Vector3.ONE, 0.25)
+				if not enemy_motion:
+					var tw := gfx.create_tween()
+					tw.tween_property(gfx, "scale", Vector3(1.3, 0.7, 1.0), 0.1)
+					tw.tween_property(gfx, "scale", Vector3.ONE, 0.25)
 				Game.play_sfx("swing", -8.0, 0.6)
 		"lunge":
 			velocity.x = move_toward(velocity.x, 0.0, 8.0 * delta)
@@ -190,8 +195,18 @@ func _behave(delta: float) -> void:
 		var yaw := 0.0 if move_dir > 0.0 else PI
 		gfx.rotation.y = lerp_angle(gfx.rotation.y, yaw, 10.0 * delta)
 	# 爬行起伏 + 模型摆动
+	if enemy_motion:
+		return
 	gfx.position.y = absf(sin(state_t * 8.0)) * 0.05 * \
 		clampf(absf(velocity.x), 0.0, 1.0)
 	if model:
 		gfx.rotation.z = sin(state_t * 9.0) * 0.05 * \
 			clampf(absf(velocity.x), 0.0, 1.0)
+
+
+func _rig_animation() -> Array:
+	if state == "windup":
+		return ["Windup", state_t / 0.38]
+	if state == "lunge":
+		return ["Attack", state_t / 0.5]
+	return super._rig_animation()

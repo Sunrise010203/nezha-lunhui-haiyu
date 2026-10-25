@@ -1,0 +1,142 @@
+[
+  {
+    "file": "ch1.png",
+    "size": [
+      1920,
+      1080
+    ],
+    "expected_size": [
+      1920,
+      1080
+    ],
+    "size_ok": true,
+    "soul_gold_px": 761,
+    "soul_gold_frac": 0.000367,
+    "soul_threshold_frac": 0.00015,
+    "soul_ok": true,
+    "soul_roi": [
+      1497,
+      0,
+      1920,
+      64
+    ],
+    "keys_light_px": 2944,
+    "keys_light_frac": 0.00142,
+    "keys_threshold_frac": 0.0003,
+    "keys_ok": true,
+    "keys_roi": [
+      0,
+      1031,
+      1190,
+      1080
+    ],
+    "grid_colours_20x20": 385,
+    "rendered_ok": true,
+    "pass": true
+  },
+  {
+    "file": "ch1.png",
+    "size": [
+      1600,
+      900
+    ],
+    "expected_size": [
+      1600,
+      900
+    ],
+    "size_ok": true,
+    "soul_gold_px": 483,
+    "soul_gold_frac": 0.000335,
+    "soul_threshold_frac": 0.00015,
+    "soul_ok": true,
+    "soul_roi": [
+      1248,
+      0,
+      1600,
+      54
+    ],
+    "keys_light_px": 1539,
+    "keys_light_frac": 0.001069,
+    "keys_threshold_frac": 0.0003,
+    "keys_ok": true,
+    "keys_roi": [
+      0,
+      859,
+      992,
+      900
+    ],
+    "grid_colours_20x20": 382,
+    "rendered_ok": true,
+    "pass": true
+  },
+  {
+    "file": "ch1.png",
+    "size": [
+      1280,
+      720
+    ],
+    "expected_size": [
+      1280,
+      720
+    ],
+    "size_ok": true,
+    "soul_gold_px": 273,
+    "soul_gold_frac": 0.000296,
+    "soul_threshold_frac": 0.00015,
+    "soul_ok": true,
+    "soul_roi": [
+      998,
+      0,
+      1280,
+      43
+    ],
+    "keys_light_px": 662,
+    "keys_light_frac": 0.000718,
+    "keys_threshold_frac": 0.0003,
+    "keys_ok": true,
+    "keys_roi": [
+      0,
+      687,
+      793,
+      720
+    ],
+    "grid_colours_20x20": 383,
+    "rendered_ok": true,
+    "pass": true
+  },
+  {
+    "file": "menu.png",
+    "size": [
+      1920,
+      1080
+    ],
+    "expected_size": [
+      1920,
+      1080
+    ],
+    "size_ok": true,
+    "soul_gold_px": 0,
+    "soul_gold_frac": 0.0,
+    "soul_threshold_frac": 0.00015,
+    "soul_ok": false,
+    "soul_roi": [
+      1497,
+      0,
+      1920,
+      64
+    ],
+    "keys_light_px": 743,
+    "keys_light_frac": 0.000358,
+    "keys_threshold_frac": 0.0003,
+    "keys_ok": true,
+    "keys_roi": [
+      0,
+      1031,
+      1190,
+      1080
+    ],
+    "grid_colours_20x20": 391,
+    "rendered_ok": true,
+    "pass": false
+  }
+]

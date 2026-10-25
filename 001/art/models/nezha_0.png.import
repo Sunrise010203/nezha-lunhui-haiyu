@@ -3,9 +3,10 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cah28b11xvo1n"
-path="res://.godot/imported/nezha_0.png-ec5dac72192212f2e09c3130c0327175.ctex"
+path.s3tc="res://.godot/imported/nezha_0.png-ec5dac72192212f2e09c3130c0327175.s3tc.ctex"
 metadata={
-"vram_texture": false
+"imported_formats": ["s3tc_bptc"],
+"vram_texture": true
 }
 generator_parameters={
 "md5": "8c83dc4f74fe6501f076b2f9e588d176"
@@ -14,11 +15,11 @@ generator_parameters={
 [deps]
 
 source_file="res://art/models/nezha_0.png"
-dest_files=["res://.godot/imported/nezha_0.png-ec5dac72192212f2e09c3130c0327175.ctex"]
+dest_files=["res://.godot/imported/nezha_0.png-ec5dac72192212f2e09c3130c0327175.s3tc.ctex"]
 
 [params]
 
-compress/mode=0
+compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/uastc_level=0
@@ -40,4 +41,4 @@ process/normal_map_invert_y=false
 process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
-detect_3d/compress_to=1
+detect_3d/compress_to=0

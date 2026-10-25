@@ -1,0 +1,258 @@
+# 基线采集时刻的 git 状态（不是提交，仅记录）
+sampled_at: 2026-10-22T05:49:09.852320+00:00
+head: d26d3bc8ce6a1b92e0f33508c353953548a93bdf
+head_short: d26d3bc
+branch: main
+remote_origin: https://github.com/Sunrise010203/nezha-lunhui-haiyu.git
+worktree_changes: 248 (modified=21, deleted=9, untracked=218)
+last_commit: d26d3bc art: 修正握姿四视图拆分（背景非纯白导致切错）并更新清单
+
+## git status --porcelain（全量）
+M 001/autoload/game.gd
+ M 001/scripts/boss_chiwen.gd
+ M 001/scripts/boss_maw.gd
+ M 001/scripts/boss_sea_eye.gd
+ M 001/scripts/boss_warden.gd
+ M 001/scripts/breakable.gd
+ M 001/scripts/enemy_base.gd
+ M 001/scripts/enemy_bomber.gd
+ M 001/scripts/enemy_crawler.gd
+ M 001/scripts/enemy_divider.gd
+ M 001/scripts/enemy_guard.gd
+ M 001/scripts/enemy_shooter.gd
+ M 001/scripts/enemy_spawnling.gd
+ M 001/scripts/enemy_turret.gd
+ M 001/scripts/enemy_wraith.gd
+ M 001/scripts/level_1.gd
+ M 001/scripts/level_base.gd
+ M 001/scripts/player.gd
+ M 001/scripts/player_camera.gd
+ M 001/scripts/projectile.gd
+ M 001/scripts/ring_throw.gd
+ D EdenLive-评估-能否用于哪吒轮回海域.md
+ D P0改动说明.md
+ D P1改动说明.md
+ D nezha_preview.png
+ D nezha_v3.png
+ D ref_nezha_real.png
+ D 本轮改动说明-哪吒模型优化.md
+ D 本轮改动说明-现成素材替换.md
+ D 本轮改动说明.md
+?? .agent-teams/
+?? 001/art/models/bosses_arp/
+?? 001/art/models/ch1_ruins/
+?? 001/art/models/enemies_arp/
+?? 001/art/models/glb_game/
+?? 001/art/models/huojianqiang.glb
+?? 001/art/models/huojianqiang.glb.import
+?? 001/art/models/huojianqiang_huojianqiang_basecolor.jpg
+?? 001/art/models/huojianqiang_huojianqiang_basecolor.jpg.import
+?? 001/art/models/huojianqiang_huojianqiang_normal.png
+?? 001/art/models/huojianqiang_huojianqiang_normal.png.import
+?? 001/art/models/huojianqiang_huojianqiang_rm.jpg
+?? 001/art/models/huojianqiang_huojianqiang_rm.jpg.import
+?? 001/art/models/nezha_arp.glb
+?? 001/art/models/nezha_arp.glb.import
+?? 001/art/models/nezha_arp_Color.jpg
+?? 001/art/models/nezha_arp_Color.jpg.import
+?? 001/art/models/nezha_arp_Nezha_Albedo_Bright.png
+?? 001/art/models/nezha_arp_Nezha_Albedo_Bright.png.import
+?? 001/art/models/nezha_arp_Normal.png
+?? 001/art/models/nezha_arp_Normal.png.import
+?? 001/art/models/nezha_arp_nezha_model_metallic-nezha_model_roughness.png
+?? 001/art/models/nezha_arp_nezha_model_metallic-nezha_model_roughness.png.import
+?? 001/art/ref/
+?? 001/art/vfx/
+?? 001/scenes/env_ch1_showcase.tscn
+?? 001/scripts/boss_motion.gd
+?? 001/scripts/boss_motion.gd.uid
+?? 001/scripts/ch1_ruins.gd
+?? 001/scripts/ch1_ruins.gd.uid
+?? 001/scripts/combat_vfx.gd
+?? 001/scripts/combat_vfx.gd.uid
+?? 001/scripts/enemy_motion.gd
+?? 001/scripts/enemy_motion.gd.uid
+?? 001/scripts/env_ch1_showcase.gd
+?? 001/scripts/env_ch1_showcase.gd.uid
+?? 001/scripts/nezha_motion.gd
+?? 001/scripts/nezha_motion.gd.uid
+?? 001/scripts/vfx_instance.gd
+?? 001/scripts/vfx_instance.gd.uid
+?? 001/shaders/ch1_far_matte.gdshader
+?? 001/shaders/ch1_far_matte.gdshader.uid
+?? 001/shaders/ch1_water.gdshader
+?? 001/shaders/ch1_water.gdshader.uid
+?? 001/shaders/combat_smoke.gdshader
+?? 001/shaders/combat_smoke.gdshader.uid
+?? 001/shaders/combat_vfx.gdshader
+?? 001/shaders/combat_vfx.gdshader.uid
+?? 001/tools/_probe_caps.gd.uid
+?? 001/tools/capture_combat_vfx.gd
+?? 001/tools/capture_combat_vfx.gd.uid
+?? 001/tools/dump28.gd
+?? 001/tools/dump28.gd.uid
+?? 001/tools/dump32.gd
+?? 001/tools/dump32.gd.uid
+?? 001/tools/dump_all.gd
+?? 001/tools/dump_all.gd.uid
+?? 001/tools/dump_big.gd
+?? 001/tools/dump_big.gd.uid
+?? 001/tools/dump_big2.gd
+?? 001/tools/dump_big2.gd.uid
+?? 001/tools/dump_children.gd
+?? 001/tools/dump_children.gd.uid
+?? 001/tools/dump_classes.gd
+?? 001/tools/dump_classes.gd.uid
+?? 001/tools/dump_high.gd
+?? 001/tools/dump_high.gd.uid
+?? 001/tools/dump_hit.gd
+?? 001/tools/dump_hit.gd.uid
+?? 001/tools/dump_near.gd
+?? 001/tools/dump_near.gd.uid
+?? 001/tools/dump_near_cam.gd
+?? 001/tools/dump_near_cam.gd.uid
+?? 001/tools/dump_screen.gd
+?? 001/tools/dump_screen.gd.uid
+?? 001/tools/dump_vol.gd
+?? 001/tools/dump_vol.gd.uid
+?? 001/tools/find_blob.gd
+?? 001/tools/find_blob.gd.uid
+?? 001/tools/preview_boss_motion.gd
+?? 001/tools/preview_boss_motion.gd.uid
+?? 001/tools/preview_enemy_motion.gd
+?? 001/tools/preview_enemy_motion.gd.uid
+?? 001/tools/preview_nezha_motion.gd
+?? 001/tools/preview_nezha_motion.gd.uid
+?? 001/tools/probe_ch4.gd.uid
+?? 001/tools/probe_ring_hit.gd.uid
+?? 001/tools/probe_walk.gd.uid
+?? 001/tools/test_boss_levels.gd
+?? 001/tools/test_boss_levels.gd.uid
+?? 001/tools/test_boss_motion.gd
+?? 001/tools/test_boss_motion.gd.uid
+?? 001/tools/test_ch1_hybrid.gd
+?? 001/tools/test_ch1_hybrid.gd.uid
+?? 001/tools/test_combat_vfx.gd
+?? 001/tools/test_combat_vfx.gd.uid
+?? 001/tools/test_enemy_levels.gd
+?? 001/tools/test_enemy_levels.gd.uid
+?? 001/tools/test_enemy_motion.gd
+?? 001/tools/test_enemy_motion.gd.uid
+?? 001/tools/test_huojianqiang.gd
+?? 001/tools/test_huojianqiang.gd.uid
+?? 001/tools/test_nezha_motion.gd
+?? 001/tools/test_nezha_motion.gd.uid
+?? 001/tools/validate_nezha_arp.gd
+?? 001/tools/validate_nezha_arp.gd.uid
+?? _acl_reports/
+?? _review/bosses_arp/
+?? _review/ch1_hybrid/
+?? _review/combat_vfx/
+?? _review/enemies_arp/
+?? _review/huojianqiang/
+?? _review/nezha_arp/
+?? _review/playable_slice/
+?? _review/scene_audit_ch1_20261021.png
+?? art_assets/
+?? art_refs/__pycache__/
+?? art_refs/_probe.py
+?? art_refs/check_cells.py
+?? art_refs/gen_assets.py
+?? art_refs/gen_assets2.py
+?? art_refs/gen_extra_env.py
+?? art_refs/gen_struct_assets.py
+?? art_refs/make_asset_sheet.py
+?? art_refs/make_struct_sheet.py
+?? art_refs/qa_cells.py
+?? art_refs/verify_sheet.py
+?? art_source/
+?? art_tmp/vfx_template_validation/
+?? docs/
+?? game_assets/
+?? tools/appdata/
+?? tools/blender/__pycache__/animate_boss_arp.cpython-312.pyc
+?? tools/blender/__pycache__/boss_review_sheets.cpython-312.pyc
+?? tools/blender/__pycache__/build_boss_arp.cpython-312.pyc
+?? tools/blender/__pycache__/build_boss_arp.cpython-313.pyc
+?? tools/blender/__pycache__/build_enemy_arp.cpython-313.pyc
+?? tools/blender/__pycache__/enemy_arp_anatomy.cpython-312.pyc
+?? tools/blender/__pycache__/enemy_arp_anatomy.cpython-313.pyc
+?? tools/blender/__pycache__/inspect_boss_batch.cpython-312.pyc
+?? tools/blender/__pycache__/prepare_boss_anatomy.cpython-312.pyc
+?? tools/blender/__pycache__/validate_boss_exports.cpython-312.pyc
+?? tools/blender/animate_boss_arp.py
+?? tools/blender/animate_enemy_arp.py
+?? tools/blender/apply_nezha_appearance.py
+?? tools/blender/boss_review_sheets.py
+?? tools/blender/brighten_nezha_albedo.py
+?? tools/blender/build_boss_arp.py
+?? tools/blender/build_enemy_arp.py
+?? tools/blender/build_vfx_templates.py
+?? tools/blender/diagnose_boss_warden.py
+?? tools/blender/diagnose_enemy_skin.py
+?? tools/blender/enemy_arp_anatomy.py
+?? tools/blender/export_nezha_arp.py
+?? tools/blender/finalize_enemy_sources.py
+?? tools/blender/finalize_nezha_arp_weights.py
+?? tools/blender/finalize_nezha_motions.py
+?? tools/blender/fit_nezha_arp.py
+?? tools/blender/inspect_boss_batch.py
+?? tools/blender/inspect_enemy_anatomy.py
+?? tools/blender/inspect_enemy_batch.py
+?? tools/blender/inspect_nezha_appearance.py
+?? tools/blender/inspect_nezha_arp.py
+?? tools/blender/inspect_nezha_fbx.py
+?? tools/blender/inspect_nezha_motions.py
+?? tools/blender/inspect_nezha_remap.py
+?? tools/blender/inspect_nezha_weights.py
+?? tools/blender/nezha_arp_contact_sheet.py
+?? tools/blender/nezha_arp_pose_checks.py
+?? tools/blender/nezha_arp_topology.py
+?? tools/blender/prepare_boss_anatomy.py
+?? tools/blender/prepare_ch1_ruins.py
+?? tools/blender/prepare_huojianqiang.py
+?? tools/blender/prepare_nezha_arp.py
+?? tools/blender/probe_enemy_rig.py
+?? tools/blender/repair_nezha_arp_weights.py
+?? tools/blender/retarget_nezha_fbx.py
+?? tools/blender/review_enemy_batch.py
+?? tools/blender/review_nezha_appearance.py
+?? tools/blender/review_nezha_motions.py
+?? tools/blender/revise_nezha_airborne.py
+?? tools/blender/smooth_nezha_arp_weights.py
+?? tools/blender/validate_boss_exports.py
+?? tools/blender/validate_enemy_arp.py
+?? tools/blender/validate_nezha_arp_actions.py
+?? tools/blender/validate_nezha_arp_export.py
+?? tools/blender/validate_nezha_motions.py
+?? tools/blender/validate_vfx_templates.gd
+?? tools/compare_scene.py
+?? tools/fix_hide_block.py
+?? tools/generate_vfx_texture_library.py
+?? tools/glb_basecolor.py
+?? tools/glb_textures.py
+?? tools/gltfpack/
+?? tools/inspect_glb.py
+?? tools/patch_align_env.py
+?? tools/patch_cam_current.py
+?? tools/patch_camera_scale.py
+?? tools/patch_conclude.py
+?? tools/patch_disable_pillars.py
+?? tools/patch_env_port.py
+?? tools/patch_hide_canvas.py
+?? tools/patch_level1_backdrop.py
+?? tools/patch_level1_decor.py
+?? tools/patch_level1_env.py
+?? tools/patch_level1_tone.py
+?? tools/patch_strip_high.py
+?? tools/patch_tip_mat.py
+?? tools/prepare_ch1_matte.py
+?? tools/prepare_vfx_texture_library.py
+?? tools/preview_proj/
+?? tools/preview_sheet.py
+?? tools/tex_sheet.py
+?? tools/validate_vfx_textures.gd
+?? tools/write_tscn.py
+?? 游戏美学与机制建议-2026-10-21.md
+?? 特效制作流程与技术建议-2026-10-21.md
+?? 特效接入说明-2026-10-21.md

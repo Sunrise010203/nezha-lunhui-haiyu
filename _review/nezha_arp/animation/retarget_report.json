@@ -1,0 +1,132 @@
+{
+  "Breathing Idle": {
+    "action": "Motion_Breathing_Idle",
+    "frames": [
+      1,
+      299
+    ],
+    "fps": 30,
+    "source_scale_ratio": 0.8295380482903526,
+    "sha256": "42f0a724f34436f597cfe2e9011921b736629508f981f79939dd4508229b7964"
+  },
+  "Fight Idle": {
+    "action": "Motion_Fight_Idle",
+    "frames": [
+      1,
+      72
+    ],
+    "fps": 30,
+    "source_scale_ratio": 0.8295380482903526,
+    "sha256": "29031b0d8abf4b0d85111cd7c548a86d51c159ec73aee53090488e4c908227dd"
+  },
+  "Run Forward": {
+    "action": "Motion_Run_Forward",
+    "frames": [
+      1,
+      28
+    ],
+    "fps": 30,
+    "source_scale_ratio": 0.8295380482903526,
+    "sha256": "aee998813fa0664e472834f3e90f419e1d45cb0cdef26b981f17f77b620f7998"
+  },
+  "Jumping": {
+    "action": "Motion_Jumping",
+    "frames": [
+      1,
+      58
+    ],
+    "fps": 30,
+    "source_scale_ratio": 0.8295380482903526,
+    "sha256": "c99638f1f0aee7f2bbfa0112072a83b28239c96d9d085b7dbc13143c3b84249f"
+  },
+  "Fall A Loop": {
+    "action": "Motion_Fall_A_Loop",
+    "frames": [
+      1,
+      33
+    ],
+    "fps": 30,
+    "source_scale_ratio": 0.8295380482903526,
+    "sha256": "45b0228a1c70479415b73b38a766c7c16629145fd9241d207bda358fb032a8f1"
+  },
+  "Falling To Landing": {
+    "action": "Motion_Falling_To_Landing",
+    "frames": [
+      1,
+      33
+    ],
+    "fps": 30,
+    "source_scale_ratio": 0.8295380482903526,
+    "sha256": "9701c3044009625b484536d4cf24c5b907f184efa1c08b8723a6d27e83a04827"
+  },
+  "Quick Roll To Run": {
+    "action": "Motion_Quick_Roll_To_Run",
+    "frames": [
+      1,
+      43
+    ],
+    "fps": 30,
+    "source_scale_ratio": 0.8295380482903526,
+    "sha256": "00b5b2689701eef58d861467829ff307160637df800016998901dde30d45e302"
+  },
+  "Bayonet Stab": {
+    "action": "Motion_Bayonet_Stab",
+    "frames": [
+      1,
+      99
+    ],
+    "fps": 30,
+    "source_scale_ratio": 0.8295380482903526,
+    "sha256": "59e6dd9cafd31a456b943883e47fc2da8a12eed476d45b832b1a03050ffa5b7f"
+  },
+  "Stable Sword Outward Slash": {
+    "action": "Motion_Stable_Sword_Outward_Slash",
+    "frames": [
+      1,
+      62
+    ],
+    "fps": 30,
+    "source_scale_ratio": 0.8295380482903526,
+    "sha256": "313f207b62331d3bee1ef2f5018effaa6b07b2d692977abd4eaca742f9214102"
+  },
+  "Thrust Slash": {
+    "action": "Motion_Thrust_Slash",
+    "frames": [
+      1,
+      91
+    ],
+    "fps": 30,
+    "source_scale_ratio": 0.8295380482903526,
+    "sha256": "74e4d31de6894165b84d76749cb5acd968168b986dad589c7d4807cad8b29187"
+  },
+  "Upward Thrust": {
+    "action": "Motion_Upward_Thrust",
+    "frames": [
+      1,
+      71
+    ],
+    "fps": 30,
+    "source_scale_ratio": 0.8295380482903526,
+    "sha256": "51f4c3d3eb3f55c7dbf16da5bf427dc4c40e658ccb2a9698a40b809039bfe585"
+  },
+  "Zombie Reaction Hit": {
+    "action": "Motion_Zombie_Reaction_Hit",
+    "frames": [
+      1,
+      61
+    ],
+    "fps": 30,
+    "source_scale_ratio": 0.8295380482903526,
+    "sha256": "a407f96922192c364db53010d2f40f41c886e229c80aaad00d26f14822eed9f2"
+  },
+  "Falling Back Death": {
+    "action": "Motion_Falling_Back_Death",
+    "frames": [
+      1,
+      79
+    ],
+    "fps": 30,
+    "source_scale_ratio": 0.8295380482903526,
+    "sha256": "c97443a78e3f01978989ebfa9b9865607a8c6bce5a7e314bb6130b4063dfee0d"
+  }
+}

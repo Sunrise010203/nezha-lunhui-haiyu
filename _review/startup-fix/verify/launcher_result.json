@@ -1,0 +1,181 @@
+{
+  "started": "2026-10-22 18:07:33",
+  "cwd": "E:\\godot_game_by_fable",
+  "verifier_process": {
+    "pid": 39940,
+    "integrity": "S-1-16-8192",
+    "env": {
+      "APPDATA": "C:\\Users\\Sunrise\\AppData\\Roaming",
+      "LOCALAPPDATA": "C:\\Users\\Sunrise\\AppData\\Local",
+      "TEMP": "C:\\Users\\Sunrise\\AppData\\Local\\Temp\\dsh-win-bash-38312-340df269",
+      "TMP": "C:\\Users\\Sunrise\\AppData\\Local\\Temp\\dsh-win-bash-38312-340df269",
+      "USERPROFILE": "C:\\Users\\Sunrise"
+    },
+    "screen": [
+      2560,
+      1600
+    ]
+  },
+  "before": {
+    "files": {
+      "game_exe": {
+        "exists": true,
+        "size": 557508232,
+        "mtime": 1792654114.4835489,
+        "mtime_iso": "2026-10-22 15:28:34"
+      },
+      "launcher_exe": {
+        "exists": true,
+        "size": 153745,
+        "mtime": 1792662457.9920046,
+        "mtime_iso": "2026-10-22 17:47:37",
+        "sha256": "fba7da39d6a3649fca6a61f1157d2734d1e3b2b792e6feee658360f168609bca"
+      },
+      "portable_save": {
+        "exists": true,
+        "size": 196,
+        "mtime": 1792591787.4441288,
+        "mtime_iso": "2026-10-21 22:09:47",
+        "sha256": "313e8cb3bd1357bc20277685a69cd5b66b7a35fa70cbb40285c9ff0a3624dbf8"
+      },
+      "default_save": {
+        "exists": true,
+        "size": 196,
+        "mtime": 1792591787.4441288,
+        "mtime_iso": "2026-10-21 22:09:47",
+        "sha256": "313e8cb3bd1357bc20277685a69cd5b66b7a35fa70cbb40285c9ff0a3624dbf8"
+      },
+      "launcher_log": {
+        "exists": true,
+        "size": 608,
+        "mtime": 1792663211.6631806,
+        "mtime_iso": "2026-10-22 18:00:11",
+        "sha256": "f422b5455f52f03fb5f2e861ff6ffa1db2c78047289ca625133f0ec20e5f0e28"
+      }
+    },
+    "dirs": {
+      "portable_project": [
+        [
+          "progress.cfg",
+          196,
+          1792591787.444
+        ]
+      ],
+      "portable_logs": [
+        [
+          "godot.log",
+          281,
+          1792663194.572
+        ],
+        [
+          "godot2026-10-22T17.56.37.log",
+          281,
+          1792662997.397
+        ],
+        [
+          "godot2026-10-22T17.57.39.log",
+          281,
+          1792663059.528
+        ],
+        [
+          "godot2026-10-22T17.59.53.log",
+          281,
+          1792663193.161
+        ]
+      ],
+      "default_project": [
+        [
+          "progress.cfg",
+          196,
+          1792591787.444
+        ]
+      ],
+      "default_logs": [
+        [
+          "godot.log",
+          29272,
+          1792662347.996
+        ],
+        [
+          "godot2026-10-22T16.35.23.log",
+          1414,
+          1792658123.397
+        ],
+        [
+          "godot2026-10-22T16.35.42.log",
+          1896,
+          1792658142.625
+        ],
+        [
+          "godot2026-10-22T17.45.41.log",
+          1001,
+          1792662341.238
+        ],
+        [
+          "godot2026-10-22T17.45.45.log",
+          158,
+          1792662345.72
+        ]
+      ]
+    },
+    "time": "2026-10-22 18:07:33"
+  },
+  "preexisting_game_processes": {
+    "39144": {
+      "pid": 39144,
+      "ppid": 12376,
+      "threads": 0,
+      "name": "nezha_ch1_playable_r2.exe"
+    },
+    "47868": {
+      "pid": 47868,
+      "ppid": 23388,
+      "threads": 0,
+      "name": "nezha_ch1_playable_r2.exe"
+    }
+  },
+  "explorer_sel_raw": "{\"pid\":8784,\"hwnd\":1118356,\"title\":\"playable-slice - 文件资源管理器\",\"root_rect\":[1,1,2558,1526],\"name\":\"nezha_ch1_playable_r2_launcher.exe\",\"x\":273,\"y\":426,\"w\":1013,\"h\":37}",
+  "explorer_window": {
+    "pid": 8784,
+    "hwnd": 1118356,
+    "title": "playable-slice - 文件资源管理器",
+    "root_rect": [
+      1,
+      1,
+      2558,
+      1526
+    ],
+    "name": "nezha_ch1_playable_r2_launcher.exe",
+    "x": 273,
+    "y": 426,
+    "w": 1013,
+    "h": 37
+  },
+  "uia_scale": [
+    1.0,
+    1.0
+  ],
+  "item_physical_rect": [
+    273.0,
+    426.0,
+    1013.0,
+    37.0
+  ],
+  "explorer_foreground": {
+    "attach": false,
+    "set_fg": false,
+    "fg": [
+      10752224,
+      14464
+    ]
+  },
+  "foreground_before_click": [
+    10752224,
+    14464
+  ],
+  "point_owner_before_click": [
+    2429060,
+    8784
+  ],
+  "status": "FAILED_EXPLORER_NOT_ON_TOP"
+}

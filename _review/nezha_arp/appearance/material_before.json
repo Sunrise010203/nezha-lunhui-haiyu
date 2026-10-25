@@ -1,0 +1,131 @@
+{
+  "engine": "BLENDER_WORKBENCH",
+  "view": "AgX",
+  "exposure": 0.0,
+  "materials": [
+    {
+      "name": "tripo_mat_c7e05b95-dbcc-4729-8978-3e5130d71d8b",
+      "nodes": [
+        {
+          "name": "\u539f\u7406\u5316 BSDF",
+          "type": "BSDF_PRINCIPLED",
+          "inputs": {
+            "IOR": "1.5",
+            "Alpha": "1.0",
+            "Weight": "0.0",
+            "Diffuse Roughness": "0.0",
+            "Subsurface Weight": "0.0",
+            "Subsurface Radius": "<bpy_float[3], NodeSocketVector.default_value>",
+            "Subsurface Scale": "0.05000000074505806",
+            "Subsurface IOR": "1.399999976158142",
+            "Subsurface Anisotropy": "0.0",
+            "Specular IOR Level": "0.5",
+            "Specular Tint": "<bpy_float[4], NodeSocketColor.default_value>",
+            "Anisotropic": "0.0",
+            "Anisotropic Rotation": "0.0",
+            "Tangent": "<bpy_float[3], NodeSocketVector.default_value>",
+            "Transmission Weight": "0.0",
+            "Coat Weight": "0.0",
+            "Coat Roughness": "0.029999999329447746",
+            "Coat IOR": "1.5",
+            "Coat Tint": "<bpy_float[4], NodeSocketColor.default_value>",
+            "Coat Normal": "<bpy_float[3], NodeSocketVector.default_value>",
+            "Sheen Weight": "0.0",
+            "Sheen Roughness": "0.5",
+            "Sheen Tint": "<bpy_float[4], NodeSocketColor.default_value>",
+            "Emission Color": "<bpy_float[4], NodeSocketColor.default_value>",
+            "Emission Strength": "0.0",
+            "Thin Film Thickness": "0.0",
+            "Thin Film IOR": "1.3300000429153442"
+          }
+        },
+        {
+          "name": "\u6750\u8d28\u8f93\u51fa",
+          "type": "OUTPUT_MATERIAL"
+        },
+        {
+          "name": "\u56fe\u50cf\u7eb9\u7406",
+          "type": "TEX_IMAGE",
+          "image": "Color",
+          "size": [
+            8192,
+            8192
+          ],
+          "colorspace": "sRGB"
+        },
+        {
+          "name": "\u5206\u79bb\u989c\u8272",
+          "type": "SEPARATE_COLOR"
+        },
+        {
+          "name": "\u56fe\u50cf\u7eb9\u7406.001",
+          "type": "TEX_IMAGE",
+          "image": "nezha_model_metallic-nezha_model_roughness",
+          "size": [
+            4096,
+            4096
+          ],
+          "colorspace": "Non-Color"
+        },
+        {
+          "name": "\u6cd5\u7ebf\u8d34\u56fe",
+          "type": "NORMAL_MAP"
+        },
+        {
+          "name": "\u56fe\u50cf\u7eb9\u7406.002",
+          "type": "TEX_IMAGE",
+          "image": "Normal",
+          "size": [
+            4096,
+            4096
+          ],
+          "colorspace": "Non-Color"
+        }
+      ],
+      "links": [
+        [
+          "\u539f\u7406\u5316 BSDF",
+          "BSDF",
+          "\u6750\u8d28\u8f93\u51fa",
+          "Surface"
+        ],
+        [
+          "\u56fe\u50cf\u7eb9\u7406",
+          "Color",
+          "\u539f\u7406\u5316 BSDF",
+          "Base Color"
+        ],
+        [
+          "\u5206\u79bb\u989c\u8272",
+          "Blue",
+          "\u539f\u7406\u5316 BSDF",
+          "Metallic"
+        ],
+        [
+          "\u5206\u79bb\u989c\u8272",
+          "Green",
+          "\u539f\u7406\u5316 BSDF",
+          "Roughness"
+        ],
+        [
+          "\u56fe\u50cf\u7eb9\u7406.001",
+          "Color",
+          "\u5206\u79bb\u989c\u8272",
+          "Color"
+        ],
+        [
+          "\u6cd5\u7ebf\u8d34\u56fe",
+          "Normal",
+          "\u539f\u7406\u5316 BSDF",
+          "Normal"
+        ],
+        [
+          "\u56fe\u50cf\u7eb9\u7406.002",
+          "Color",
+          "\u6cd5\u7ebf\u8d34\u56fe",
+          "Color"
+        ]
+      ]
+    }
+  ]
+}

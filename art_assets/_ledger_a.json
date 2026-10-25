@@ -1,0 +1,27 @@
+{
+ "ch1_abyss_eye": {
+  "task_id": "task_01M5ESYCPCG5ARQZTRZZZ5TSKM",
+  "status": "ok",
+  "file": "E:\\godot_game_by_fable\\art_assets\\ch1_abyss_eye.png"
+ },
+ "ch1_coral_fan": {
+  "task_id": "task_01M5ESZFJRTSPENS04ZBCBVFCC",
+  "status": "ok",
+  "file": "E:\\godot_game_by_fable\\art_assets\\ch1_coral_fan.png"
+ },
+ "ch1_pillar_dragon_capital": {
+  "task_id": "task_01M5ET3HT89GT3CM03GGNGVEQZ",
+  "status": "ok",
+  "file": "E:\\godot_game_by_fable\\art_assets\\ch1_pillar_dragon_capital.png"
+ },
+ "ch2_warden": {
+  "task_id": "task_01M5ET4GN2P24RY5Q4N89Y6G5W",
+  "status": "ok",
+  "file": "E:\\godot_game_by_fable\\art_assets\\ch2_warden.png"
+ },
+ "ch2_skull_gate_ornament": {
+  "task_id": "task_01M5ET6512YDRKP2X6MQX9VAW1",
+  "status": "ok",
+  "file": "E:\\godot_game_by_fable\\art_assets\\ch2_skull_gate_ornament.png"
+ }
+}

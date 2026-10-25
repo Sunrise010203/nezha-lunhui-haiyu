@@ -38,6 +38,10 @@ var player: Player
 var cam: PlayerCamera
 var hud: HUD
 var checkpoint_pos := Vector3(0, 0.6, 0)
+## 生死/重开互斥：面板按钮重复点击或重复回调时只执行一次
+var _respawning := false
+var _restarting := false
+var _death_pending := false
 var boss: EnemyBase
 var boss_gate: Node3D = null
 var boss_trigger: Area3D = null
@@ -480,6 +484,9 @@ func _build_hud() -> void:
 	hud.restart_callback = func() -> void:
 		# 哪一关就重开哪一关；闯关模式下保住当前章节与已解锁技能，
 		# 死亡重开只会回到"当前这一关"，不会退回第一关。
+		if _restarting:
+			return
+		_restarting = true
 		if Game.campaign:
 			Game.campaign_chapter = chapter_id
 		Game.start_run()
@@ -620,7 +627,11 @@ func _float_platform(x: float, ytop: float, w := 3.0) -> StaticBody3D:
 	tip.top_radius = w * 0.32
 	tip.bottom_radius = 0.05
 	tip.height = 1.2
-	Game.add_mesh(body, tip, mat_stone_dark, Vector3(0, -1.0, 0))
+	var tip_mat: StandardMaterial3D = mat_stone.duplicate()
+	tip_mat.cull_mode = BaseMaterial3D.CULL_DISABLED
+	tip_mat.albedo_color = Color(0.16, 0.24, 0.26)
+	# 垂石暂时停用（远看是一块纯黑倒三角）
+	# Game.add_mesh(body, tip, tip_mat, Vector3(0, -1.0, 0))
 	add_child(body)
 	return body
 
@@ -732,21 +743,77 @@ func _add_swing_anchor(pos: Vector3, radius := 0.55) -> SwingAnchor:
 	return a
 
 
-func _hint(text: String, pos: Vector3) -> void:
+## 世界内教学提示：全关同屏最多一条，走近淡入、离开或做对了淡出
+var _hints: Array = []
+var _active_hint: Dictionary = {}
+
+
+func _hint(text: String, pos: Vector3, radius := 7.5,
+		done_action := "") -> void:
 	## 教学提示：放到角色前方（z=+1.4）并关闭深度测试，避免被角色/敌人挡住；
-	## 字号与抬高压低，避开 HUD 中央讯息的屏幕 30% 高度带
+	## 字号与抬高压低，避开 HUD 中央讯息的屏幕 30% 高度带。
+	## 全部提示注册后由 _update_hints 统一调度：同一时刻只显示离玩家最近的一条，
+	## 离开该提示的范围、或做出它教的动作（done_action）就淡出；
+	## 不再像原来那样十几条常驻文字同时挂在场景里。
 	var lbl := Label3D.new()
 	lbl.text = text
 	lbl.font = Game.world_font
 	lbl.font_size = 26
 	lbl.outline_size = 7
 	lbl.outline_modulate = Color(0, 0.05, 0.08, 0.8)
-	lbl.modulate = Color(0.72, 0.93, 0.93, 0.9)
+	lbl.modulate = Color(0.72, 0.93, 0.93, 0.0)
 	lbl.pixel_size = 0.0085
 	lbl.billboard = BaseMaterial3D.BILLBOARD_ENABLED
 	lbl.no_depth_test = true
 	lbl.position = pos + Vector3(0, 0.9, 1.4)
+	lbl.visible = false
 	add_child(lbl)
+	_hints.append({"label": lbl, "pos": pos, "radius": radius,
+		"done_action": done_action, "done": false, "alpha": 0.0})
+
+
+func _update_hints(delta: float) -> void:
+	if _hints.is_empty() or player == null or not is_instance_valid(player):
+		return
+	var best: Dictionary = {}
+	var best_d := INF
+	if not player.is_dead():
+		for h: Dictionary in _hints:
+			if bool(h["done"]):
+				continue
+			var l = h["label"]
+			if not is_instance_valid(l):
+				continue
+			var hp: Vector3 = h["pos"]
+			# 横向关卡：只看水平距离，外加一个高度窗口，避免浮台上层提示穿到下层
+			var d: float = absf(player.global_position.x - hp.x)
+			if d <= float(h["radius"]) \
+					and absf(player.global_position.y - hp.y) < 4.0:
+				if d < best_d:
+					best_d = d
+					best = h
+	# 做对了就永久收起（只认真正按下的那个动作键）
+	if not best.is_empty():
+		var key: String = best["done_action"]
+		if key != "" and Input.is_action_just_pressed(key):
+			best["done"] = true
+			best["alpha"] = 1.0
+			best = {}
+	if best.is_empty():
+		_active_hint = {}
+	elif best != _active_hint:
+		_active_hint = best
+	# 统一做透明度过渡：只让 _active_hint 亮起来，其余全部淡出
+	for h: Dictionary in _hints:
+		var target := 1.0 if (h == _active_hint and not bool(h["done"])) else 0.0
+		if bool(h["done"]):
+			target = 0.0
+		h["alpha"] = move_toward(float(h["alpha"]), target, delta * 4.0)
+		var l = h["label"]
+		if is_instance_valid(l):
+			var l3 := l as Label3D
+			l3.modulate.a = 0.9 * float(h["alpha"])
+			l3.visible = float(h["alpha"]) > 0.01
 
 
 func _add_checkpoint(ground_pos: Vector3, start_active := false,
@@ -1358,6 +1425,9 @@ func _spawn_portal() -> void:
 
 func _on_player_died() -> void:
 	# 闯关模式：整关刷新，从本章出生点重来；选关模式：莲台复活
+	if _death_pending:
+		return
+	_death_pending = true
 	if Game.campaign:
 		hud.show_campaign_death(chapter_title)
 	else:
@@ -1387,12 +1457,17 @@ func _reset_boss_fight() -> void:
 
 
 func _respawn_full() -> void:
+	if _respawning:
+		return
+	_respawning = true
+	_death_pending = false
 	Game.flash_fade(0.5)
 	await get_tree().create_timer(0.25, false).timeout
 	_reset_boss_fight()
 	player.respawn(checkpoint_pos)
 	_reset_active_arenas()
 	cam.snap_to_target()
+	_respawning = false
 
 
 func _reset_active_arenas() -> void:
@@ -1455,6 +1530,7 @@ func _physics_process(_delta: float) -> void:
 func _process(delta: float) -> void:
 	_t += delta
 	_update_zone_ambience(delta)
+	_update_hints(delta)
 	# 竞技场兜底轮询：分裂怪的子体 / 召唤怪没有单独连信号，
 	# 用低频轮询检查"场地内是否还有活怪"，避免封印墙不开或开了还有怪。
 	_arena_poll_t += delta

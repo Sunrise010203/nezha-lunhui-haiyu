@@ -1,0 +1,44 @@
+{
+  "chapters": {
+    "1": {
+      "active_rigs": {
+        "crawler": 5,
+        "divider": 2,
+        "shooter": 3
+      },
+      "built": true,
+      "factories": 8
+    },
+    "2": {
+      "active_rigs": {
+        "guard": 2,
+        "shooter": 1,
+        "turret": 2
+      },
+      "built": true,
+      "factories": 8
+    },
+    "3": {
+      "active_rigs": {
+        "bomber": 1,
+        "divider": 3,
+        "wraith": 1
+      },
+      "built": true,
+      "factories": 8
+    },
+    "4": {
+      "active_rigs": {
+        "crawler": 2,
+        "divider": 1,
+        "shooter": 1,
+        "spawnling": 1,
+        "turret": 1,
+        "wraith": 1
+      },
+      "built": true,
+      "factories": 8
+    }
+  },
+  "failed": false
+}

@@ -1,0 +1,35 @@
+{
+  "code": "06",
+  "kind": "warden_mace",
+  "arp_preset": "free + cc custom chains",
+  "arp_bind_result": [
+    "FINISHED"
+  ],
+  "initial_unweighted": 2825,
+  "weights": {
+    "unweighted": 0,
+    "max_influences": 4,
+    "used_groups": [
+      "cc_body"
+    ]
+  },
+  "joints": {
+    "cc_body": {
+      "head": [
+        0,
+        0,
+        0.5
+      ],
+      "tail": [
+        0.0,
+        0.0,
+        0.62
+      ],
+      "parent": "c_traj"
+    }
+  },
+  "chains": [],
+  "deform_bones": [
+    "cc_body"
+  ]
+}

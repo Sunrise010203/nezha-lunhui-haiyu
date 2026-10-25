@@ -16,6 +16,7 @@ var _state := "out"
 var _start_x := 0.0
 var _seen := {}
 var _life := 5.0
+var _vfx_trail_t := 0.0
 
 
 func _ready() -> void:
@@ -66,6 +67,10 @@ func _physics_process(delta: float) -> void:
 	if _life <= 0.0:
 		_finish()
 		return
+	_vfx_trail_t -= delta
+	if _vfx_trail_t <= 0.0:
+		_vfx_trail_t = 0.07
+		CombatVFX.ring_trail(get_parent(), global_position, dir if _state == "out" else -dir)
 	rotation.z += 18.0 * delta
 	match _state:
 		"out":
@@ -132,8 +137,7 @@ func _damage_sweep() -> void:
 			owner_player.add_energy(6.0)
 			owner_player.register_hit(1)
 		Game.play_sfx("hit", -8.0, 1.3)
-		Game.burst(get_parent(), global_position, Color(1.0, 0.85, 0.4),
-			10, 3.5, 0.06, 0.4)
+		CombatVFX.impact(get_parent(), global_position)
 
 
 func _finish() -> void:

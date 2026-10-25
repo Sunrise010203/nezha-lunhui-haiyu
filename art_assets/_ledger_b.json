@@ -1,0 +1,27 @@
+{
+ "ch2_cage_bones": {
+  "task_id": "task_01M5ETAWMA0WN3HZE8G3EE4WDG",
+  "status": "ok",
+  "file": "E:\\godot_game_by_fable\\art_assets\\ch2_cage_bones.png"
+ },
+ "ch2_bone_debris": {
+  "task_id": "task_01M5ETFQQ2FPCHCAGFNZ3JP77N",
+  "status": "ok",
+  "file": "E:\\godot_game_by_fable\\art_assets\\ch2_bone_debris.png"
+ },
+ "ch3_void_rock": {
+  "task_id": "task_01M5ETRHF36ZWW8PJPZ332QJS4",
+  "status": "ok",
+  "file": "E:\\godot_game_by_fable\\art_assets\\ch3_void_rock.png"
+ },
+ "ch3_dragon_ring_fitting": {
+  "task_id": "task_01M5ETSEKZB70ZV8F83P112BV6",
+  "status": "ok",
+  "file": "E:\\godot_game_by_fable\\art_assets\\ch3_dragon_ring_fitting.png"
+ },
+ "ch3_sea_eye_core": {
+  "task_id": "task_01M5ETTBVZ6ERZ11K9R8F5E2GX",
+  "status": "ok",
+  "file": "E:\\godot_game_by_fable\\art_assets\\ch3_sea_eye_core.png"
+ }
+}

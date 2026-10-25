@@ -1,0 +1,263 @@
+{
+  "passed": true,
+  "assets": {
+    "01": {
+      "kind": "maw",
+      "arp_bind_result": [
+        "FINISHED"
+      ],
+      "unweighted": 0,
+      "worst_p99_edge_stretch_including_qa": 1.0682424962571913,
+      "roundtrip": {
+        "Idle": {
+          "max_surface_distance": 5.283087034513301e-07,
+          "p99_distance": 2.690474616429128e-07
+        },
+        "Attack": {
+          "max_surface_distance": 1.6988631159620127e-06,
+          "p99_distance": 5.96902464167216e-07
+        },
+        "Move": {
+          "max_surface_distance": 9.110448786486813e-07,
+          "p99_distance": 3.8107370414763864e-07
+        }
+      },
+      "ground_contact_m": null,
+      "source_original_hash_preserved": true,
+      "source_blend": "E:\\godot_game_by_fable\\art_source\\bosses\\01_maw_arp.blend",
+      "game_glb": "E:\\godot_game_by_fable\\001\\art\\models\\bosses_arp\\01_maw.glb",
+      "game_sha256": "c341f7e3d36c88bd487855b49389f98188bed3993d6ebf5af0c7a5d732911a85",
+      "game_clips": [
+        "Sweep",
+        "DiveAttack",
+        "DiveWindup",
+        "Die",
+        "Phase",
+        "Summon",
+        "Hit",
+        "Recover",
+        "Attack",
+        "Windup",
+        "Move",
+        "Idle"
+      ],
+      "game_bones": 39
+    },
+    "02": {
+      "kind": "warden",
+      "arp_bind_result": [
+        "FINISHED"
+      ],
+      "unweighted": 0,
+      "worst_p99_edge_stretch_including_qa": 1.2792153229698795,
+      "roundtrip": {
+        "Idle": {
+          "max_surface_distance": 6.216213819243421e-07,
+          "p99_distance": 4.915689828521863e-07
+        },
+        "Attack": {
+          "max_surface_distance": 1.4336318372443202e-06,
+          "p99_distance": 6.643979872933414e-07
+        },
+        "Move": {
+          "max_surface_distance": 2.217733936049626e-06,
+          "p99_distance": 5.147719093656603e-07
+        },
+        "SlamWindup": {
+          "max_surface_distance": 4.2303554437239654e-06,
+          "p99_distance": 1.3634358992931084e-06
+        },
+        "SlamAttack": {
+          "max_surface_distance": 2.7786570626631146e-06,
+          "p99_distance": 2.165800651710015e-06
+        }
+      },
+      "ground_contact_m": 0.09597265720367432,
+      "source_original_hash_preserved": true,
+      "source_blend": "E:\\godot_game_by_fable\\art_source\\bosses\\02_warden_arp.blend",
+      "game_glb": "E:\\godot_game_by_fable\\001\\art\\models\\bosses_arp\\02_warden.glb",
+      "game_sha256": "f399eb2179cabeaca3624491ed018fb57e10ce41b5117d5d7bad6677d1900bc7",
+      "game_clips": [
+        "Charge",
+        "SlamRecover",
+        "SlamAttack",
+        "SlamWindup",
+        "Die",
+        "Phase",
+        "Summon",
+        "Hit",
+        "Recover",
+        "Attack",
+        "Windup",
+        "Move",
+        "Idle"
+      ],
+      "game_bones": 68
+    },
+    "03": {
+      "kind": "seal_core",
+      "arp_bind_result": [
+        "FINISHED"
+      ],
+      "unweighted": 0,
+      "worst_p99_edge_stretch_including_qa": 1.0000132269191206,
+      "roundtrip": {
+        "Idle": {
+          "max_surface_distance": 3.500980199078185e-07,
+          "p99_distance": 3.2132652449945454e-07
+        },
+        "Attack": {
+          "max_surface_distance": 2.6656007889869215e-07,
+          "p99_distance": 2.1696418173178245e-07
+        },
+        "Move": {
+          "max_surface_distance": 3.500980199078185e-07,
+          "p99_distance": 3.2132652449945454e-07
+        }
+      },
+      "ground_contact_m": null,
+      "source_original_hash_preserved": true,
+      "source_blend": "E:\\godot_game_by_fable\\art_source\\bosses\\03_seal_core_arp.blend",
+      "game_glb": "E:\\godot_game_by_fable\\001\\art\\models\\bosses_arp\\03_seal_core.glb",
+      "game_sha256": "43eebb5ace42fb6ff415df3b14b0f7ca3aa170ecd07b2a9547090040942730b4",
+      "game_clips": [
+        "Die",
+        "Phase",
+        "Summon",
+        "Hit",
+        "Recover",
+        "Attack",
+        "Windup",
+        "Move",
+        "Idle"
+      ],
+      "game_bones": 6
+    },
+    "04": {
+      "kind": "giant_eye",
+      "arp_bind_result": [
+        "FINISHED"
+      ],
+      "unweighted": 0,
+      "worst_p99_edge_stretch_including_qa": 1.000014856793003,
+      "roundtrip": {
+        "Idle": {
+          "max_surface_distance": 3.6256091107134125e-07,
+          "p99_distance": 3.0538294026882795e-07
+        },
+        "Attack": {
+          "max_surface_distance": 2.682209014892578e-07,
+          "p99_distance": 2.190014498637538e-07
+        },
+        "Move": {
+          "max_surface_distance": 3.6256091107134125e-07,
+          "p99_distance": 3.0538294026882795e-07
+        }
+      },
+      "ground_contact_m": null,
+      "source_original_hash_preserved": true,
+      "source_blend": "E:\\godot_game_by_fable\\art_source\\bosses\\04_giant_eye_arp.blend",
+      "game_glb": "E:\\godot_game_by_fable\\001\\art\\models\\bosses_arp\\04_giant_eye.glb",
+      "game_sha256": "0f0168cca3577e97fff97fb39d95eea61ab16707b7c02bca6c5cbce51103e442",
+      "game_clips": [
+        "Pulse",
+        "Die",
+        "Phase",
+        "Summon",
+        "Hit",
+        "Recover",
+        "Attack",
+        "Windup",
+        "Move",
+        "Idle"
+      ],
+      "game_bones": 6
+    },
+    "05": {
+      "kind": "chiwen",
+      "arp_bind_result": [
+        "FINISHED"
+      ],
+      "unweighted": 0,
+      "worst_p99_edge_stretch_including_qa": 1.05285565656913,
+      "roundtrip": {
+        "Idle": {
+          "max_surface_distance": 1.6442684227513382e-06,
+          "p99_distance": 2.811545414260763e-07
+        },
+        "Attack": {
+          "max_surface_distance": 2.275161477882648e-06,
+          "p99_distance": 5.127385520609096e-07
+        },
+        "Move": {
+          "max_surface_distance": 2.236964746771264e-06,
+          "p99_distance": 4.2659486553020306e-07
+        },
+        "CoreOpen": {
+          "max_surface_distance": 1.6442684227513382e-06,
+          "p99_distance": 2.811545414260763e-07
+        }
+      },
+      "ground_contact_m": null,
+      "source_original_hash_preserved": true,
+      "source_blend": "E:\\godot_game_by_fable\\art_source\\bosses\\05_chiwen_arp.blend",
+      "game_glb": "E:\\godot_game_by_fable\\001\\art\\models\\bosses_arp\\05_chiwen.glb",
+      "game_sha256": "2119bd0344e137cc7aaf49d7b3a53d12a0e5286601482d0947744df20a12b420",
+      "game_clips": [
+        "CoreOpen",
+        "Expose",
+        "Inhale",
+        "Bite",
+        "Die",
+        "Phase",
+        "Summon",
+        "Hit",
+        "Recover",
+        "Attack",
+        "Windup",
+        "Move",
+        "Idle"
+      ],
+      "game_bones": 10
+    },
+    "06": {
+      "kind": "warden_mace",
+      "arp_bind_result": [
+        "FINISHED"
+      ],
+      "unweighted": 0,
+      "worst_p99_edge_stretch_including_qa": 1.00001196803586,
+      "roundtrip": {
+        "Idle": {
+          "max_surface_distance": 5.967009286678149e-08,
+          "p99_distance": 5.960464477539063e-08
+        },
+        "Attack": {
+          "max_surface_distance": 2.3283064365386963e-10,
+          "p99_distance": 5.820766091346741e-11
+        },
+        "Move": {
+          "max_surface_distance": 5.967009286678149e-08,
+          "p99_distance": 5.960464477539063e-08
+        }
+      },
+      "ground_contact_m": null,
+      "source_original_hash_preserved": true,
+      "source_blend": "E:\\godot_game_by_fable\\art_source\\bosses\\06_warden_mace_arp.blend",
+      "game_glb": "E:\\godot_game_by_fable\\001\\art\\models\\bosses_arp\\06_warden_mace.glb",
+      "game_sha256": "c74901f7671bd6759aa7d2081ea7ebfdf39fc9aaeabab0f634d86ef4a42ac78b",
+      "game_clips": [
+        "Die",
+        "Phase",
+        "Summon",
+        "Hit",
+        "Recover",
+        "Attack",
+        "Windup",
+        "Move",
+        "Idle"
+      ],
+      "game_bones": 1
+    }
+  }
+}

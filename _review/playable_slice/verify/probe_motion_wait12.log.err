@@ -1,0 +1,6 @@
+ERROR: NEZHA_MOTION_FAIL breathing idle selected
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] check (E:/godot_game_by_fable/_review/playable_slice/verify/probe_motion_wait12.gd:16)
+       [1] _run (E:/godot_game_by_fable/_review/playable_slice/verify/probe_motion_wait12.gd:74)
+       [2] frames (E:/godot_game_by_fable/_review/playable_slice/verify/probe_motion_wait12.gd:25)

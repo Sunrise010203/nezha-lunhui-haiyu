@@ -1,0 +1,51 @@
+{
+  "rest": {
+    "edge_ratio_p99": 1.0000025197996658,
+    "edge_ratio_max": 1.0000305023375846,
+    "edges_over_2x": 0,
+    "finite_vertices": true,
+    "max_displacement": 3.013242341637394e-07
+  },
+  "arms_up": {
+    "edge_ratio_p99": 2.5641593726642657,
+    "edge_ratio_max": 6.805444914203899,
+    "edges_over_2x": 1397,
+    "finite_vertices": true,
+    "max_displacement": 0.7463249515228941
+  },
+  "elbows_bent": {
+    "edge_ratio_p99": 2.0103276188247303,
+    "edge_ratio_max": 5.7484893086442215,
+    "edges_over_2x": 820,
+    "finite_vertices": true,
+    "max_displacement": 0.7058367969371173
+  },
+  "knee_left": {
+    "edge_ratio_p99": 1.034828775942076,
+    "edge_ratio_max": 2.6028134250501473,
+    "edges_over_2x": 7,
+    "finite_vertices": true,
+    "max_displacement": 0.38714451463820665
+  },
+  "knee_right": {
+    "edge_ratio_p99": 1.0525682229831013,
+    "edge_ratio_max": 2.674415763096661,
+    "edges_over_2x": 7,
+    "finite_vertices": true,
+    "max_displacement": 0.38530802421454247
+  },
+  "torso_twist": {
+    "edge_ratio_p99": 1.1170343147436639,
+    "edge_ratio_max": 1.6601512904668634,
+    "edges_over_2x": 0,
+    "finite_vertices": true,
+    "max_displacement": 0.19034368068208904
+  },
+  "turn": {
+    "edge_ratio_p99": 1.0000161191470647,
+    "edge_ratio_max": 1.0000774510613695,
+    "edges_over_2x": 0,
+    "finite_vertices": true,
+    "max_displacement": 0.3526456081492099
+  }
+}

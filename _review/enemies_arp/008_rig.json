@@ -1,0 +1,327 @@
+{
+  "code": "008",
+  "kind": "spawnling",
+  "arp_preset": "free + registered custom FK chains",
+  "arp_bind_result": [
+    "FINISHED"
+  ],
+  "vertices_before_weld": 59029,
+  "vertices": 29375,
+  "initial_unweighted": 0,
+  "weights": {
+    "unweighted": 0,
+    "used_groups": [
+      "cc_body",
+      "cc_spine",
+      "cc_head",
+      "cc_jaw",
+      "cc_front_01.l",
+      "cc_front_02.l",
+      "cc_front_03.l",
+      "cc_front_01.r",
+      "cc_front_02.r",
+      "cc_front_03.r",
+      "cc_tail_01",
+      "cc_tail_02",
+      "cc_tail_03",
+      "cc_hind_01.l",
+      "cc_hind_02.l",
+      "cc_hind_03.l",
+      "cc_hind_01.r",
+      "cc_hind_02.r",
+      "cc_hind_03.r"
+    ]
+  },
+  "joints": {
+    "cc_body": {
+      "head": [
+        0,
+        0.1,
+        0.52
+      ],
+      "tail": [
+        0.0,
+        0.1,
+        0.64
+      ],
+      "parent": "c_traj"
+    },
+    "cc_spine": {
+      "head": [
+        0,
+        0.1,
+        0.52
+      ],
+      "tail": [
+        0,
+        -0.38,
+        0.57
+      ],
+      "parent": "cc_body"
+    },
+    "cc_head": {
+      "head": [
+        0,
+        -0.38,
+        0.57
+      ],
+      "tail": [
+        0,
+        -0.88,
+        0.51
+      ],
+      "parent": "cc_spine"
+    },
+    "cc_jaw": {
+      "head": [
+        0,
+        -0.52,
+        0.4
+      ],
+      "tail": [
+        0,
+        -1.0,
+        0.36
+      ],
+      "parent": "cc_head"
+    },
+    "cc_tail_01": {
+      "head": [
+        0,
+        0.4,
+        0.51
+      ],
+      "tail": [
+        0,
+        0.64,
+        0.49
+      ],
+      "parent": "cc_body"
+    },
+    "cc_tail_02": {
+      "head": [
+        0,
+        0.64,
+        0.49
+      ],
+      "tail": [
+        0,
+        0.87,
+        0.48
+      ],
+      "parent": "cc_tail_01"
+    },
+    "cc_tail_03": {
+      "head": [
+        0,
+        0.87,
+        0.48
+      ],
+      "tail": [
+        0,
+        1.09,
+        0.48
+      ],
+      "parent": "cc_tail_02"
+    },
+    "cc_front_01.l": {
+      "head": [
+        0.245,
+        -0.32,
+        0.49
+      ],
+      "tail": [
+        0.33,
+        -0.28,
+        0.275
+      ],
+      "parent": "cc_spine"
+    },
+    "cc_front_02.l": {
+      "head": [
+        0.33,
+        -0.28,
+        0.275
+      ],
+      "tail": [
+        0.33,
+        -0.365,
+        0.115
+      ],
+      "parent": "cc_front_01.l"
+    },
+    "cc_front_03.l": {
+      "head": [
+        0.33,
+        -0.365,
+        0.115
+      ],
+      "tail": [
+        0.38,
+        -0.46,
+        0.04
+      ],
+      "parent": "cc_front_02.l"
+    },
+    "cc_front_01.r": {
+      "head": [
+        -0.245,
+        -0.32,
+        0.49
+      ],
+      "tail": [
+        -0.33,
+        -0.28,
+        0.275
+      ],
+      "parent": "cc_spine"
+    },
+    "cc_front_02.r": {
+      "head": [
+        -0.33,
+        -0.28,
+        0.275
+      ],
+      "tail": [
+        -0.33,
+        -0.365,
+        0.115
+      ],
+      "parent": "cc_front_01.r"
+    },
+    "cc_front_03.r": {
+      "head": [
+        -0.33,
+        -0.365,
+        0.115
+      ],
+      "tail": [
+        -0.38,
+        -0.46,
+        0.04
+      ],
+      "parent": "cc_front_02.r"
+    },
+    "cc_hind_01.l": {
+      "head": [
+        0.23,
+        0.17,
+        0.49
+      ],
+      "tail": [
+        0.295,
+        0.225,
+        0.3
+      ],
+      "parent": "cc_body"
+    },
+    "cc_hind_02.l": {
+      "head": [
+        0.295,
+        0.225,
+        0.3
+      ],
+      "tail": [
+        0.25,
+        0.31,
+        0.12
+      ],
+      "parent": "cc_hind_01.l"
+    },
+    "cc_hind_03.l": {
+      "head": [
+        0.25,
+        0.31,
+        0.12
+      ],
+      "tail": [
+        0.4,
+        0.235,
+        0.04
+      ],
+      "parent": "cc_hind_02.l"
+    },
+    "cc_hind_01.r": {
+      "head": [
+        -0.23,
+        0.17,
+        0.49
+      ],
+      "tail": [
+        -0.295,
+        0.225,
+        0.3
+      ],
+      "parent": "cc_body"
+    },
+    "cc_hind_02.r": {
+      "head": [
+        -0.295,
+        0.225,
+        0.3
+      ],
+      "tail": [
+        -0.25,
+        0.31,
+        0.12
+      ],
+      "parent": "cc_hind_01.r"
+    },
+    "cc_hind_03.r": {
+      "head": [
+        -0.25,
+        0.31,
+        0.12
+      ],
+      "tail": [
+        -0.4,
+        0.235,
+        0.04
+      ],
+      "parent": "cc_hind_02.r"
+    }
+  },
+  "chains": [
+    [
+      "cc_front_01.l",
+      "cc_front_02.l",
+      "cc_front_03.l"
+    ],
+    [
+      "cc_front_01.r",
+      "cc_front_02.r",
+      "cc_front_03.r"
+    ],
+    [
+      "cc_hind_01.l",
+      "cc_hind_02.l",
+      "cc_hind_03.l"
+    ],
+    [
+      "cc_hind_01.r",
+      "cc_hind_02.r",
+      "cc_hind_03.r"
+    ]
+  ],
+  "deform_bones": [
+    "cc_body",
+    "cc_spine",
+    "cc_head",
+    "cc_jaw",
+    "cc_front_01.l",
+    "cc_front_02.l",
+    "cc_front_03.l",
+    "cc_front_01.r",
+    "cc_front_02.r",
+    "cc_front_03.r",
+    "cc_tail_01",
+    "cc_tail_02",
+    "cc_tail_03",
+    "cc_hind_01.l",
+    "cc_hind_02.l",
+    "cc_hind_03.l",
+    "cc_hind_01.r",
+    "cc_hind_02.r",
+    "cc_hind_03.r"
+  ]
+}

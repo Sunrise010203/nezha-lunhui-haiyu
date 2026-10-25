@@ -3,19 +3,20 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dnhrt4ksm0d8a"
-path="res://.godot/imported/shooter_idle.png-f571bd1b5fb8d956b7912f7282e75a3a.ctex"
+path.s3tc="res://.godot/imported/shooter_idle.png-f571bd1b5fb8d956b7912f7282e75a3a.s3tc.ctex"
 metadata={
-"vram_texture": false
+"imported_formats": ["s3tc_bptc"],
+"vram_texture": true
 }
 
 [deps]
 
 source_file="res://art/raw/shooter_idle.png"
-dest_files=["res://.godot/imported/shooter_idle.png-f571bd1b5fb8d956b7912f7282e75a3a.ctex"]
+dest_files=["res://.godot/imported/shooter_idle.png-f571bd1b5fb8d956b7912f7282e75a3a.s3tc.ctex"]
 
 [params]
 
-compress/mode=0
+compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/uastc_level=0
@@ -37,4 +38,4 @@ process/normal_map_invert_y=false
 process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
-detect_3d/compress_to=1
+detect_3d/compress_to=0

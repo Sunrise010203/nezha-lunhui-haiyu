@@ -1,0 +1,13 @@
+{
+  "exported_albedo_matches_source_pixels": true,
+  "albedo_size": [
+    8192,
+    8192
+  ],
+  "emission_added": false,
+  "changed_area_display_luminance_before_after": [
+    43.85064033841116,
+    51.83932949379607
+  ],
+  "same_render_exposure": true
+}

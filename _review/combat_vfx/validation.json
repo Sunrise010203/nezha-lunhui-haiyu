@@ -1,0 +1,18 @@
+{
+  "checks": [
+    "missed attack still emits one slash",
+    "attack emits once per hit window",
+    "left slash mirrors right slash",
+    "light hit damage and energy unchanged",
+    "heavy hit damage and energy unchanged",
+    "nova damage and burn unchanged",
+    "wind wheel still costs 60 energy",
+    "water shell and rune appear",
+    "real projectile parry reflects and emits splash",
+    "cancel immediately hides guard",
+    "death immediately hides guard",
+    "effect count capped at 96",
+    "all transient effects reclaimed"
+  ],
+  "passed": true
+}

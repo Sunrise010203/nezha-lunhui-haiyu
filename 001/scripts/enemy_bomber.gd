@@ -39,6 +39,9 @@ func _setup() -> void:
 
 
 func _build_gfx() -> void:
+	if load_enemy_model("007_bomber", 1.2, -0.4):
+		_light = make_enemy_light(Color(1.0, 0.55, 0.3), Vector3(0, 0.3, 0.3))
+		return
 	# 半透明橙红伞状钟体
 	_bell_mat = Game.std_mat(_base_bell, Color(0.9, 0.3, 0.12), 1.2, 0.25)
 	_bell_mat.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA
@@ -104,7 +107,8 @@ func _behave(delta: float) -> void:
 			velocity.x = move_toward(velocity.x, 0.0, 24.0 * delta)
 			var p := clampf(state_t / FUSE_TIME, 0.0, 1.0)
 			var pulse := 1.0 + p * 0.45 + sin(_t * 46.0) * 0.035 * p
-			gfx.scale = Vector3.ONE * pulse
+			if not enemy_motion:
+				gfx.scale = Vector3.ONE * pulse
 			_set_heat(p)
 			if state_t >= FUSE_TIME:
 				_explode()
@@ -205,7 +209,7 @@ func _animate(delta: float) -> void:
 		tp.rotation.x = base.x + sin(_t * spd + i * 1.3) * amp
 		tp.rotation.z = base.z + cos(_t * spd * 0.8 + i * 0.9) * amp
 	# 追踪阶段轻微左右摇摆
-	if state != "fuse":
+	if state != "fuse" and not enemy_motion:
 		gfx.rotation.z = lerp_angle(gfx.rotation.z,
 			sin(_t * 1.5) * 0.06, 6.0 * delta)
 
@@ -213,3 +217,12 @@ func _animate(delta: float) -> void:
 func _ensure_player() -> void:
 	if player == null or not is_instance_valid(player):
 		player = get_tree().get_first_node_in_group("player") as Player
+
+
+func _rig_animation() -> Array:
+	if player_alive() and state == "chase":
+		var dx := player.global_position.x - global_position.x
+		gfx.rotation.y = 0.0 if dx >= 0.0 else PI
+	if state == "fuse":
+		return ["Windup", state_t / FUSE_TIME]
+	return super._rig_animation()

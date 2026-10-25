@@ -1,0 +1,110 @@
+{
+  "code": "005",
+  "kind": "turret",
+  "arp_preset": "free + registered custom FK chains",
+  "arp_bind_result": [
+    "FINISHED"
+  ],
+  "vertices_before_weld": 22280,
+  "vertices": 13552,
+  "initial_unweighted": 13552,
+  "weights": {
+    "unweighted": 0,
+    "used_groups": [
+      "cc_ring",
+      "cc_core",
+      "cc_crystal_00",
+      "cc_crystal_01",
+      "cc_crystal_02"
+    ]
+  },
+  "joints": {
+    "cc_body": {
+      "head": [
+        0,
+        0,
+        0.6
+      ],
+      "tail": [
+        0.0,
+        0.0,
+        0.72
+      ],
+      "parent": "c_traj"
+    },
+    "cc_ring": {
+      "head": [
+        0,
+        0,
+        0.5
+      ],
+      "tail": [
+        0.12,
+        0,
+        0.5
+      ],
+      "parent": "cc_body"
+    },
+    "cc_core": {
+      "head": [
+        0.025,
+        0,
+        0.52
+      ],
+      "tail": [
+        0.025,
+        0,
+        0.65
+      ],
+      "parent": "cc_body"
+    },
+    "cc_crystal_00": {
+      "head": [
+        0.17,
+        0.2,
+        0.33
+      ],
+      "tail": [
+        0.17,
+        0.2,
+        0.78
+      ],
+      "parent": "cc_body"
+    },
+    "cc_crystal_01": {
+      "head": [
+        -0.18,
+        0.13,
+        0.33
+      ],
+      "tail": [
+        -0.18,
+        0.13,
+        0.78
+      ],
+      "parent": "cc_body"
+    },
+    "cc_crystal_02": {
+      "head": [
+        0,
+        -0.23,
+        0.33
+      ],
+      "tail": [
+        0,
+        -0.23,
+        0.78
+      ],
+      "parent": "cc_body"
+    }
+  },
+  "chains": [],
+  "deform_bones": [
+    "cc_body",
+    "cc_ring",
+    "cc_core",
+    "cc_crystal_00",
+    "cc_crystal_01",
+    "cc_crystal_02"
+  ]
+}

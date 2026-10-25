@@ -1,0 +1,38 @@
+[
+  {
+    "file": "r2_exe_game.png",
+    "size": [
+      1920,
+      1080
+    ],
+    "expected_size": [
+      1920,
+      1080
+    ],
+    "size_ok": true,
+    "soul_gold_px": 0,
+    "soul_gold_frac": 0.0,
+    "soul_threshold_frac": 0.00015,
+    "soul_ok": false,
+    "soul_roi": [
+      1497,
+      0,
+      1920,
+      64
+    ],
+    "keys_light_px": 5091,
+    "keys_light_frac": 0.002455,
+    "keys_threshold_frac": 0.0003,
+    "keys_ok": true,
+    "keys_roi": [
+      0,
+      1031,
+      1190,
+      1080
+    ],
+    "grid_colours_20x20": 384,
+    "rendered_ok": true,
+    "pass": false,
+    "note": "t6 old screenshot (window frame included, HUD cropped) — negative control"
+  }
+]

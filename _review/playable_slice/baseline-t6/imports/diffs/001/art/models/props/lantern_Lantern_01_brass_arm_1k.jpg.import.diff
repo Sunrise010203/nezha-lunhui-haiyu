@@ -1,0 +1,35 @@
+--- HEAD:001/art/models/props/lantern_Lantern_01_brass_arm_1k.jpg.import
++++ worktree:001/art/models/props/lantern_Lantern_01_brass_arm_1k.jpg.import
+@@ -3,9 +3,10 @@
+ importer="texture"
+ type="CompressedTexture2D"
+ uid="uid://ch6onndncsw0t"
+-path="res://.godot/imported/lantern_Lantern_01_brass_arm_1k.jpg-269ff1bd139856f4285059fdf9bd6b4d.ctex"
++path.s3tc="res://.godot/imported/lantern_Lantern_01_brass_arm_1k.jpg-269ff1bd139856f4285059fdf9bd6b4d.s3tc.ctex"
+ metadata={
+-"vram_texture": false
++"imported_formats": ["s3tc_bptc"],
++"vram_texture": true
+ }
+ generator_parameters={
+ "md5": "a4fdd8b102208a22347d241fd7b9d8ef"
+@@ -14,11 +15,11 @@
+ [deps]
+ 
+ source_file="res://art/models/props/lantern_Lantern_01_brass_arm_1k.jpg"
+-dest_files=["res://.godot/imported/lantern_Lantern_01_brass_arm_1k.jpg-269ff1bd139856f4285059fdf9bd6b4d.ctex"]
++dest_files=["res://.godot/imported/lantern_Lantern_01_brass_arm_1k.jpg-269ff1bd139856f4285059fdf9bd6b4d.s3tc.ctex"]
+ 
+ [params]
+ 
+-compress/mode=0
++compress/mode=2
+ compress/high_quality=false
+ compress/lossy_quality=0.7
+ compress/uastc_level=0
+@@ -40,4 +41,4 @@
+ process/hdr_as_srgb=false
+ process/hdr_clamp_exposure=false
+ process/size_limit=0
+-detect_3d/compress_to=1
++detect_3d/compress_to=0

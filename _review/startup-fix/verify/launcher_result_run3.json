@@ -1,0 +1,431 @@
+{
+  "started": "2026-10-22 18:11:43",
+  "cwd": "E:\\godot_game_by_fable",
+  "method": "Explorer physical double-click already performed; SmartScreen '仍要运行' handled by real mouse; launcher then verified",
+  "verifier_process": {
+    "pid": 42992,
+    "integrity": "S-1-16-8192",
+    "env": {
+      "APPDATA": "C:\\Users\\Sunrise\\AppData\\Roaming",
+      "LOCALAPPDATA": "C:\\Users\\Sunrise\\AppData\\Local",
+      "TEMP": "C:\\Users\\Sunrise\\AppData\\Local\\Temp\\dsh-win-bash-38312-340df269",
+      "TMP": "C:\\Users\\Sunrise\\AppData\\Local\\Temp\\dsh-win-bash-38312-340df269",
+      "USERPROFILE": "C:\\Users\\Sunrise"
+    },
+    "screen": [
+      2560,
+      1600
+    ]
+  },
+  "before": {
+    "files": {
+      "game_exe": {
+        "exists": true,
+        "size": 557508232,
+        "mtime": 1792654114.4835489,
+        "mtime_iso": "2026-10-22 15:28:34"
+      },
+      "launcher_exe": {
+        "exists": true,
+        "size": 153745,
+        "mtime": 1792662457.9920046,
+        "mtime_iso": "2026-10-22 17:47:37",
+        "sha256": "fba7da39d6a3649fca6a61f1157d2734d1e3b2b792e6feee658360f168609bca"
+      },
+      "portable_save": {
+        "exists": true,
+        "size": 196,
+        "mtime": 1792591787.4441288,
+        "mtime_iso": "2026-10-21 22:09:47",
+        "sha256": "313e8cb3bd1357bc20277685a69cd5b66b7a35fa70cbb40285c9ff0a3624dbf8"
+      },
+      "default_save": {
+        "exists": true,
+        "size": 196,
+        "mtime": 1792591787.4441288,
+        "mtime_iso": "2026-10-21 22:09:47",
+        "sha256": "313e8cb3bd1357bc20277685a69cd5b66b7a35fa70cbb40285c9ff0a3624dbf8"
+      },
+      "launcher_log": {
+        "exists": true,
+        "size": 608,
+        "mtime": 1792663211.6631806,
+        "mtime_iso": "2026-10-22 18:00:11",
+        "sha256": "f422b5455f52f03fb5f2e861ff6ffa1db2c78047289ca625133f0ec20e5f0e28"
+      }
+    },
+    "dirs": {
+      "portable_project": [
+        [
+          "progress.cfg",
+          196,
+          1792591787.444
+        ]
+      ],
+      "portable_logs": [
+        [
+          "godot.log",
+          281,
+          1792663194.572
+        ],
+        [
+          "godot2026-10-22T17.56.37.log",
+          281,
+          1792662997.397
+        ],
+        [
+          "godot2026-10-22T17.57.39.log",
+          281,
+          1792663059.528
+        ],
+        [
+          "godot2026-10-22T17.59.53.log",
+          281,
+          1792663193.161
+        ]
+      ],
+      "default_project": [
+        [
+          "progress.cfg",
+          196,
+          1792591787.444
+        ]
+      ],
+      "default_logs": [
+        [
+          "godot.log",
+          29272,
+          1792662347.996
+        ],
+        [
+          "godot2026-10-22T16.35.23.log",
+          1414,
+          1792658123.397
+        ],
+        [
+          "godot2026-10-22T16.35.42.log",
+          1896,
+          1792658142.625
+        ],
+        [
+          "godot2026-10-22T17.45.41.log",
+          1001,
+          1792662341.238
+        ],
+        [
+          "godot2026-10-22T17.45.45.log",
+          158,
+          1792662345.72
+        ]
+      ]
+    },
+    "time": "2026-10-22 18:11:43"
+  },
+  "preexisting_game_processes": [
+    39144,
+    47868
+  ],
+  "smartscreen_dialog_before": {
+    "hwnd": 2690162,
+    "pid": 14464,
+    "class": "ApplicationFrameWindow",
+    "title": "",
+    "visible": true,
+    "rect": [
+      870,
+      366,
+      1690,
+      1125
+    ]
+  },
+  "smartscreen_process": [
+    {
+      "pid": 47932,
+      "ppid": 2176,
+      "threads": 117,
+      "name": "CHXSmartScreen.exe"
+    }
+  ],
+  "smartscreen_click": {
+    "button": "仍要运行",
+    "abs": [
+      1430,
+      1050
+    ],
+    "dialog_rect": [
+      870,
+      366,
+      1690,
+      1125
+    ]
+  },
+  "launcher": {
+    "pid": 34736,
+    "ppid": 8784,
+    "threads": 4,
+    "integrity": "S-1-16-4096",
+    "started_after_s": 0.595
+  },
+  "seconds_to_window": 1.385,
+  "window_initial": {
+    "hwnd": 10030368,
+    "pid": 344,
+    "class": "Engine",
+    "title": "",
+    "visible": true,
+    "rect": [
+      309,
+      179,
+      2251,
+      1315
+    ]
+  },
+  "game": {
+    "pid": 344,
+    "integrity": "S-1-16-4096",
+    "session": 1,
+    "ppid": 34736,
+    "threads": 49
+  },
+  "game_foreground": {
+    "attach": true,
+    "set_fg": true,
+    "fg": [
+      10030368,
+      344
+    ]
+  },
+  "client": [
+    1600,
+    900
+  ],
+  "game_foreground2": {
+    "attach": true,
+    "set_fg": true,
+    "fg": [
+      10030368,
+      344
+    ]
+  },
+  "click_points": {
+    "select": [
+      841.0,
+      601.5
+    ],
+    "ch1": [
+      841.0,
+      350.4
+    ]
+  },
+  "foreground_game": [
+    10030368,
+    344
+  ],
+  "point_owner_game": [
+    10030368,
+    344
+  ],
+  "window_alive_after_ch1": true,
+  "game_integrity_after_ch1": "S-1-16-4096",
+  "captures": [
+    {
+      "path": "run3_menu.png",
+      "size": [
+        1600,
+        900
+      ],
+      "luma_mean": 42.43,
+      "luma_extrema": [
+        2,
+        255
+      ],
+      "spread": 253,
+      "cursor": [
+        1430,
+        1050
+      ]
+    },
+    {
+      "path": "run3_select.png",
+      "size": [
+        1600,
+        900
+      ],
+      "luma_mean": 34.66,
+      "luma_extrema": [
+        1,
+        245
+      ],
+      "spread": 244,
+      "cursor": [
+        841,
+        601
+      ]
+    },
+    {
+      "path": "run3_ch1.png",
+      "size": [
+        1600,
+        900
+      ],
+      "luma_mean": 54.26,
+      "luma_extrema": [
+        0,
+        254
+      ],
+      "spread": 254,
+      "cursor": [
+        841,
+        350
+      ]
+    },
+    {
+      "path": "run3_ch1_after8s.png",
+      "size": [
+        1600,
+        900
+      ],
+      "luma_mean": 53.34,
+      "luma_extrema": [
+        0,
+        254
+      ],
+      "spread": 254,
+      "cursor": [
+        841,
+        350
+      ]
+    }
+  ],
+  "game_foreground3": {
+    "attach": true,
+    "set_fg": true,
+    "fg": [
+      10030368,
+      344
+    ]
+  },
+  "game_exit": {
+    "wait": 0,
+    "code": 0,
+    "hex": "0x00000000",
+    "seconds": 29.67
+  },
+  "launcher_exit": {
+    "wait": 0,
+    "code": 0,
+    "hex": "0x00000000"
+  },
+  "window_gone": true,
+  "launcher_log": "[\u00003\u00001\u00008\u00000\u00002\u00008\u00007\u00005\u0000]\u0000 \u0000l\u0000a\u0000u\u0000n\u0000c\u0000h\u0000e\u0000r\u0000 \u0000d\u0000i\u0000r\u0000=\u0000E\u0000:\u0000\\\u0000g\u0000o\u0000d\u0000o\u0000t\u0000_\u0000g\u0000a\u0000m\u0000e\u0000_\u0000b\u0000y\u0000_\u0000f\u0000a\u0000b\u0000l\u0000e\u0000\\\u0000b\u0000u\u0000i\u0000l\u0000d\u0000s\u0000\\\u0000p\u0000l\u0000a\u0000y\u0000a\u0000b\u0000l\u0000e\u0000-\u0000s\u0000l\u0000i\u0000c\u0000e\u0000\r\u0000\n\u0000[\u00003\u00001\u00008\u00000\u00002\u00008\u00007\u00005\u0000]\u0000 \u0000A\u0000P\u0000P\u0000D\u0000A\u0000T\u0000A\u0000=\u0000E\u0000:\u0000\\\u0000g\u0000o\u0000d\u0000o\u0000t\u0000_\u0000g\u0000a\u0000m\u0000e\u0000_\u0000b\u0000y\u0000_\u0000f\u0000a\u0000b\u0000l\u0000e\u0000\\\u0000b\u0000u\u0000i\u0000l\u0000d\u0000s\u0000\\\u0000p\u0000l\u0000a\u0000y\u0000a\u0000b\u0000l\u0000e\u0000-\u0000s\u0000l\u0000i\u0000c\u0000e\u0000\\\u0000u\u0000s\u0000e\u0000r\u0000d\u0000a\u0000t\u0000a\u0000\r\u0000\n\u0000[\u00003\u00001\u00008\u00000\u00002\u00008\u00007\u00005\u0000]\u0000 \u0000l\u0000a\u0000u\u0000n\u0000c\u0000h\u0000i\u0000n\u0000g\u0000 \u0000E\u0000:\u0000\\\u0000g\u0000o\u0000d\u0000o\u0000t\u0000_\u0000g\u0000a\u0000m\u0000e\u0000_\u0000b\u0000y\u0000_\u0000f\u0000a\u0000b\u0000l\u0000e\u0000\\\u0000b\u0000u\u0000i\u0000l\u0000d\u0000s\u0000\\\u0000p\u0000l\u0000a\u0000y\u0000a\u0000b\u0000l\u0000e\u0000-\u0000s\u0000l\u0000i\u0000c\u0000e\u0000\\\u0000n\u0000e\u0000z\u0000h\u0000a\u0000_\u0000c\u0000h\u00001\u0000_\u0000p\u0000l\u0000a\u0000y\u0000a\u0000b\u0000l\u0000e\u0000_\u0000r\u00002\u0000.\u0000e\u0000x\u0000e\u0000\r\u0000\n\u0000[\u00003\u00001\u00008\u00000\u00002\u00008\u00009\u00000\u0000]\u0000 \u0000g\u0000a\u0000m\u0000e\u0000 \u0000p\u0000i\u0000d\u0000=\u00001\u00004\u00004\u00008\u00008\u0000\r\u0000\n\u0000[\u00003\u00001\u00008\u00002\u00001\u00004\u00005\u00003\u0000]\u0000 \u0000g\u0000a\u0000m\u0000e\u0000 \u0000e\u0000x\u0000i\u0000t\u0000e\u0000d\u0000 \u0000c\u0000o\u0000d\u0000e\u0000=\u00000\u0000x\u00000\u00000\u00000\u00000\u00000\u00000\u00000\u00001\u0000\r\u0000\n\u0000[\u00003\u00002\u00005\u00001\u00004\u00006\u00000\u00009\u0000]\u0000 \u0000l\u0000a\u0000u\u0000n\u0000c\u0000h\u0000e\u0000r\u0000 \u0000d\u0000i\u0000r\u0000=\u0000E\u0000:\u0000\\\u0000g\u0000o\u0000d\u0000o\u0000t\u0000_\u0000g\u0000a\u0000m\u0000e\u0000_\u0000b\u0000y\u0000_\u0000f\u0000a\u0000b\u0000l\u0000e\u0000\\\u0000b\u0000u\u0000i\u0000l\u0000d\u0000s\u0000\\\u0000p\u0000l\u0000a\u0000y\u0000a\u0000b\u0000l\u0000e\u0000-\u0000s\u0000l\u0000i\u0000c\u0000e\u0000\r\u0000\n\u0000[\u00003\u00002\u00005\u00001\u00004\u00006\u00000\u00009\u0000]\u0000 \u0000A\u0000P\u0000P\u0000D\u0000A\u0000T\u0000A\u0000=\u0000E\u0000:\u0000\\\u0000g\u0000o\u0000d\u0000o\u0000t\u0000_\u0000g\u0000a\u0000m\u0000e\u0000_\u0000b\u0000y\u0000_\u0000f\u0000a\u0000b\u0000l\u0000e\u0000\\\u0000b\u0000u\u0000i\u0000l\u0000d\u0000s\u0000\\\u0000p\u0000l\u0000a\u0000y\u0000a\u0000b\u0000l\u0000e\u0000-\u0000s\u0000l\u0000i\u0000c\u0000e\u0000\\\u0000u\u0000s\u0000e\u0000r\u0000d\u0000a\u0000t\u0000a\u0000\r\u0000\n\u0000[\u00003\u00002\u00005\u00001\u00004\u00006\u00002\u00005\u0000]\u0000 \u0000l\u0000a\u0000u\u0000n\u0000c\u0000h\u0000i\u0000n\u0000g\u0000 \u0000E\u0000:\u0000\\\u0000g\u0000o\u0000d\u0000o\u0000t\u0000_\u0000g\u0000a\u0000m\u0000e\u0000_\u0000b\u0000y\u0000_\u0000f\u0000a\u0000b\u0000l\u0000e\u0000\\\u0000b\u0000u\u0000i\u0000l\u0000d\u0000s\u0000\\\u0000p\u0000l\u0000a\u0000y\u0000a\u0000b\u0000l\u0000e\u0000-\u0000s\u0000l\u0000i\u0000c\u0000e\u0000\\\u0000n\u0000e\u0000z\u0000h\u0000a\u0000_\u0000c\u0000h\u00001\u0000_\u0000p\u0000l\u0000a\u0000y\u0000a\u0000b\u0000l\u0000e\u0000_\u0000r\u00002\u0000.\u0000e\u0000x\u0000e\u0000\r\u0000\n\u0000[\u00003\u00002\u00005\u00001\u00004\u00006\u00002\u00005\u0000]\u0000 \u0000g\u0000a\u0000m\u0000e\u0000 \u0000p\u0000i\u0000d\u0000=\u00003\u00004\u00004\u0000\r\u0000\n\u0000[\u00003\u00002\u00005\u00004\u00003\u00007\u00000\u00003\u0000]\u0000 \u0000g\u0000a\u0000m\u0000e\u0000 \u0000e\u0000x\u0000i\u0000t\u0000e\u0000d\u0000 \u0000c\u0000o\u0000d\u0000e\u0000=\u00000\u0000x\u00000\u00000\u00000\u00000\u00000\u00000\u00000\u00000\u0000\r\u0000\n\u0000",
+  "after": {
+    "files": {
+      "game_exe": {
+        "exists": true,
+        "size": 557508232,
+        "mtime": 1792654114.4835489,
+        "mtime_iso": "2026-10-22 15:28:34"
+      },
+      "launcher_exe": {
+        "exists": true,
+        "size": 153745,
+        "mtime": 1792662457.9920046,
+        "mtime_iso": "2026-10-22 17:47:37",
+        "sha256": "fba7da39d6a3649fca6a61f1157d2734d1e3b2b792e6feee658360f168609bca"
+      },
+      "portable_save": {
+        "exists": true,
+        "size": 196,
+        "mtime": 1792591787.4441288,
+        "mtime_iso": "2026-10-21 22:09:47",
+        "sha256": "313e8cb3bd1357bc20277685a69cd5b66b7a35fa70cbb40285c9ff0a3624dbf8"
+      },
+      "default_save": {
+        "exists": true,
+        "size": 196,
+        "mtime": 1792591787.4441288,
+        "mtime_iso": "2026-10-21 22:09:47",
+        "sha256": "313e8cb3bd1357bc20277685a69cd5b66b7a35fa70cbb40285c9ff0a3624dbf8"
+      },
+      "launcher_log": {
+        "exists": true,
+        "size": 1212,
+        "mtime": 1792663933.9054422,
+        "mtime_iso": "2026-10-22 18:12:13",
+        "sha256": "e20e338000230e42b5a9186aea6d05b34ebb68250a2279d6d4758cf7271f562c"
+      }
+    },
+    "dirs": {
+      "portable_project": [
+        [
+          "progress.cfg",
+          196,
+          1792591787.444
+        ]
+      ],
+      "portable_logs": [
+        [
+          "godot.log",
+          281,
+          1792663906.35
+        ],
+        [
+          "godot2026-10-22T17.56.37.log",
+          281,
+          1792662997.397
+        ],
+        [
+          "godot2026-10-22T17.57.39.log",
+          281,
+          1792663059.528
+        ],
+        [
+          "godot2026-10-22T17.59.53.log",
+          281,
+          1792663193.161
+        ],
+        [
+          "godot2026-10-22T18.11.44.log",
+          281,
+          1792663904.89
+        ]
+      ],
+      "default_project": [
+        [
+          "progress.cfg",
+          196,
+          1792591787.444
+        ]
+      ],
+      "default_logs": [
+        [
+          "godot.log",
+          29272,
+          1792662347.996
+        ],
+        [
+          "godot2026-10-22T16.35.23.log",
+          1414,
+          1792658123.397
+        ],
+        [
+          "godot2026-10-22T16.35.42.log",
+          1896,
+          1792658142.625
+        ],
+        [
+          "godot2026-10-22T17.45.41.log",
+          1001,
+          1792662341.238
+        ],
+        [
+          "godot2026-10-22T17.45.45.log",
+          158,
+          1792662345.72
+        ]
+      ]
+    },
+    "time": "2026-10-22 18:12:14"
+  },
+  "status": "COMPLETED"
+}

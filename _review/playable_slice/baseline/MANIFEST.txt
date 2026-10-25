@@ -1,0 +1,13 @@
+# 安全基线 2026-10-22T05:49:09.593134+00:00  HEAD=d26d3bc8 branch=main
+# sha256  size  path
+a84c38c3af3627dc80b2dbfb05f6458c70bad04f4b62b839f1b9344c7d07a869      73944  001/scripts/player.gd
+8c9118d73c0ba2c52cdd7e7b65b00cc774c756636b8c69af168b0364c9d5a1bf      75153  001/scripts/level_base.gd
+f8d063ddd851bab04fefec7caaca61345e39e16234d6817f3a6ca3cfbbb43071      10141  001/scripts/level_1.gd
+c83f0fbc15791c8b6aaed54f93c6cec54570a0a4ea4bcc44329ca9677f7ca890      31086  001/scripts/hud.gd
+231807c00a36be35cb85ad88444ce05bdb7cafe0c2e3bcd71fa39f46338c1315      29894  001/autoload/game.gd
+af0d06a746719c72005c0ab702c276b1d2d657fa9350d5ce9ad50edf65c9a6b8        998  001/project.godot
+d6194b1a176268740a0b7f153bd4926908b4a0955a9a311181c0200b4329bc94         46  001/.gitignore
+b9cdcd8240ca6db7ef400d01c8f87fe18d5e7054f37c4757672ecc5274ffd1a2        874  .gitignore
+672e710d24feb07257ec7547efbd4ce9add4952cdcfe5e8136f8564f0e1f8796       1647  tools/backup.ps1
+
+# 采集时不存在（跳过）: 001/export_presets.cfg, export_presets.cfg, docs/plans/2026-10-22-playable-slice.md

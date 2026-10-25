@@ -11,8 +11,8 @@ func _configure() -> void:
 	chapter_id = "ch1"
 	next_scene = ""                      # 每关独立：通关只结算本章，不自动进第二章
 	soul_goal = 3
-	spawn_wildlife = true
-	water_caustics = true
+	spawn_wildlife = false
+	water_caustics = false
 	boss_name = "归墟之喉 · 渊狱兽"
 	boss_defeat_msg = "渊 兽 已 被 镇 压"
 	portal_msg = "碎潮回廊秩序已恢复 · 龙魂归位"
@@ -42,16 +42,20 @@ func _build_terrain() -> void:
 	# A 起点台地
 	_platform(-8, 16, 0)
 	_add_checkpoint(Vector3(-4, 0, 0), true)   # 莲台挪到身后，出生时不再站在花瓣里
-	_hint("A / D 移动　·　空格 跳跃（二段跳）", Vector3(3, 2.2, 0))
-	_hint("Shift 冲刺 —— 瞬身无敌", Vector3(13.5, 2.4, 0))
+	_hint("A / D 移动　·　空格 跳跃（空中再按一次二段跳）",
+		Vector3(3, 2.2, 0), 7.5, "jump")
+	_hint("Shift 冲刺 —— 冲刺中可完美闪身，不受伤", Vector3(13.5, 2.4, 0),
+		7.5, "dash")
 	_hint("集满 3 枚龙魂残片可解锁新技能（闯关模式）", Vector3(8.5, 2.8, 0))
 	# 高处龙魂残片 1（二段跳可达）
 	_float_platform(10, 4.4, 2.2)
 	_add_pickup(Vector3(10, 5.5, 0), Pickup.Kind.SOUL)
 	# B
 	_platform(19.5, 30, 0.5)
-	_hint("J 连击　·　K 重击　·　空中 K 下砸", Vector3(22, 2.8, 0))
-	_hint("E 掷出乾坤圈（耗 25 灵力）", Vector3(28, 3.0, 0))
+	_hint("J 连击　·　K 重击　·　空中按 K 下砸", Vector3(22, 2.8, 0),
+		7.5, "attack")
+	_hint("E 乾坤圈：点按掷出 · 按住蓄力（耗 25 灵力）", Vector3(28, 3.0, 0),
+		7.5, "skill2")
 	_float_platform(33, 1.8, 2.6)
 	# C 封印竞技场
 	_platform(36.5, 53, 1)
@@ -92,7 +96,7 @@ func _build_terrain() -> void:
 		_bridge_deck(span[0], span[1])
 	_add_pickup(Vector3(111.0, 7.1, 0), Pickup.Kind.ENERGY)
 	_add_pickup(Vector3(112.2, 7.3, 0), Pickup.Kind.ENERGY)
-	_hint("桥面断开 · 落水会被冲回桥头", Vector3(104, 8.6, 0))
+	_hint("桥面断开 · 落水扣 4 点生命并被冲回桥头", Vector3(104, 8.6, 0))
 	# 下行阶梯
 	_float_platform(124.5, 4.6, 2.8)
 	_float_platform(127.5, 3.2, 2.8)
@@ -139,11 +143,8 @@ func _pool_water(x0: float, x1: float, y: float) -> void:
 	## 桥下浅水（纯视觉）：半透明青蓝平面 + 一条水面高光
 	var plane := PlaneMesh.new()
 	plane.size = Vector2(x1 - x0, 26.0)
-	var m := Game.std_mat(Color(0.10, 0.34, 0.40, 0.55), Color(0.16, 0.55, 0.62),
-		0.55, 0.22)
-	m.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA
-	m.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
-	m.cull_mode = BaseMaterial3D.CULL_DISABLED
+	var m := ShaderMaterial.new()
+	m.shader = preload("res://shaders/ch1_water.gdshader")
 	var mi := Game.add_mesh(self, plane, m, Vector3((x0 + x1) * 0.5, y, 0.0))
 	mi.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
 
@@ -168,7 +169,11 @@ func _pool_hazard(x0: float, x1: float, y: float) -> void:
 
 
 func _on_pool_entered(body: Node3D, area: Area3D) -> void:
-	if not (body is Player) or body.dead:
+	if not (body is Player):
+		return
+	var p: Player = body
+	# 修复：原来读的是并不存在的 body.dead，每帧脚本报错，落水惩罚从未生效
+	if p.is_dead():
 		return
 	var now := Time.get_ticks_msec() / 1000.0
 	if now - float(area.get_meta("cool")) < 2.0:
@@ -177,62 +182,23 @@ func _on_pool_entered(body: Node3D, area: Area3D) -> void:
 	var x0: float = area.get_meta("x0")
 	var x1: float = area.get_meta("x1")
 	# 推向更近的一侧桥头，再给一个向上的"被水冲起来"的速度
-	var dir := -1.0 if body.global_position.x < (x0 + x1) * 0.5 else 1.0
-	body.apply_external_force(Vector3(dir * 7.5, 10.5, 0.0))
-	body.take_damage(4, body.global_position.x - dir)
-	Game.play_sfx("tide", -6.0, 1.2)
-	Game.shake(0.12)
+	var dir := -1.0 if p.global_position.x < (x0 + x1) * 0.5 else 1.0
+	var hp_before := p.hp
+	p.take_damage(4, p.global_position.x - dir)
+	if p.hp < hp_before:
+		# 只有伤害真的结算了才给这一次水推。
+		# 原来的 apply_external_force + take_damage 的击退会叠加成两倍位移。
+		p.velocity = Vector3(dir * 7.5, 10.5, 0.0)
+		Game.play_sfx("tide", -6.0, 1.2)
+		Game.shake(0.12)
 
 
 func _build_decor() -> void:
-	var rng := RandomNumberGenerator.new()
-	rng.seed = 42
-	# AI 远景：远/中/近三层（固定世界 z，相机平移产生视差）
-	var bd := Game.tex("res://art/backdrop.png")
-	if bd:
-		_build_backdrop_layers(bd, [
-			Color(0.72, 0.82, 0.86), Color(0.48, 0.56, 0.60),
-			Color(0.24, 0.30, 0.34)], 80.0)
-	# 背景断柱长廊
-	for i in 26:
-		var x := -10.0 + i * 7.0 + rng.randf_range(-2.0, 2.0)
-		var z := rng.randf_range(-26.0, -9.0)
-		_decor_pillar(x, z, rng, i % 3 != 0)
-	await get_tree().process_frame
-	# 背景巨环（龙宫遗构）
-	_decor_great_ring(45, -30, 9.0, mat_gold)
-	_decor_great_ring(110, -34, 12.0, mat_trim)
-	# §4.7：冷青主调里的第二色相——珊瑚橙暖光池，避免整章单一色相
-	var warm := OmniLight3D.new()
-	warm.light_color = Color(1.0, 0.48, 0.26)
-	warm.light_energy = 1.1
-	warm.omni_range = 15.0
-	warm.omni_attenuation = 1.7
-	warm.position = Vector3(78.0, 4.6, -6.0)
-	add_child(warm)
-	Game.tune_light(warm, 1.1, 15.0, 0.10, 1.7)
-	# 水晶
-	var crystal_spots: Array = [
-		[-5.0, 0.0, 1.6], [10.0, 0.0, -1.8], [27.0, 0.5, 1.8],
-		[50.0, 1.0, -1.7], [70.0, 6.0, 1.9], [84.0, 6.0, -1.6],
-		[108.0, 6.0, 1.7], [119.0, 6.0, -1.8], [136.0, 2.0, 1.8],
-		[158.0, 2.0, -1.6],
-	]
-	for i in crystal_spots.size():
-		var s: Array = crystal_spots[i]
-		_decor_crystal(Vector3(s[0], s[1], s[2]), i % 2 == 0, rng, i % 3 == 0)
-	await get_tree().process_frame
-	# 海草
-	for i in 30:
-		var x := rng.randf_range(-8.0, 160.0)
-		var z := rng.randf_range(-7.0, -3.5)
-		_decor_kelp(x, z, rng)
-	# 悬空残岩已移除：无支撑的浮石会读成"飘着的纸盒"，在暗场里只挡视线
-	# 残灯
-	for x in [8.0, 44.0, 76.0, 116.0, 146.0]:
-		_decor_lantern(Vector3(x, 5.5 + sin(x) * 1.5, -4.0))
-	# 归墟巨涡（Boss 背景）：放到更远处，避免和 Boss 本体在画面上叠成一团
-	_decor_vortex(Vector3(158, 8, -36))
+	var ruins := _get_ruins()
+	ruins.build_depth()
+	ruins.tune_environment(self)
+	if cam != null:
+		cam.fov = 44.0
 
 
 func _build_decor_props() -> void:
@@ -243,7 +209,8 @@ func _build_decor_props() -> void:
 		[103.5, 6.0, false], [118.5, 6.0, true], [140.0, 2.0, false],
 		[160.0, 2.0, false],
 	]
-	for u: Array in urns:
+	# 旧陶罐已停用：等待换成新模块化可破坏物
+	for u: Array in []:
 		var b := Breakable.new()
 		b.drop_heal = u[2]
 		b.position = Vector3(u[0], u[1], 0.8)
@@ -283,3 +250,39 @@ func _build_encounters() -> void:
 	b.position = Vector3(150, 5.0, 0)   # 原 6.2：站地近战完全打不到，见评审 P0-1
 	add_child(b)
 	_setup_boss(b, "归墟之喉 · 渊狱兽", 131.5, 163.0, 2.0, 132.5, 137.0)
+
+
+# ================================================================ 近中景实体遗迹 / 远景绘景
+
+const RUINS_SCRIPT := preload("res://scripts/ch1_ruins.gd")
+var _ruins: Node3D
+
+
+func _get_ruins() -> Node3D:
+	if _ruins == null:
+		_ruins = Node3D.new()
+		_ruins.set_script(RUINS_SCRIPT)
+		_ruins.name = "HybridRuins"
+		add_child(_ruins)
+	return _ruins
+
+
+func _platform(x0: float, x1: float, ytop: float, deep := 1.6,
+		dark := false) -> StaticBody3D:
+	var body := super._platform(x0, x1, ytop, deep, dark)
+	_get_ruins().dress_platform(body, x0, x1, ytop, deep)
+	return body
+
+
+func _float_platform(x: float, ytop: float, w := 3.0) -> StaticBody3D:
+	var body := super._float_platform(x, ytop, w)
+	_get_ruins().dress_platform(body, x - w * 0.5, x + w * 0.5, ytop, 0.8, true)
+	return body
+
+
+func _build_water() -> void:
+	super._build_water()
+	var sea := get_child(get_child_count() - 1) as MeshInstance3D
+	var m := ShaderMaterial.new()
+	m.shader = preload("res://shaders/ch1_water.gdshader")
+	sea.material_override = m

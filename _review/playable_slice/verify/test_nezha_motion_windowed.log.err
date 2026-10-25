@@ -1,0 +1,6 @@
+ERROR: NEZHA_MOTION_FAIL breathing idle selected
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] check (res://tools/test_nezha_motion.gd:16)
+       [1] _run (res://tools/test_nezha_motion.gd:73)
+       [2] frames (res://tools/test_nezha_motion.gd:25)

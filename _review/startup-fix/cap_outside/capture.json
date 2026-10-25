@@ -1,0 +1,210 @@
+{
+  "dpi_awareness": "per-monitor-v2",
+  "launcher": "E:\\godot_game_by_fable\\builds\\playable-slice\\nezha_ch1_playable_r2_launcher.exe",
+  "size": "1600x900",
+  "portable_userdata": "E:\\godot_game_by_fable\\builds\\playable-slice\\userdata\\Godot\\app_userdata\\哪吒·轮回海域",
+  "ud_before": [
+    "logs",
+    "progress.cfg",
+    "shader_cache",
+    "vulkan"
+  ],
+  "started": "2026-10-22T17:57:39",
+  "launch_method": "CreateProcessW (Medium-IL parent, cwd=game dir)",
+  "launcher_pid": 38500,
+  "window": {
+    "hwnd": 3866900,
+    "class": "Engine",
+    "pid": 9256,
+    "w": 1942,
+    "h": 1136
+  },
+  "window_found": true,
+  "seconds_to_window": 1.21,
+  "game_pid": 9256,
+  "game_integrity": {
+    "sid": "S-1-16-4096"
+  },
+  "client_resize": [
+    1600,
+    900
+  ],
+  "client_aligned": [
+    0,
+    0
+  ],
+  "shots": [
+    {
+      "step": "menu",
+      "file": "menu.png",
+      "client": [
+        1600,
+        900
+      ],
+      "origin": [
+        0,
+        0
+      ],
+      "luma_mean": 41.38,
+      "luma_spread": 211
+    },
+    {
+      "step": "select",
+      "file": "select.png",
+      "client": [
+        1600,
+        900
+      ],
+      "origin": [
+        0,
+        0
+      ],
+      "luma_mean": 34.67,
+      "luma_spread": 209
+    },
+    {
+      "step": "ch1",
+      "file": "ch1.png",
+      "client": [
+        1600,
+        900
+      ],
+      "origin": [
+        0,
+        0
+      ],
+      "luma_mean": 53.45,
+      "luma_spread": 227
+    }
+  ],
+  "click_select": [
+    800,
+    526
+  ],
+  "click_ch1": [
+    800,
+    275
+  ],
+  "client_after_ch1": [
+    1600,
+    900
+  ],
+  "client_aligned_ch1": [
+    0,
+    0
+  ],
+  "window_alive": true,
+  "ud_after": [
+    "logs",
+    "progress.cfg",
+    "shader_cache",
+    "vulkan"
+  ],
+  "progress_cfg_exists": true,
+  "progress_cfg_text": "[progress]\n\ncleared={\n\"ch1\": true,\n\"ch2\": true,\n\"ch3\": true,\n\"ch4\": true\n}\nbest_times={\n\"ch1\": 117.99022645333504,\n\"ch2\": 103.48842712666988,\n\"ch3\": 102.31185482666908,\n\"ch4\": 96.18438542444667\n}\n",
+  "godot_log_tail": [
+    "Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org",
+    "D3D12 12_0 - Forward+ - Using Device #0: NVIDIA - NVIDIA GeForce RTX 5070 Laptop GPU",
+    "",
+    "ERROR: Failed to read the root certificate store.",
+    "   at: get_system_ca_certificates (platform/windows/os_windows.cpp:2570)"
+  ],
+  "launcher_log_text": [
+    "[\u00003\u00001\u00006\u00000\u00007\u00001\u00000\u00009\u0000]\u0000 \u0000l\u0000a\u0000u\u0000n\u0000c\u0000h\u0000e\u0000r\u0000 \u0000d\u0000i\u0000r\u0000=\u0000E\u0000:\u0000\\\u0000g\u0000o\u0000d\u0000o\u0000t\u0000_\u0000g\u0000a\u0000m\u0000e\u0000_\u0000b\u0000y\u0000_\u0000f\u0000a\u0000b\u0000l\u0000e\u0000\\\u0000b\u0000u\u0000i\u0000l\u0000d\u0000s\u0000\\\u0000p\u0000l\u0000a\u0000y\u0000a\u0000b\u0000l\u0000e\u0000-\u0000s\u0000l\u0000i\u0000c\u0000e\u0000",
+    "\u0000",
+    "\u0000[\u00003\u00001\u00006\u00000\u00007\u00001\u00000\u00009\u0000]\u0000 \u0000A\u0000P\u0000P\u0000D\u0000A\u0000T\u0000A\u0000=\u0000E\u0000:\u0000\\\u0000g\u0000o\u0000d\u0000o\u0000t\u0000_\u0000g\u0000a\u0000m\u0000e\u0000_\u0000b\u0000y\u0000_\u0000f\u0000a\u0000b\u0000l\u0000e\u0000\\\u0000b\u0000u\u0000i\u0000l\u0000d\u0000s\u0000\\\u0000p\u0000l\u0000a\u0000y\u0000a\u0000b\u0000l\u0000e\u0000-\u0000s\u0000l\u0000i\u0000c\u0000e\u0000\\\u0000u\u0000s\u0000e\u0000r\u0000d\u0000a\u0000t\u0000a\u0000",
+    "\u0000",
+    "\u0000[\u00003\u00001\u00006\u00000\u00007\u00001\u00000\u00009\u0000]\u0000 \u0000l\u0000a\u0000u\u0000n\u0000c\u0000h\u0000i\u0000n\u0000g\u0000 \u0000E\u0000:\u0000\\\u0000g\u0000o\u0000d\u0000o\u0000t\u0000_\u0000g\u0000a\u0000m\u0000e\u0000_\u0000b\u0000y\u0000_\u0000f\u0000a\u0000b\u0000l\u0000e\u0000\\\u0000b\u0000u\u0000i\u0000l\u0000d\u0000s\u0000\\\u0000p\u0000l\u0000a\u0000y\u0000a\u0000b\u0000l\u0000e\u0000-\u0000s\u0000l\u0000i\u0000c\u0000e\u0000\\\u0000n\u0000e\u0000z\u0000h\u0000a\u0000_\u0000c\u0000h\u00001\u0000_\u0000p\u0000l\u0000a\u0000y\u0000a\u0000b\u0000l\u0000e\u0000_\u0000r\u00002\u0000.\u0000e\u0000x\u0000e\u0000",
+    "\u0000",
+    "\u0000[\u00003\u00001\u00006\u00000\u00007\u00001\u00002\u00005\u0000]\u0000 \u0000g\u0000a\u0000m\u0000e\u0000 \u0000p\u0000i\u0000d\u0000=\u00004\u00004\u00004\u00005\u00006\u0000",
+    "\u0000",
+    "\u0000[\u00003\u00001\u00006\u00006\u00009\u00002\u00005\u00000\u0000]\u0000 \u0000l\u0000a\u0000u\u0000n\u0000c\u0000h\u0000e\u0000r\u0000 \u0000d\u0000i\u0000r\u0000=\u0000E\u0000:\u0000\\\u0000g\u0000o\u0000d\u0000o\u0000t\u0000_\u0000g\u0000a\u0000m\u0000e\u0000_\u0000b\u0000y\u0000_\u0000f\u0000a\u0000b\u0000l\u0000e\u0000\\\u0000b\u0000u\u0000i\u0000l\u0000d\u0000s\u0000\\\u0000p\u0000l\u0000a\u0000y\u0000a\u0000b\u0000l\u0000e\u0000-\u0000s\u0000l\u0000i\u0000c\u0000e\u0000",
+    "\u0000",
+    "\u0000[\u00003\u00001\u00006\u00006\u00009\u00002\u00005\u00000\u0000]\u0000 \u0000A\u0000P\u0000P\u0000D\u0000A\u0000T\u0000A\u0000=\u0000E\u0000:\u0000\\\u0000g\u0000o\u0000d\u0000o\u0000t\u0000_\u0000g\u0000a\u0000m\u0000e\u0000_\u0000b\u0000y\u0000_\u0000f\u0000a\u0000b\u0000l\u0000e\u0000\\\u0000b\u0000u\u0000i\u0000l\u0000d\u0000s\u0000\\\u0000p\u0000l\u0000a\u0000y\u0000a\u0000b\u0000l\u0000e\u0000-\u0000s\u0000l\u0000i\u0000c\u0000e\u0000\\\u0000u\u0000s\u0000e\u0000r\u0000d\u0000a\u0000t\u0000a\u0000",
+    "\u0000",
+    "\u0000[\u00003\u00001\u00006\u00006\u00009\u00002\u00006\u00005\u0000]\u0000 \u0000l\u0000a\u0000u\u0000n\u0000c\u0000h\u0000i\u0000n\u0000g\u0000 \u0000E\u0000:\u0000\\\u0000g\u0000o\u0000d\u0000o\u0000t\u0000_\u0000g\u0000a\u0000m\u0000e\u0000_\u0000b\u0000y\u0000_\u0000f\u0000a\u0000b\u0000l\u0000e\u0000\\\u0000b\u0000u\u0000i\u0000l\u0000d\u0000s\u0000\\\u0000p\u0000l\u0000a\u0000y\u0000a\u0000b\u0000l\u0000e\u0000-\u0000s\u0000l\u0000i\u0000c\u0000e\u0000\\\u0000n\u0000e\u0000z\u0000h\u0000a\u0000_\u0000c\u0000h\u00001\u0000_\u0000p\u0000l\u0000a\u0000y\u0000a\u0000b\u0000l\u0000e\u0000_\u0000r\u00002\u0000.\u0000e\u0000x\u0000e\u0000",
+    "\u0000",
+    "\u0000[\u00003\u00001\u00006\u00006\u00009\u00002\u00008\u00001\u0000]\u0000 \u0000g\u0000a\u0000m\u0000e\u0000 \u0000p\u0000i\u0000d\u0000=\u00009\u00002\u00005\u00006\u0000",
+    "\u0000",
+    "\u0000"
+  ],
+  "steps": [
+    {
+      "t": 1792663059.427,
+      "msg": "start",
+      "launched": true
+    },
+    {
+      "t": 1792663059.446,
+      "msg": "launched",
+      "launcher_pid": 38500,
+      "method": "CreateProcessW (Medium-IL parent, cwd=game dir)"
+    },
+    {
+      "t": 1792663060.653,
+      "msg": "window",
+      "found": true,
+      "win": {
+        "hwnd": 3866900,
+        "class": "Engine",
+        "pid": 9256,
+        "w": 1942,
+        "h": 1136
+      },
+      "seconds": 1.21
+    },
+    {
+      "t": 1792663060.653,
+      "msg": "integrity",
+      "sid": "S-1-16-4096"
+    },
+    {
+      "t": 1792663070.045,
+      "msg": "shot_menu",
+      "step": "menu",
+      "file": "menu.png",
+      "client": [
+        1600,
+        900
+      ],
+      "origin": [
+        0,
+        0
+      ],
+      "luma_mean": 41.38,
+      "luma_spread": 211
+    },
+    {
+      "t": 1792663074.847,
+      "msg": "shot_select",
+      "step": "select",
+      "file": "select.png",
+      "client": [
+        1600,
+        900
+      ],
+      "origin": [
+        0,
+        0
+      ],
+      "luma_mean": 34.67,
+      "luma_spread": 209
+    },
+    {
+      "t": 1792663095.593,
+      "msg": "shot_ch1",
+      "step": "ch1",
+      "file": "ch1.png",
+      "client": [
+        1600,
+        900
+      ],
+      "origin": [
+        0,
+        0
+      ],
+      "luma_mean": 53.45,
+      "luma_spread": 227
+    }
+  ]
+}

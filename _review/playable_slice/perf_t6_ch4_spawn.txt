@@ -1,0 +1,23 @@
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+D3D12 12_0 - Forward+ - Using Device #0: NVIDIA - NVIDIA GeForce RTX 5070 Laptop GPU
+
+=== PERF_SLICE ch4_spawn res://scenes/level_4.tscn x=-9999.0 flags= ===
+BUILD add_child_ms=744.2
+BOSS_T3 state=dormant hp=300.0 started=false
+LOAD_T3 enemies=0 projectiles=0 vfx_particles=0
+BOSS_T5 state=dormant hp=300.0 started=false
+LOAD_T5 enemies=0 projectiles=0 vfx_particles=0
+BOSS_T8 state=dormant hp=300.0 started=false
+LOAD_T8 enemies=0 projectiles=0 vfx_particles=0
+FRAME[ch4_spawn] avg_ms=1.56 fps=641.2 p50=1.52 p95=1.67 p99=1.67 low1%=1.69 max=2.17 samples=3848
+BUILD_MS=128.0
+SCENE_READY_MS=11447.3
+draw=89 prim=454572 vram=686MB nodes=766
+GPU_TIME_API=unavailable
+=== PERF_SLICE END ===
+WARNING: ObjectDB instances leaked at exit (run with --verbose for details).
+   at: cleanup (core/object/object.cpp:2663)
+ERROR: 9 resources still in use at exit (run with --verbose for details).
+   at: clear (core/io/resource.cpp:810)
+ERROR: Pages in use exist at exit in PagedAllocator: N7Variant5Pools12BucketMediumE
+   at: ~PagedAllocator (./core/templates/paged_allocator.h:169)

@@ -1,0 +1,344 @@
+--- before/level_1.gd
++++ after/level_1.gd
+@@ -7,13 +7,12 @@
+ 
+ 
+ func _configure() -> void:
+-	spawn_wildlife = false  # 旧巨鲸/鱼群剪影与新环境冲突，先关掉
+ 	chapter_title = "第一章 · 东海 碎潮回廊"
+ 	chapter_id = "ch1"
+ 	next_scene = ""                      # 每关独立：通关只结算本章，不自动进第二章
+ 	soul_goal = 3
+-	spawn_wildlife = true
+-	water_caustics = true
++	spawn_wildlife = false
++	water_caustics = false
+ 	boss_name = "归墟之喉 · 渊狱兽"
+ 	boss_defeat_msg = "渊 兽 已 被 镇 压"
+ 	portal_msg = "碎潮回廊秩序已恢复 · 龙魂归位"
+@@ -140,11 +139,8 @@
+ 	## 桥下浅水（纯视觉）：半透明青蓝平面 + 一条水面高光
+ 	var plane := PlaneMesh.new()
+ 	plane.size = Vector2(x1 - x0, 26.0)
+-	var m := Game.std_mat(Color(0.10, 0.34, 0.40, 0.55), Color(0.16, 0.55, 0.62),
+-		0.55, 0.22)
+-	m.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA
+-	m.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
+-	m.cull_mode = BaseMaterial3D.CULL_DISABLED
++	var m := ShaderMaterial.new()
++	m.shader = preload("res://shaders/ch1_water.gdshader")
+ 	var mi := Game.add_mesh(self, plane, m, Vector3((x0 + x1) * 0.5, y, 0.0))
+ 	mi.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
+ 
+@@ -186,50 +182,11 @@
+ 
+ 
+ func _build_decor() -> void:
+-	var rng := RandomNumberGenerator.new()
+-	rng.seed = 42
+-	# AI 远景：远/中/近三层（固定世界 z，相机平移产生视差）
+-	var bd := Game.tex("res://art/ref/ch1_corridor.png")
+-	if bd:
+-		_build_backdrop_layers(bd, [
+-			Color(0.86, 0.92, 0.95), Color(0.52, 0.60, 0.64),
+-			Color(0.22, 0.27, 0.31)], 80.0)
+-	# 背景断柱长廊
+-	# 背景断柱长廊停用：远景改由参考图承担，中景柱子由 T17+T18 模块补
+-	for i in 0:
+-		var x := -10.0 + i * 7.0 + rng.randf_range(-2.0, 2.0)
+-		var z := rng.randf_range(-26.0, -9.0)
+-		_decor_pillar(x, z, rng, i % 3 != 0)
+-	await get_tree().process_frame
+-	# 背景巨环（龙宫遗构）
+-	# 巨环已移除：纵深改由新的柱列 / 栏杆模块承担
+-	# §4.7：冷青主调里的第二色相——珊瑚橙暖光池，避免整章单一色相
+-	var warm := OmniLight3D.new()
+-	warm.light_color = Color(1.0, 0.48, 0.26)
+-	warm.light_energy = 1.1
+-	warm.omni_range = 15.0
+-	warm.omni_attenuation = 1.7
+-	warm.position = Vector3(78.0, 4.6, -6.0)
+-	add_child(warm)
+-	Game.tune_light(warm, 1.1, 15.0, 0.10, 1.7)
+-	# 水晶
+-	var crystal_spots: Array = [
+-		[-5.0, 0.0, 1.6], [10.0, 0.0, -1.8], [27.0, 0.5, 1.8],
+-		[50.0, 1.0, -1.7], [70.0, 6.0, 1.9], [84.0, 6.0, -1.6],
+-		[108.0, 6.0, 1.7], [119.0, 6.0, -1.8], [136.0, 2.0, 1.8],
+-		[158.0, 2.0, -1.6],
+-	]
+-	# 水晶已移除：前景细节交给模块化碎石 / 藤壶
+-	await get_tree().process_frame
+-	# 海草
+-	# 海草已移除：与模块化柱列重叠，读成一团
+-	# 悬空残岩已移除：无支撑的浮石会读成"飘着的纸盒"，在暗场里只挡视线
+-	# 残灯
+-	# 旧残灯已移除：改由 T16 石灯笼模块提供
+-	# 归墟巨涡（Boss 背景）：放到更远处，避免和 Boss 本体在画面上叠成一团
+-	# 归墟巨涡停用：旧实现是个朝下的暗色大锥体，在画面上读成一块黑色倒三角
+-	# _decor_vortex(Vector3(158, 8, -36))
+-	_align_env_to_showcase()
++	var ruins := _get_ruins()
++	ruins.build_depth()
++	ruins.tune_environment(self)
++	if cam != null:
++		cam.fov = 44.0
+ 
+ 
+ func _build_decor_props() -> void:
+@@ -283,229 +240,37 @@
+ 	_setup_boss(b, "归墟之喉 · 渊狱兽", 131.5, 163.0, 2.0, 132.5, 137.0)
+ 
+ 
+-# ================================================================ 新环境：模块化结构资产
+-## 走道 / 栏杆 / 柱 / 灯笼 / 碎石 换成 T16–T24 的 Tripo 结构件。
+-## 碰撞仍由 LevelBase 的 _platform 提供，这里只替换可见表面。
+-
+-const ENV_DIR := "res://art/models/glb_game/"
+-const _ENV_LO := {
+-	"T16_lantern": "T16_lantern_lo.glb",
+-	"T17_pillar": "T17_pillar_lo.glb",
+-	"T18_shaft": "T18_shaft_lo.glb",
+-	"T19_balustrade": "T19_balustrade_lo.glb",
+-	"T20_post": "T20_post_lo.glb",
+-	"T23_rubble": "T23_rubble_lo.glb",
+-	"T24_barnacle": "T24_barnacle_lo.glb",
+-}
+-
+-var _env_cache: Dictionary = {}
+-var _m_walk: StandardMaterial3D
+-var _m_wall: StandardMaterial3D
+-var _m_deep: StandardMaterial3D
+-var _m_bronze: StandardMaterial3D
+-
+-
+-func _init_env_mats() -> void:
+-	if _m_walk != null:
+-		return
+-	_m_walk = Game.std_mat(Color(0.105, 0.180, 0.200), Color(0.012, 0.040, 0.048), 0.06, 0.85)
+-	_m_wall = Game.std_mat(Color(0.072, 0.125, 0.145), Color(0.008, 0.024, 0.030), 0.08, 0.8)
+-	_m_deep = Game.std_mat(Color(0.040, 0.072, 0.085), Color(0.004, 0.015, 0.020), 0.1, 0.75)
+-	_m_bronze = Game.std_mat(Color(0.34, 0.26, 0.13), Color(0.0, 0.0, 0.0), 0.3, 0.9)
+-
+-
+-func _env_scene(key: String) -> PackedScene:
+-	if _env_cache.has(key):
+-		return _env_cache[key]
+-	var file: String = _ENV_LO.get(key, key + ".glb")
+-	var ps := load(ENV_DIR + file) as PackedScene
+-	_env_cache[key] = ps
+-	return ps
+-
+-
+-func _env_aabb(root: Node3D) -> AABB:
+-	var out := AABB()
+-	var first := true
+-	for mi in root.find_children("*", "MeshInstance3D", true, false):
+-		var m := mi as MeshInstance3D
+-		if m.mesh == null:
+-			continue
+-		var box := m.global_transform * m.get_aabb()
+-		if first:
+-			out = box
+-			first = false
+-		else:
+-			out = out.merge(box)
+-	return out
+-
+-
+-func _env_tint(root: Node3D, mul: float) -> void:
+-	for mi in root.find_children("*", "MeshInstance3D", true, false):
+-		var m := mi as MeshInstance3D
+-		if m.mesh == null or m.mesh.get_surface_count() == 0:
+-			continue
+-		var src := m.get_active_material(0)
+-		if src is BaseMaterial3D:
+-			var nm := (src as BaseMaterial3D).duplicate() as BaseMaterial3D
+-			var c := nm.albedo_color
+-			nm.albedo_color = Color(c.r * mul, c.g * mul, c.b * mul, c.a)
+-			m.material_override = nm
+-
+-
+-func _env_place(key: String, pos: Vector3, h: float, yaw: float = 0.0,
+-		tint: float = 0.62) -> Node3D:
+-	## 以 pos 为"底面中心"放置，按目标高度等比缩放。
+-	var ps := _env_scene(key)
+-	if ps == null:
+-		return null
+-	var n := ps.instantiate() as Node3D
+-	add_child(n)
+-	var ab := _env_aabb(n)
+-	if ab.size.y > 0.0001:
+-		var s := h / ab.size.y
+-		n.scale = Vector3(s, s, s)
+-	n.rotation.y = deg_to_rad(yaw)
+-	var ab2 := _env_aabb(n)
+-	n.position += Vector3(
+-		pos.x - (ab2.position.x + ab2.size.x * 0.5),
+-		pos.y - ab2.position.y,
+-		pos.z - (ab2.position.z + ab2.size.z * 0.5))
+-	_env_tint(n, tint)
+-	return n
+-
+-
+-func _dress_walkway(body: StaticBody3D, x0: float, x1: float, ytop: float,
+-		deep: float) -> void:
+-	_init_env_mats()
+-	var w := x1 - x0
+-	if w < 1.0:
+-		return
+-	# 1) 隐藏 LevelBase 原来的大石块（保留碰撞、焦散、符文砖）
+-	for c in body.get_children():
+-		if c is MeshInstance3D and c.mesh is BoxMesh:
+-			if (c.mesh as BoxMesh).size.x > w * 0.8:
+-				c.visible = false
+-	# 2) 新走道面 + 立面
+-	var slab := BoxMesh.new()
+-	slab.size = Vector3(w, 0.34, 5.0)
+-	Game.add_mesh(body, slab, _m_walk, Vector3(0, deep * 0.5 - 0.17, 0))
+-	var lip := BoxMesh.new()
+-	lip.size = Vector3(w, 0.17, 0.38)
+-	Game.add_mesh(body, lip, _m_wall, Vector3(0, deep * 0.5 - 0.085, 2.56))
+-	var band := BoxMesh.new()
+-	band.size = Vector3(w, 0.055, 0.06)
+-	Game.add_mesh(body, band, _m_bronze, Vector3(0, deep * 0.5 - 0.30, 2.62))
+-	var face := BoxMesh.new()
+-	face.size = Vector3(w, 0.78, 0.20)
+-	Game.add_mesh(body, face, _m_wall, Vector3(0, deep * 0.5 - 0.56, 2.52))
+-	var foot := BoxMesh.new()
+-	foot.size = Vector3(w, 0.22, 0.34)
+-	Game.add_mesh(body, foot, _m_deep, Vector3(0, deep * 0.5 - 1.02, 2.56))
+-
+-	# 3) 后沿栏杆（隔段铺，避免整条连续挡住背景）
+-	if w >= 7.0:
+-		var seg := 5.2
+-		var cnt := int(w / seg)
+-		for i in cnt:
+-			var bx := x0 + (float(i) + 0.5) * (w / float(maxi(cnt, 1)))
+-			_env_place("T19_balustrade", Vector3(bx, ytop, -2.12), 1.02,
+-				0.0, 0.52)
+-	# 4) 柱列：柱础 + 柱身 + 柱头（断柱高低错落）
+-	if w >= 9.0:
+-		var step := 11.0
+-		var n := int(w / step)
+-		for i in n:
+-			var px := x0 + 3.0 + float(i) * step
+-			if px > x1 - 1.5:
+-				continue
+-			var hgt := 2.1 + float((i * 7 + int(x0)) % 5) * 0.42
+-			var zc := -2.55
+-			_env_place("T17_pillar", Vector3(px, ytop - 0.06, zc), 0.92, 0.0, 0.50)
+-			var shaft := _env_place("T18_shaft", Vector3(px, ytop - 0.02, zc), hgt, 0.0, 0.50)
+-			if shaft != null and hgt > 2.6:
+-				_env_place("T18_shaft", Vector3(px, ytop - 0.02 + hgt * 0.32, zc),
+-					hgt * 0.66, 0.0, 0.50)
+-	# 5) 灯笼（画面边缘节奏点，带暖光）
+-	if w >= 12.0:
+-		var lx := x0 + 1.6
+-		while lx < x1 - 1.6:
+-			_env_place("T16_lantern", Vector3(lx, ytop, 1.86), 1.32, 0.0, 0.58)
+-			var lamp := OmniLight3D.new()
+-			lamp.light_color = Color(1.0, 0.66, 0.34)
+-			lamp.light_energy = 1.15
+-			lamp.omni_range = 5.4
+-			lamp.position = Vector3(lx, ytop + 0.72, 1.80)
+-			add_child(lamp)
+-			lx += 24.0
+-	# 6) 前沿碎石 / 藤壶：只贴立面下沿，不占玩法面
+-	var rng := RandomNumberGenerator.new()
+-	rng.seed = int(x0 * 13.0) + int(x1)
+-	for i in maxi(int(w / 7.0), 1):
+-		var rx := rng.randf_range(x0 + 0.6, x1 - 0.6)
+-		_env_place("T23_rubble", Vector3(rx, ytop - 0.86, 2.66),
+-			rng.randf_range(0.26, 0.44), rng.randf_range(0, 360), 0.46)
+-		var bx := rng.randf_range(x0 + 0.6, x1 - 0.6)
+-		_env_place("T24_barnacle", Vector3(bx, ytop - 0.34, 2.60),
+-			rng.randf_range(0.16, 0.26), rng.randf_range(0, 360), 0.50)
++# ================================================================ 近中景实体遗迹 / 远景绘景
++
++const RUINS_SCRIPT := preload("res://scripts/ch1_ruins.gd")
++var _ruins: Node3D
++
++
++func _get_ruins() -> Node3D:
++	if _ruins == null:
++		_ruins = Node3D.new()
++		_ruins.set_script(RUINS_SCRIPT)
++		_ruins.name = "HybridRuins"
++		add_child(_ruins)
++	return _ruins
+ 
+ 
+ func _platform(x0: float, x1: float, ytop: float, deep := 1.6,
+ 		dark := false) -> StaticBody3D:
+ 	var body := super._platform(x0, x1, ytop, deep, dark)
+-	_dress_walkway(body, x0, x1, ytop, deep)
++	_get_ruins().dress_platform(body, x0, x1, ytop, deep)
+ 	return body
+ 
+ 
+-func _align_env_to_showcase() -> void:
+-	## 让关卡的环境与样板 scene_ch1 一致：ACES + 指数雾 + 同样的体积雾与 ambient。
+-	var we: WorldEnvironment = null
+-	for n in get_children():
+-		if n is WorldEnvironment:
+-			we = n
+-			break
+-	if we == null or we.environment == null:
+-		return
+-	var e := we.environment
+-	# 背景改用纯色：旧的 sky.gdshader 会在画面上方画出一块黑色倒锥
+-	e.background_mode = Environment.BG_COLOR
+-	e.background_color = Color(0.020, 0.065, 0.085)
+-	e.ambient_light_color = Color(0.26, 0.55, 0.64)
+-	e.ambient_light_energy = 0.42
+-	e.tonemap_mode = Environment.TONE_MAPPER_ACES
+-	e.tonemap_exposure = 1.05
+-	e.fog_enabled = true
+-	e.fog_mode = Environment.FOG_MODE_EXPONENTIAL
+-	e.fog_light_color = Color(0.06, 0.28, 0.34)
+-	e.fog_light_energy = 0.40
+-	e.fog_density = 0.008
+-	e.fog_aerial_perspective = 0.20
+-	e.volumetric_fog_enabled = true
+-	e.volumetric_fog_density = 0.006
+-	e.volumetric_fog_albedo = Color(0.42, 0.78, 0.86)
+-	e.volumetric_fog_emission = Color(0.015, 0.08, 0.10)
+-	e.volumetric_fog_emission_energy = 0.30
+-	e.volumetric_fog_anisotropy = 0.40
+-	e.volumetric_fog_length = 55.0
+-	e.adjustment_enabled = true
+-	e.adjustment_contrast = 1.08
+-	e.adjustment_saturation = 1.04
+-	# 相机画幅也靠近样板：fov 46 → 40，稍微拉平一点透视
+-	# 调试开关：HIDE_A/HIDE_B 指定要隐藏的子节点下标区间（定位黑锥用）
+-	var ha := OS.get_environment('HIDE_A')
+-	if ha != '':
+-		var a0 := int(ha)
+-		var a1 := int(OS.get_environment('HIDE_B'))
+-		var ch := get_children()
+-		for i in range(maxi(a0, 0), mini(a1, ch.size())):
+-			var node := ch[i]
+-			if node is Node3D:
+-				(node as Node3D).visible = false
+-	# 收尾：检查点的通光柱是纯黑且巨大的圆柱，近距离会被读成一块黑色倒锥，先关掉
+-	for mi in find_children('*', 'MeshInstance3D', true, false):
+-		var m := mi as MeshInstance3D
+-		if m == null or m.mesh == null:
+-			continue
+-		if m.mesh is CylinderMesh and m.get_aabb().size.y > 4.0 and m.global_position.y > 2.0:
+-			m.visible = false
+-	if cam != null:
+-		cam.fov = 44.0
++func _float_platform(x: float, ytop: float, w := 3.0) -> StaticBody3D:
++	var body := super._float_platform(x, ytop, w)
++	_get_ruins().dress_platform(body, x - w * 0.5, x + w * 0.5, ytop, 0.8, true)
++	return body
++
++
++func _build_water() -> void:
++	super._build_water()
++	var sea := get_child(get_child_count() - 1) as MeshInstance3D
++	var m := ShaderMaterial.new()
++	m.shader = preload("res://shaders/ch1_water.gdshader")
++	sea.material_override = m

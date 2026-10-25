@@ -8,7 +8,7 @@ extends Camera3D
 ## Boss 战：set_focus_target() 让镜头同时框住玩家与 Boss，
 ##   否则 Boss 在 30 米宽的场地里移动时会不断跑出画面（看起来像"反复闪现"）。
 
-const BASE_DIST := 8.2
+const BASE_DIST := 11.6
 const BASE_LOOK_BIAS := -1.05
 const BASE_AHEAD := 2.6
 const BASE_HEIGHT := 2.45
@@ -26,7 +26,7 @@ var _focus_extra := 0.0
 
 
 func _ready() -> void:
-	fov = 46.0
+	fov = 48.0
 	Game.shake_requested.connect(func(s: float) -> void: _shake = maxf(_shake, s))
 
 

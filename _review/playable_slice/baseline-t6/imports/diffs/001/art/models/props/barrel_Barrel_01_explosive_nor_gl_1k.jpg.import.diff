@@ -1,0 +1,35 @@
+--- HEAD:001/art/models/props/barrel_Barrel_01_explosive_nor_gl_1k.jpg.import
++++ worktree:001/art/models/props/barrel_Barrel_01_explosive_nor_gl_1k.jpg.import
+@@ -3,9 +3,10 @@
+ importer="texture"
+ type="CompressedTexture2D"
+ uid="uid://cyikn53to7hr8"
+-path="res://.godot/imported/barrel_Barrel_01_explosive_nor_gl_1k.jpg-d54c244ca7b156cec586a3e4bd7eb91d.ctex"
++path.s3tc="res://.godot/imported/barrel_Barrel_01_explosive_nor_gl_1k.jpg-d54c244ca7b156cec586a3e4bd7eb91d.s3tc.ctex"
+ metadata={
+-"vram_texture": false
++"imported_formats": ["s3tc_bptc"],
++"vram_texture": true
+ }
+ generator_parameters={
+ "md5": "90030c2ee310f5a21b015ebb7b0fbacd"
+@@ -14,11 +15,11 @@
+ [deps]
+ 
+ source_file="res://art/models/props/barrel_Barrel_01_explosive_nor_gl_1k.jpg"
+-dest_files=["res://.godot/imported/barrel_Barrel_01_explosive_nor_gl_1k.jpg-d54c244ca7b156cec586a3e4bd7eb91d.ctex"]
++dest_files=["res://.godot/imported/barrel_Barrel_01_explosive_nor_gl_1k.jpg-d54c244ca7b156cec586a3e4bd7eb91d.s3tc.ctex"]
+ 
+ [params]
+ 
+-compress/mode=0
++compress/mode=2
+ compress/high_quality=false
+ compress/lossy_quality=0.7
+ compress/uastc_level=0
+@@ -40,4 +41,4 @@
+ process/hdr_as_srgb=false
+ process/hdr_clamp_exposure=false
+ process/size_limit=0
+-detect_3d/compress_to=1
++detect_3d/compress_to=0

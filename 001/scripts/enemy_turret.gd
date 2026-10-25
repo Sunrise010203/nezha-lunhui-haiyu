@@ -42,6 +42,9 @@ func _setup() -> void:
 
 
 func _build_gfx() -> void:
+	if load_enemy_model("005_turret", 1.5, -0.75):
+		_light = make_enemy_light(Color(1.0, 0.3, 0.15), Vector3(0, 0, 0.4))
+		return
 	# 3 根红色晶体（PrismMesh），绕核心呈放射状簇生
 	var crystal_mat := Game.std_mat(Color(0.5, 0.07, 0.08, 0.82),
 		Color(1.0, 0.16, 0.1), 1.3, 0.3, 0.1)
@@ -147,8 +150,9 @@ func _behave(delta: float) -> void:
 			else:
 				var p := clampf(state_t / WARN_TIME, 0.0, 1.0)
 				glow_target = 1.0 + p * 5.5
-				gfx.scale = gfx.scale.lerp(Vector3.ONE * (1.0 + 0.14 * p),
-					16.0 * delta)
+				if not enemy_motion:
+					gfx.scale = gfx.scale.lerp(Vector3.ONE * (1.0 + 0.14 * p),
+						16.0 * delta)
 				if state_t >= WARN_TIME:
 					_enter_fire()
 		"fire":
@@ -179,7 +183,8 @@ func _behave(delta: float) -> void:
 		_light.light_energy = 0.7 + _glow * 0.8
 
 	# 晶簇缓慢自转、环旋转、核心脉动
-	gfx.rotation.y += delta * 0.4
+	if not enemy_motion:
+		gfx.rotation.y += delta * 0.4
 	if _ring:
 		_ring.rotation.z += delta * 1.5
 		_ring.rotation.x = deg_to_rad(72.0 + sin(_t * 1.2) * 6.0)
@@ -223,6 +228,8 @@ func _shoot() -> void:
 	if target.distance_to(origin) < 0.05:
 		return
 	var proj := Projectile.new()
+	if enemy_motion:
+		enemy_motion.attack()
 	proj.dmg = SHOT_DMG
 	proj.tint = Color(1.0, 0.32, 0.2)
 	proj.life = SHOT_LIFE
@@ -231,3 +238,9 @@ func _shoot() -> void:
 	get_parent().add_child(proj)
 	Game.burst(get_parent(), origin, proj.tint, 6, 2.0, 0.05, 0.25)
 	Game.play_sfx("shoot", -16.0, 1.6)
+
+
+func _rig_animation() -> Array:
+	if state == "warn":
+		return ["Windup", state_t / WARN_TIME]
+	return ["Idle", -1.0]

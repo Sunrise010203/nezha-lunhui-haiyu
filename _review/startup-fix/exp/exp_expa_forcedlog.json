@@ -1,0 +1,33 @@
+{
+  "tag": "exp_expa_forcedlog",
+  "exe": "E:/godot_game_by_fable/builds/playable-slice/nezha_ch1_playable_r2.exe",
+  "cwd": "E:/godot_game_by_fable/builds/playable-slice",
+  "env_mode": "clean-explorer-like APPDATA=C:/Users/Sunrise/AppData/Roaming/_expA",
+  "APPDATA": "C:/Users/Sunrise/AppData/Roaming/_expA",
+  "LOCALAPPDATA": "C:\\Users\\Sunrise/AppData/Local",
+  "extra_args": [
+    "--log-file",
+    "C:/Users/Sunrise/AppData/Roaming/_expA/forced.log"
+  ],
+  "via": "create",
+  "started": "2026-10-22T17:35:37",
+  "userdata_before": {
+    "path": "C:/Users/Sunrise/AppData/Roaming/_expA/Godot/app_userdata/哪吒·轮回海域",
+    "exists": true,
+    "items": []
+  },
+  "pid": 3816,
+  "exit_code": 3221225477,
+  "windows_seen": null,
+  "windows_final": [],
+  "elapsed_s": 0.26,
+  "exit_hex": "0xc0000005",
+  "exit_ntstatus_guess": "ACCESS_VIOLATION",
+  "userdata_after": {
+    "path": "C:/Users/Sunrise/AppData/Roaming/_expA/Godot/app_userdata/哪吒·轮回海域",
+    "exists": true,
+    "items": []
+  },
+  "stdout_text": "",
+  "stderr_text": ""
+}

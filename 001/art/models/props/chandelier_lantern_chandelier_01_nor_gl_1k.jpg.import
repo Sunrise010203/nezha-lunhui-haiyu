@@ -3,9 +3,10 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://c34jtd1pp7r3p"
-path="res://.godot/imported/chandelier_lantern_chandelier_01_nor_gl_1k.jpg-777fda05d6839dc19dcf24bf5c93e8ab.ctex"
+path.s3tc="res://.godot/imported/chandelier_lantern_chandelier_01_nor_gl_1k.jpg-777fda05d6839dc19dcf24bf5c93e8ab.s3tc.ctex"
 metadata={
-"vram_texture": false
+"imported_formats": ["s3tc_bptc"],
+"vram_texture": true
 }
 generator_parameters={
 "md5": "a430de229c55260a28238b885c1b5a21"
@@ -14,11 +15,11 @@ generator_parameters={
 [deps]
 
 source_file="res://art/models/props/chandelier_lantern_chandelier_01_nor_gl_1k.jpg"
-dest_files=["res://.godot/imported/chandelier_lantern_chandelier_01_nor_gl_1k.jpg-777fda05d6839dc19dcf24bf5c93e8ab.ctex"]
+dest_files=["res://.godot/imported/chandelier_lantern_chandelier_01_nor_gl_1k.jpg-777fda05d6839dc19dcf24bf5c93e8ab.s3tc.ctex"]
 
 [params]
 
-compress/mode=0
+compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/uastc_level=0
@@ -40,4 +41,4 @@ process/normal_map_invert_y=false
 process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
-detect_3d/compress_to=1
+detect_3d/compress_to=0

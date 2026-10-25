@@ -1,0 +1,489 @@
+{
+  "checks": [
+    {
+      "label": "01_maw imported",
+      "ok": true
+    },
+    {
+      "label": "01_maw one skeleton and animation player",
+      "ok": true
+    },
+    {
+      "label": "01_maw animation library",
+      "ok": true
+    },
+    {
+      "label": "01_maw correct skin target",
+      "ok": true
+    },
+    {
+      "label": "01_maw all vertex weights normalized",
+      "ok": true
+    },
+    {
+      "label": "01_maw finite imported pose Idle",
+      "ok": true
+    },
+    {
+      "label": "01_maw finite imported pose Move",
+      "ok": true
+    },
+    {
+      "label": "01_maw finite imported pose Windup",
+      "ok": true
+    },
+    {
+      "label": "01_maw finite imported pose Attack",
+      "ok": true
+    },
+    {
+      "label": "01_maw finite imported pose Recover",
+      "ok": true
+    },
+    {
+      "label": "01_maw finite imported pose Hit",
+      "ok": true
+    },
+    {
+      "label": "01_maw finite imported pose Summon",
+      "ok": true
+    },
+    {
+      "label": "01_maw finite imported pose Phase",
+      "ok": true
+    },
+    {
+      "label": "01_maw finite imported pose Die",
+      "ok": true
+    },
+    {
+      "label": "02_warden imported",
+      "ok": true
+    },
+    {
+      "label": "02_warden one skeleton and animation player",
+      "ok": true
+    },
+    {
+      "label": "02_warden animation library",
+      "ok": true
+    },
+    {
+      "label": "02_warden correct skin target",
+      "ok": true
+    },
+    {
+      "label": "02_warden correct skin target",
+      "ok": true
+    },
+    {
+      "label": "02_warden all vertex weights normalized",
+      "ok": true
+    },
+    {
+      "label": "02_warden finite imported pose Idle",
+      "ok": true
+    },
+    {
+      "label": "02_warden finite imported pose Move",
+      "ok": true
+    },
+    {
+      "label": "02_warden finite imported pose Windup",
+      "ok": true
+    },
+    {
+      "label": "02_warden finite imported pose Attack",
+      "ok": true
+    },
+    {
+      "label": "02_warden finite imported pose Recover",
+      "ok": true
+    },
+    {
+      "label": "02_warden finite imported pose Hit",
+      "ok": true
+    },
+    {
+      "label": "02_warden finite imported pose Summon",
+      "ok": true
+    },
+    {
+      "label": "02_warden finite imported pose Phase",
+      "ok": true
+    },
+    {
+      "label": "02_warden finite imported pose Die",
+      "ok": true
+    },
+    {
+      "label": "03_seal_core imported",
+      "ok": true
+    },
+    {
+      "label": "03_seal_core one skeleton and animation player",
+      "ok": true
+    },
+    {
+      "label": "03_seal_core animation library",
+      "ok": true
+    },
+    {
+      "label": "03_seal_core correct skin target",
+      "ok": true
+    },
+    {
+      "label": "03_seal_core all vertex weights normalized",
+      "ok": true
+    },
+    {
+      "label": "03_seal_core finite imported pose Idle",
+      "ok": true
+    },
+    {
+      "label": "03_seal_core finite imported pose Move",
+      "ok": true
+    },
+    {
+      "label": "03_seal_core finite imported pose Windup",
+      "ok": true
+    },
+    {
+      "label": "03_seal_core finite imported pose Attack",
+      "ok": true
+    },
+    {
+      "label": "03_seal_core finite imported pose Recover",
+      "ok": true
+    },
+    {
+      "label": "03_seal_core finite imported pose Hit",
+      "ok": true
+    },
+    {
+      "label": "03_seal_core finite imported pose Summon",
+      "ok": true
+    },
+    {
+      "label": "03_seal_core finite imported pose Phase",
+      "ok": true
+    },
+    {
+      "label": "03_seal_core finite imported pose Die",
+      "ok": true
+    },
+    {
+      "label": "04_giant_eye imported",
+      "ok": true
+    },
+    {
+      "label": "04_giant_eye one skeleton and animation player",
+      "ok": true
+    },
+    {
+      "label": "04_giant_eye animation library",
+      "ok": true
+    },
+    {
+      "label": "04_giant_eye correct skin target",
+      "ok": true
+    },
+    {
+      "label": "04_giant_eye all vertex weights normalized",
+      "ok": true
+    },
+    {
+      "label": "04_giant_eye finite imported pose Idle",
+      "ok": true
+    },
+    {
+      "label": "04_giant_eye finite imported pose Move",
+      "ok": true
+    },
+    {
+      "label": "04_giant_eye finite imported pose Windup",
+      "ok": true
+    },
+    {
+      "label": "04_giant_eye finite imported pose Attack",
+      "ok": true
+    },
+    {
+      "label": "04_giant_eye finite imported pose Recover",
+      "ok": true
+    },
+    {
+      "label": "04_giant_eye finite imported pose Hit",
+      "ok": true
+    },
+    {
+      "label": "04_giant_eye finite imported pose Summon",
+      "ok": true
+    },
+    {
+      "label": "04_giant_eye finite imported pose Phase",
+      "ok": true
+    },
+    {
+      "label": "04_giant_eye finite imported pose Die",
+      "ok": true
+    },
+    {
+      "label": "05_chiwen imported",
+      "ok": true
+    },
+    {
+      "label": "05_chiwen one skeleton and animation player",
+      "ok": true
+    },
+    {
+      "label": "05_chiwen animation library",
+      "ok": true
+    },
+    {
+      "label": "05_chiwen correct skin target",
+      "ok": true
+    },
+    {
+      "label": "05_chiwen all vertex weights normalized",
+      "ok": true
+    },
+    {
+      "label": "05_chiwen finite imported pose Idle",
+      "ok": true
+    },
+    {
+      "label": "05_chiwen finite imported pose Move",
+      "ok": true
+    },
+    {
+      "label": "05_chiwen finite imported pose Windup",
+      "ok": true
+    },
+    {
+      "label": "05_chiwen finite imported pose Attack",
+      "ok": true
+    },
+    {
+      "label": "05_chiwen finite imported pose Recover",
+      "ok": true
+    },
+    {
+      "label": "05_chiwen finite imported pose Hit",
+      "ok": true
+    },
+    {
+      "label": "05_chiwen finite imported pose Summon",
+      "ok": true
+    },
+    {
+      "label": "05_chiwen finite imported pose Phase",
+      "ok": true
+    },
+    {
+      "label": "05_chiwen finite imported pose Die",
+      "ok": true
+    },
+    {
+      "label": "06_warden_mace imported",
+      "ok": true
+    },
+    {
+      "label": "06_warden_mace one skeleton and animation player",
+      "ok": true
+    },
+    {
+      "label": "06_warden_mace animation library",
+      "ok": true
+    },
+    {
+      "label": "06_warden_mace correct skin target",
+      "ok": true
+    },
+    {
+      "label": "06_warden_mace all vertex weights normalized",
+      "ok": true
+    },
+    {
+      "label": "06_warden_mace finite imported pose Idle",
+      "ok": true
+    },
+    {
+      "label": "06_warden_mace finite imported pose Move",
+      "ok": true
+    },
+    {
+      "label": "06_warden_mace finite imported pose Windup",
+      "ok": true
+    },
+    {
+      "label": "06_warden_mace finite imported pose Attack",
+      "ok": true
+    },
+    {
+      "label": "06_warden_mace finite imported pose Recover",
+      "ok": true
+    },
+    {
+      "label": "06_warden_mace finite imported pose Hit",
+      "ok": true
+    },
+    {
+      "label": "06_warden_mace finite imported pose Summon",
+      "ok": true
+    },
+    {
+      "label": "06_warden_mace finite imported pose Phase",
+      "ok": true
+    },
+    {
+      "label": "06_warden_mace finite imported pose Die",
+      "ok": true
+    },
+    {
+      "label": "maw actual Boss uses new asset",
+      "ok": true
+    },
+    {
+      "label": "maw state sync slam_rise",
+      "ok": true
+    },
+    {
+      "label": "maw state sync slam_fall",
+      "ok": true
+    },
+    {
+      "label": "maw state sync sweep",
+      "ok": true
+    },
+    {
+      "label": "maw state sync summon",
+      "ok": true
+    },
+    {
+      "label": "maw reset returns to rest",
+      "ok": true
+    },
+    {
+      "label": "maw death clip",
+      "ok": true
+    },
+    {
+      "label": "warden actual Boss uses new asset",
+      "ok": true
+    },
+    {
+      "label": "warden state sync charge",
+      "ok": true
+    },
+    {
+      "label": "warden state sync slam_raise",
+      "ok": true
+    },
+    {
+      "label": "warden state sync slam_impact",
+      "ok": true
+    },
+    {
+      "label": "warden state sync barrage",
+      "ok": true
+    },
+    {
+      "label": "warden right-hand mace included",
+      "ok": true
+    },
+    {
+      "label": "warden reset returns to rest",
+      "ok": true
+    },
+    {
+      "label": "warden death clip",
+      "ok": true
+    },
+    {
+      "label": "sea_eye actual Boss uses new asset",
+      "ok": true
+    },
+    {
+      "label": "sea_eye state sync p2_tele",
+      "ok": true
+    },
+    {
+      "label": "sea_eye state sync p2_recover",
+      "ok": true
+    },
+    {
+      "label": "sea eye three P1 instances",
+      "ok": true
+    },
+    {
+      "label": "seal core fitted ARP model",
+      "ok": true
+    },
+    {
+      "label": "seal core fitted ARP model",
+      "ok": true
+    },
+    {
+      "label": "seal core fitted ARP model",
+      "ok": true
+    },
+    {
+      "label": "three cores break then P2 appears",
+      "ok": true
+    },
+    {
+      "label": "sea eye pulse clip",
+      "ok": true
+    },
+    {
+      "label": "sea_eye reset returns to rest",
+      "ok": true
+    },
+    {
+      "label": "sea eye reset restores P1",
+      "ok": true
+    },
+    {
+      "label": "sea_eye death clip",
+      "ok": true
+    },
+    {
+      "label": "chiwen actual Boss uses new asset",
+      "ok": true
+    },
+    {
+      "label": "chiwen state sync pounce_go",
+      "ok": true
+    },
+    {
+      "label": "chiwen state sync inhale",
+      "ok": true
+    },
+    {
+      "label": "chiwen state sync expose",
+      "ok": true
+    },
+    {
+      "label": "chiwen state sync surge_warn",
+      "ok": true
+    },
+    {
+      "label": "chiwen P3 core and hurtpoint open",
+      "ok": true
+    },
+    {
+      "label": "chiwen reset returns to rest",
+      "ok": true
+    },
+    {
+      "label": "chiwen reset closes core",
+      "ok": true
+    },
+    {
+      "label": "chiwen death clip",
+      "ok": true
+    }
+  ],
+  "failed": false
+}

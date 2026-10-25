@@ -1,0 +1,525 @@
+{
+  "Idle": {
+    "fbx": "Breathing Idle.fbx",
+    "source_range": [
+      1,
+      299
+    ],
+    "frames": 299,
+    "seconds": 9.933333333333334,
+    "loop": true,
+    "horizontal_root_locked": true,
+    "max_floor_correction_m": 0.0,
+    "checked_frames": [
+      {
+        "frame": 1,
+        "edge_ratio_p99": 1.1114307808024877,
+        "edge_ratio_max": 2.1475416011705093,
+        "min_z": 0.004777282476425171
+      },
+      {
+        "frame": 99,
+        "edge_ratio_p99": 1.1148592466052842,
+        "edge_ratio_max": 1.9465900647538739,
+        "min_z": 0.005921974778175354
+      },
+      {
+        "frame": 199,
+        "edge_ratio_p99": 1.1178033852014404,
+        "edge_ratio_max": 2.7071824476526736,
+        "min_z": 0.005067090503871441
+      },
+      {
+        "frame": 299,
+        "edge_ratio_p99": 1.1114298259559885,
+        "edge_ratio_max": 2.1475430604375996,
+        "min_z": 0.0047767264768481255
+      }
+    ]
+  },
+  "FightIdle": {
+    "fbx": "Fight Idle.fbx",
+    "source_range": [
+      1,
+      72
+    ],
+    "frames": 72,
+    "seconds": 2.3666666666666667,
+    "loop": true,
+    "horizontal_root_locked": true,
+    "max_floor_correction_m": 0.04261834141612053,
+    "checked_frames": [
+      {
+        "frame": 1,
+        "edge_ratio_p99": 1.277510209979592,
+        "edge_ratio_max": 4.012063213958315,
+        "min_z": 0.002000171924009919
+      },
+      {
+        "frame": 24,
+        "edge_ratio_p99": 1.2697614225311231,
+        "edge_ratio_max": 4.404803433870643,
+        "min_z": 0.0019998475909233093
+      },
+      {
+        "frame": 48,
+        "edge_ratio_p99": 1.2573183265141634,
+        "edge_ratio_max": 3.951285196151873,
+        "min_z": 0.0020000203512609005
+      },
+      {
+        "frame": 72,
+        "edge_ratio_p99": 1.2775170107121885,
+        "edge_ratio_max": 4.0113156047474465,
+        "min_z": 0.0019998904317617416
+      }
+    ]
+  },
+  "Run": {
+    "fbx": "Run Forward.fbx",
+    "source_range": [
+      1,
+      28
+    ],
+    "frames": 28,
+    "seconds": 0.9,
+    "loop": true,
+    "horizontal_root_locked": true,
+    "max_floor_correction_m": 0.05451085013151169,
+    "checked_frames": [
+      {
+        "frame": 1,
+        "edge_ratio_p99": 1.2176397389451883,
+        "edge_ratio_max": 4.009794955806168,
+        "min_z": 0.0020000578369945288
+      },
+      {
+        "frame": 9,
+        "edge_ratio_p99": 1.1712957781118942,
+        "edge_ratio_max": 4.2046931543666775,
+        "min_z": 0.006771010812371969
+      },
+      {
+        "frame": 18,
+        "edge_ratio_p99": 1.2611636647857487,
+        "edge_ratio_max": 5.735298544111994,
+        "min_z": 0.12583601474761963
+      },
+      {
+        "frame": 28,
+        "edge_ratio_p99": 1.217638556591635,
+        "edge_ratio_max": 4.009819467582844,
+        "min_z": 0.0020001588854938745
+      }
+    ]
+  },
+  "Jump": {
+    "source": "Original player.gd FK silhouette adapted to ARP controls",
+    "frames": 13,
+    "seconds": 0.4,
+    "loop": false,
+    "horizontal_root_locked": true,
+    "vertical_root_locked": true,
+    "max_floor_correction_m": 0.0,
+    "checked_frames": [
+      {
+        "frame": 1,
+        "edge_ratio_p99": 1.0898420119301016,
+        "edge_ratio_max": 2.1817837517502054,
+        "min_z": 0.004903707187622786
+      },
+      {
+        "frame": 4,
+        "edge_ratio_p99": 1.1029633022244654,
+        "edge_ratio_max": 2.1817837517502054,
+        "min_z": 0.006887068040668964
+      },
+      {
+        "frame": 8,
+        "edge_ratio_p99": 1.1180302862353795,
+        "edge_ratio_max": 2.1817837517502054,
+        "min_z": 0.010499141179025173
+      },
+      {
+        "frame": 13,
+        "edge_ratio_p99": 1.1180302862353795,
+        "edge_ratio_max": 2.1817837517502054,
+        "min_z": 0.010499141179025173
+      }
+    ]
+  },
+  "Fall": {
+    "source": "Original player.gd FK silhouette adapted to ARP controls",
+    "frames": 13,
+    "seconds": 0.4,
+    "loop": true,
+    "horizontal_root_locked": true,
+    "vertical_root_locked": true,
+    "max_floor_correction_m": 0.0,
+    "checked_frames": [
+      {
+        "frame": 1,
+        "edge_ratio_p99": 1.1877989028135458,
+        "edge_ratio_max": 3.252217969591395,
+        "min_z": 0.010499141179025173
+      },
+      {
+        "frame": 4,
+        "edge_ratio_p99": 1.1877989028135458,
+        "edge_ratio_max": 3.252217969591395,
+        "min_z": 0.010499141179025173
+      },
+      {
+        "frame": 8,
+        "edge_ratio_p99": 1.1877989028135458,
+        "edge_ratio_max": 3.252217969591395,
+        "min_z": 0.010499141179025173
+      },
+      {
+        "frame": 13,
+        "edge_ratio_p99": 1.1877989028135458,
+        "edge_ratio_max": 3.252217969591395,
+        "min_z": 0.010499141179025173
+      }
+    ]
+  },
+  "Land": {
+    "fbx": "Falling To Landing.fbx",
+    "source_range": [
+      9,
+      33
+    ],
+    "frames": 25,
+    "seconds": 0.8,
+    "loop": false,
+    "horizontal_root_locked": true,
+    "max_floor_correction_m": 0.04780547660589218,
+    "checked_frames": [
+      {
+        "frame": 1,
+        "edge_ratio_p99": 1.2058368470645686,
+        "edge_ratio_max": 4.964985054111172,
+        "min_z": 0.002000064356252551
+      },
+      {
+        "frame": 8,
+        "edge_ratio_p99": 1.3655376168240019,
+        "edge_ratio_max": 5.588886504841827,
+        "min_z": 0.0019999598152935505
+      },
+      {
+        "frame": 16,
+        "edge_ratio_p99": 1.156227484543511,
+        "edge_ratio_max": 3.3962260200657814,
+        "min_z": 0.0019999328069388866
+      },
+      {
+        "frame": 25,
+        "edge_ratio_p99": 1.1197972524824253,
+        "edge_ratio_max": 3.312034461562455,
+        "min_z": 0.002000092761591077
+      }
+    ]
+  },
+  "Roll": {
+    "fbx": "Quick Roll To Run.fbx",
+    "source_range": [
+      1,
+      39
+    ],
+    "frames": 39,
+    "seconds": 1.2666666666666666,
+    "loop": false,
+    "horizontal_root_locked": true,
+    "max_floor_correction_m": 0.1575309295654297,
+    "checked_frames": [
+      {
+        "frame": 1,
+        "edge_ratio_p99": 1.2865425947619407,
+        "edge_ratio_max": 4.362519381815408,
+        "min_z": 0.001999974949285388
+      },
+      {
+        "frame": 13,
+        "edge_ratio_p99": 1.4067373504733225,
+        "edge_ratio_max": 4.93304491198876,
+        "min_z": 0.002000059001147747
+      },
+      {
+        "frame": 26,
+        "edge_ratio_p99": 1.3933391074260206,
+        "edge_ratio_max": 4.791414475743586,
+        "min_z": 0.055597782135009766
+      },
+      {
+        "frame": 39,
+        "edge_ratio_p99": 1.2801297953572492,
+        "edge_ratio_max": 3.77090842289728,
+        "min_z": 0.0019999858923256397
+      }
+    ]
+  },
+  "Stab": {
+    "fbx": "Bayonet Stab.fbx",
+    "source_range": [
+      22,
+      52
+    ],
+    "frames": 31,
+    "seconds": 1.0,
+    "loop": false,
+    "horizontal_root_locked": true,
+    "max_floor_correction_m": 0.017392595902085306,
+    "checked_frames": [
+      {
+        "frame": 1,
+        "edge_ratio_p99": 1.2584377583417725,
+        "edge_ratio_max": 3.496709754816308,
+        "min_z": 0.0019999670330435038
+      },
+      {
+        "frame": 10,
+        "edge_ratio_p99": 1.3729215093383134,
+        "edge_ratio_max": 5.897624763636598,
+        "min_z": 0.006116971373558044
+      },
+      {
+        "frame": 20,
+        "edge_ratio_p99": 1.4015693072237054,
+        "edge_ratio_max": 6.403316395251358,
+        "min_z": 0.013836907222867012
+      },
+      {
+        "frame": 31,
+        "edge_ratio_p99": 1.2097734005191216,
+        "edge_ratio_max": 4.352987538226099,
+        "min_z": 0.0019998932257294655
+      }
+    ]
+  },
+  "Slash": {
+    "fbx": "Stable Sword Outward Slash.fbx",
+    "source_range": [
+      18,
+      42
+    ],
+    "frames": 25,
+    "seconds": 0.8,
+    "loop": false,
+    "horizontal_root_locked": true,
+    "max_floor_correction_m": 0.04237095233798027,
+    "checked_frames": [
+      {
+        "frame": 1,
+        "edge_ratio_p99": 1.289361635315429,
+        "edge_ratio_max": 3.3746589975187296,
+        "min_z": 0.002000049687922001
+      },
+      {
+        "frame": 8,
+        "edge_ratio_p99": 1.2056538986587437,
+        "edge_ratio_max": 3.6206939471321355,
+        "min_z": 0.0019999381620436907
+      },
+      {
+        "frame": 16,
+        "edge_ratio_p99": 1.2540392981114818,
+        "edge_ratio_max": 4.179554195927258,
+        "min_z": 0.002000032924115658
+      },
+      {
+        "frame": 25,
+        "edge_ratio_p99": 1.2120231118734466,
+        "edge_ratio_max": 3.0301090649425784,
+        "min_z": 0.0019999367650598288
+      }
+    ]
+  },
+  "ThrustSlash": {
+    "fbx": "Thrust Slash.fbx",
+    "source_range": [
+      19,
+      45
+    ],
+    "frames": 27,
+    "seconds": 0.8666666666666667,
+    "loop": false,
+    "horizontal_root_locked": true,
+    "max_floor_correction_m": 0.04970283773541451,
+    "checked_frames": [
+      {
+        "frame": 1,
+        "edge_ratio_p99": 1.1917910846365323,
+        "edge_ratio_max": 5.984208694071784,
+        "min_z": 0.002000038046389818
+      },
+      {
+        "frame": 9,
+        "edge_ratio_p99": 1.2934590123482437,
+        "edge_ratio_max": 6.786477560999299,
+        "min_z": 0.001999991713091731
+      },
+      {
+        "frame": 18,
+        "edge_ratio_p99": 1.3549432918470232,
+        "edge_ratio_max": 6.585421844278527,
+        "min_z": 0.001999987754970789
+      },
+      {
+        "frame": 27,
+        "edge_ratio_p99": 1.2484759315833152,
+        "edge_ratio_max": 5.055235819060243,
+        "min_z": 0.002001735381782055
+      }
+    ]
+  },
+  "UpwardThrust": {
+    "fbx": "Upward Thrust.fbx",
+    "source_range": [
+      11,
+      49
+    ],
+    "frames": 39,
+    "seconds": 1.2666666666666666,
+    "loop": false,
+    "horizontal_root_locked": true,
+    "max_floor_correction_m": 0.05995245245099068,
+    "checked_frames": [
+      {
+        "frame": 1,
+        "edge_ratio_p99": 1.2483549717329592,
+        "edge_ratio_max": 4.405324444345668,
+        "min_z": 0.0020000229123979807
+      },
+      {
+        "frame": 13,
+        "edge_ratio_p99": 1.2428382055510208,
+        "edge_ratio_max": 6.234082826167013,
+        "min_z": 0.01309391763061285
+      },
+      {
+        "frame": 26,
+        "edge_ratio_p99": 1.3281417192239533,
+        "edge_ratio_max": 7.431282759627101,
+        "min_z": 0.002000042237341404
+      },
+      {
+        "frame": 39,
+        "edge_ratio_p99": 1.222962240492419,
+        "edge_ratio_max": 2.6231894660461905,
+        "min_z": 0.0019998946227133274
+      }
+    ]
+  },
+  "Hit": {
+    "fbx": "Zombie Reaction Hit.fbx",
+    "source_range": [
+      5,
+      32
+    ],
+    "frames": 28,
+    "seconds": 0.9,
+    "loop": false,
+    "horizontal_root_locked": true,
+    "max_floor_correction_m": 0.02920443531870842,
+    "checked_frames": [
+      {
+        "frame": 1,
+        "edge_ratio_p99": 1.173012169453027,
+        "edge_ratio_max": 3.148744825685338,
+        "min_z": 0.0019999544601887465
+      },
+      {
+        "frame": 9,
+        "edge_ratio_p99": 1.138123538398024,
+        "edge_ratio_max": 3.7195475445726527,
+        "min_z": 0.002000052947551012
+      },
+      {
+        "frame": 18,
+        "edge_ratio_p99": 1.2232304339876394,
+        "edge_ratio_max": 4.331865846837887,
+        "min_z": 0.0019999323412775993
+      },
+      {
+        "frame": 28,
+        "edge_ratio_p99": 1.2287819329004361,
+        "edge_ratio_max": 2.9977761664812967,
+        "min_z": 0.002000044099986553
+      }
+    ]
+  },
+  "Death": {
+    "fbx": "Falling Back Death.fbx",
+    "source_range": [
+      1,
+      79
+    ],
+    "frames": 79,
+    "seconds": 2.6,
+    "loop": false,
+    "horizontal_root_locked": true,
+    "max_floor_correction_m": 0.08375349235534668,
+    "checked_frames": [
+      {
+        "frame": 1,
+        "edge_ratio_p99": 1.2222803866370882,
+        "edge_ratio_max": 6.721036978787911,
+        "min_z": 0.001999863423407078
+      },
+      {
+        "frame": 26,
+        "edge_ratio_p99": 1.3010907194666435,
+        "edge_ratio_max": 4.400786291438383,
+        "min_z": 0.004082849249243736
+      },
+      {
+        "frame": 52,
+        "edge_ratio_p99": 1.3040436451186923,
+        "edge_ratio_max": 6.627760076973392,
+        "min_z": 0.001999974250793457
+      },
+      {
+        "frame": 79,
+        "edge_ratio_p99": 1.2364972849554545,
+        "edge_ratio_max": 5.105855987177974,
+        "min_z": 0.002000093460083008
+      }
+    ]
+  },
+  "Plunge": {
+    "source": "Original player.gd FK silhouette adapted to ARP controls",
+    "frames": 13,
+    "seconds": 0.4,
+    "loop": false,
+    "horizontal_root_locked": true,
+    "vertical_root_locked": true,
+    "max_floor_correction_m": 0.0,
+    "checked_frames": [
+      {
+        "frame": 1,
+        "edge_ratio_p99": 1.3805749697961143,
+        "edge_ratio_max": 4.321988730148403,
+        "min_z": 0.16437561810016632
+      },
+      {
+        "frame": 4,
+        "edge_ratio_p99": 1.3805749697961143,
+        "edge_ratio_max": 4.321988730148403,
+        "min_z": 0.16437561810016632
+      },
+      {
+        "frame": 8,
+        "edge_ratio_p99": 1.3805749697961143,
+        "edge_ratio_max": 4.321988730148403,
+        "min_z": 0.16437561810016632
+      },
+      {
+        "frame": 13,
+        "edge_ratio_p99": 1.3805749697961143,
+        "edge_ratio_max": 4.321988730148403,
+        "min_z": 0.16437561810016632
+      }
+    ]
+  }
+}

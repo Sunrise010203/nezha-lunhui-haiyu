@@ -1,0 +1,30 @@
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+=== T4 PROBE D ===
+PASS Game autoload
+PASS ch1: player loaded
+PASS ch1: tide unlock=false (expected false)
+PASS ch1: tide guard=false (expected false)
+PASS ch1: player apply_slow exists
+PASS ch1: slow amount applied
+PASS ch1: slow duration applied
+PASS ch2: player loaded
+PASS ch2: tide unlock=false (expected false)
+PASS ch2: tide guard=false (expected false)
+PASS ch2: player apply_slow exists
+PASS ch2: slow amount applied
+PASS ch2: slow duration applied
+PASS ch3: player loaded
+PASS ch3: tide unlock=false (expected false)
+PASS ch3: tide guard=false (expected false)
+PASS ch3: player apply_slow exists
+PASS ch3: slow amount applied
+PASS ch3: slow duration applied
+PASS ch4: player loaded
+PASS ch4: tide unlock=true (expected true)
+PASS ch4: tide guard=true (expected true)
+PASS ch4: player apply_slow exists
+PASS ch4: slow amount applied
+PASS ch4: slow duration applied
+T4_PROBE_D checks=25 fails=0
+[probe] append 17:38:26

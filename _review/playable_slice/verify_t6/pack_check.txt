@@ -1,0 +1,17 @@
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+D3D12 12_0 - Forward+ - Using Device #0: NVIDIA - NVIDIA GeForce RTX 5070 Laptop GPU
+
+=== SHOT_PACK out=E:\godot_game_by_fable\_review\playable_slice\verify_t6\r2_pack_start.png x=-9999.0 boss=false frame=160 ===
+HUD hint_vis=true hint_rect=[P: (36.0, 1036.0), S: (878.0, 25.0)]
+HUD soul_vis=true soul_rect=[P: (1590.0, 26.0), S: (290.0, 40.0)] text=龙魂残片　0 / 3
+VIEWPORT [P: (0.0, 0.0), S: (1920.0, 1080.0)]
+BOSS state=dormant hp=480.0 started=false
+SHOT_SAVED E:\godot_game_by_fable\_review\playable_slice\verify_t6\r2_pack_start.png (1920, 1080)
+FAR_MAT override=():<ShaderMaterial#-9223371925152068761>
+FAR_TEX (res://art/ref/ch1_palace_far.png):<CompressedTexture2D#-9223371924883633303>
+WARNING: ObjectDB instances leaked at exit (run with --verbose for details).
+   at: cleanup (core/object/object.cpp:2663)
+ERROR: 8 resources still in use at exit (run with --verbose for details).
+   at: clear (core/io/resource.cpp:810)
+ERROR: Pages in use exist at exit in PagedAllocator: N7Variant5Pools12BucketMediumE
+   at: ~PagedAllocator (./core/templates/paged_allocator.h:169)

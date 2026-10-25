@@ -1,0 +1,6 @@
+ERROR: Could not create directory: 'C:/_expC/Godot/app_userdata'.
+   at: make_dir_recursive (core/io/dir_access.cpp:178)
+ERROR: Error attempting to create data dir: C:/_expC/Godot/app_userdata/哪吒·轮回海域.
+   at: ensure_user_data_dir (core/os/os.cpp:437)
+ERROR: Could not create directory: 'user://logs'.
+   at: make_dir_recursive (core/io/dir_access.cpp:178)

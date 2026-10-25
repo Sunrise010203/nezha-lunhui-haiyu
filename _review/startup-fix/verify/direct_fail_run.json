@@ -1,0 +1,11 @@
+{
+ "pid": 47124,
+ "elapsed": 0.12,
+ "exit_code": 3221225477,
+ "engine_window": null,
+ "engine_win_after_exit": [],
+ "stdout": "",
+ "stderr": "ERROR: Failed to open 'user://logs/godot2026-10-22T18.13.02.log'.\r\n   at: copy (core/io/dir_access.cpp:423)\r\n",
+ "exit_hex": "0xc0000005",
+ "new_windows": []
+}

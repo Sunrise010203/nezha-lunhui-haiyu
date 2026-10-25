@@ -247,5 +247,8 @@ func _pop() -> void:
 	var c := tint
 	if was_reflected:
 		c = Color(0.42, 0.95, 0.86)
-	Game.burst(get_parent(), global_position, c, 10, 3.0, 0.06, 0.4)
+	if team == TEAM_PLAYER:
+		CombatVFX.splash(get_parent(), global_position, signf(vel.x))
+	else:
+		Game.burst(get_parent(), global_position, c, 10, 3.0, 0.06, 0.4)
 	queue_free()

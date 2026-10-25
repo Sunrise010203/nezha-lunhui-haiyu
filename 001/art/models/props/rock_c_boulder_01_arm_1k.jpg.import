@@ -3,9 +3,10 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://lsw0jag2xmo3"
-path="res://.godot/imported/rock_c_boulder_01_arm_1k.jpg-dc24a2687164cc1d75d63a47cd8b5931.ctex"
+path.s3tc="res://.godot/imported/rock_c_boulder_01_arm_1k.jpg-dc24a2687164cc1d75d63a47cd8b5931.s3tc.ctex"
 metadata={
-"vram_texture": false
+"imported_formats": ["s3tc_bptc"],
+"vram_texture": true
 }
 generator_parameters={
 "md5": "d159be4f2226dd20155211320480f82e"
@@ -14,11 +15,11 @@ generator_parameters={
 [deps]
 
 source_file="res://art/models/props/rock_c_boulder_01_arm_1k.jpg"
-dest_files=["res://.godot/imported/rock_c_boulder_01_arm_1k.jpg-dc24a2687164cc1d75d63a47cd8b5931.ctex"]
+dest_files=["res://.godot/imported/rock_c_boulder_01_arm_1k.jpg-dc24a2687164cc1d75d63a47cd8b5931.s3tc.ctex"]
 
 [params]
 
-compress/mode=0
+compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/uastc_level=0
@@ -40,4 +41,4 @@ process/normal_map_invert_y=false
 process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
-detect_3d/compress_to=1
+detect_3d/compress_to=0

@@ -1,0 +1,35 @@
+--- HEAD:001/art/models/shooter_0.png.import
++++ worktree:001/art/models/shooter_0.png.import
+@@ -3,9 +3,10 @@
+ importer="texture"
+ type="CompressedTexture2D"
+ uid="uid://l8n5roghpjjp"
+-path="res://.godot/imported/shooter_0.png-c4b291fd5cb6c0a03267194413fffe9e.ctex"
++path.s3tc="res://.godot/imported/shooter_0.png-c4b291fd5cb6c0a03267194413fffe9e.s3tc.ctex"
+ metadata={
+-"vram_texture": false
++"imported_formats": ["s3tc_bptc"],
++"vram_texture": true
+ }
+ generator_parameters={
+ "md5": "c359f78ed659bb4ab4a2802f87b3aa92"
+@@ -14,11 +15,11 @@
+ [deps]
+ 
+ source_file="res://art/models/shooter_0.png"
+-dest_files=["res://.godot/imported/shooter_0.png-c4b291fd5cb6c0a03267194413fffe9e.ctex"]
++dest_files=["res://.godot/imported/shooter_0.png-c4b291fd5cb6c0a03267194413fffe9e.s3tc.ctex"]
+ 
+ [params]
+ 
+-compress/mode=0
++compress/mode=2
+ compress/high_quality=false
+ compress/lossy_quality=0.7
+ compress/uastc_level=0
+@@ -40,4 +41,4 @@
+ process/hdr_as_srgb=false
+ process/hdr_clamp_exposure=false
+ process/size_limit=0
+-detect_3d/compress_to=1
++detect_3d/compress_to=0

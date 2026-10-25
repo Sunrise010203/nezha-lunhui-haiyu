@@ -1,0 +1,6 @@
+"特权名","描述","状态"
+"SeShutdownPrivilege","关闭系统","已禁用"
+"SeChangeNotifyPrivilege","绕过遍历检查","已启用"
+"SeUndockPrivilege","从扩展坞上取下计算机","已禁用"
+"SeIncreaseWorkingSetPrivilege","增加进程工作集","已禁用"
+"SeTimeZonePrivilege","更改时区","已禁用"

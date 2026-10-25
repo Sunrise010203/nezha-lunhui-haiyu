@@ -1,0 +1,110 @@
+{
+  "code": "04",
+  "kind": "giant_eye",
+  "arp_preset": "free + cc custom chains",
+  "arp_bind_result": [
+    "FINISHED"
+  ],
+  "initial_unweighted": 2732,
+  "weights": {
+    "unweighted": 0,
+    "max_influences": 4,
+    "used_groups": [
+      "cc_body",
+      "cc_eye",
+      "cc_shell_upper",
+      "cc_shell_lower",
+      "cc_shell_left",
+      "cc_shell_right"
+    ]
+  },
+  "joints": {
+    "cc_body": {
+      "head": [
+        0,
+        0,
+        0.5
+      ],
+      "tail": [
+        0.0,
+        0.0,
+        0.62
+      ],
+      "parent": "c_traj"
+    },
+    "cc_eye": {
+      "head": [
+        0,
+        -0.18,
+        0.5
+      ],
+      "tail": [
+        0,
+        -0.54,
+        0.5
+      ],
+      "parent": "cc_body"
+    },
+    "cc_shell_upper": {
+      "head": [
+        0,
+        0.2,
+        0.77
+      ],
+      "tail": [
+        0,
+        -0.25,
+        0.86
+      ],
+      "parent": "cc_body"
+    },
+    "cc_shell_lower": {
+      "head": [
+        0,
+        0.2,
+        0.18
+      ],
+      "tail": [
+        0,
+        -0.25,
+        0.12
+      ],
+      "parent": "cc_body"
+    },
+    "cc_shell_left": {
+      "head": [
+        0.32,
+        0.2,
+        0.48
+      ],
+      "tail": [
+        0.48,
+        -0.2,
+        0.48
+      ],
+      "parent": "cc_body"
+    },
+    "cc_shell_right": {
+      "head": [
+        -0.32,
+        0.2,
+        0.48
+      ],
+      "tail": [
+        -0.48,
+        -0.2,
+        0.48
+      ],
+      "parent": "cc_body"
+    }
+  },
+  "chains": [],
+  "deform_bones": [
+    "cc_body",
+    "cc_eye",
+    "cc_shell_upper",
+    "cc_shell_lower",
+    "cc_shell_left",
+    "cc_shell_right"
+  ]
+}

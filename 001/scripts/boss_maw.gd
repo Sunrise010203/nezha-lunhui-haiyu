@@ -48,9 +48,18 @@ const SPR_H := 4.6
 
 
 var model: Node3D = null
+var boss_motion: RefCounted
 
 
 func _build_gfx() -> void:
+	model = Game.load_model("res://art/models/bosses_arp/01_maw.glb", 4.4, -90.0,
+		0.0, 0.0, true, false)
+	if model:
+		model.position.y = -2.2
+		gfx.add_child(model)
+		boss_motion = preload("res://scripts/boss_motion.gd").new(model, "maw")
+		_add_aura()
+		return
 	model = Game.load_model("res://art/models/boss.glb", 4.4, 180.0,
 		-90.0, 0.0, true, false)
 	if model:
@@ -473,6 +482,8 @@ func reset_fight() -> void:
 	if dead:
 		return
 	active = false
+	if boss_motion:
+		boss_motion.reset()
 	hp = max_hp
 	phase = 1
 	state = "dormant"
@@ -525,6 +536,8 @@ func die() -> void:
 	if dead:
 		return
 	dead = true
+	if boss_motion:
+		boss_motion.die()
 	_clear_telegraph()
 	boss_hp_changed.emit(0.0, max_hp)
 	Game.play_sfx("boss_die", 2.0)
@@ -544,3 +557,8 @@ func die() -> void:
 	tw.tween_property(self, "global_position:y", ground_y - 2.0, 1.6) \
 		.set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN)
 	tw.chain().tween_callback(queue_free)
+
+
+func _advance_enemy_motion(delta: float) -> void:
+	if boss_motion and not dead:
+		boss_motion.step_encounter(delta, self)

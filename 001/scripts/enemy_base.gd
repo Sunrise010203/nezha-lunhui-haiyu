@@ -26,6 +26,7 @@ var _rim: ShaderMaterial = null
 var _stun_t := 0.0
 var _fall_limit := -100.0   # 低于这个 y 视为坠渊死亡（由关卡 kill_y 推出）
 var _no_drop := false
+var enemy_motion: RefCounted
 
 # ---- 第四章：可被「定潮 · 架」弹反的近战攻击窗口 ----
 # 默认关闭，前三章的敌人一行逻辑都不会变；只有第四章的爬行者 / 潮生 / 螭吻会打开。
@@ -104,6 +105,39 @@ func _build_gfx() -> void:
 	pass  # 子类实现
 
 
+func load_enemy_model(asset: String, height: float, offset := 0.0, parent: Node3D = null) -> Node3D:
+	var model := Game.load_model("res://art/models/enemies_arp/" + asset + ".glb",
+		height, 90.0, 0.0, 0.0, true, false)
+	if model:
+		(parent if parent else gfx).add_child(model)
+		model.position.y = offset
+		enemy_motion = preload("res://scripts/enemy_motion.gd").new(model)
+	return model
+
+
+func _rig_animation() -> Array:
+	return ["Move" if absf(velocity.x) > 0.2 else "Idle", -1.0]
+
+
+func make_enemy_light(color: Color, at: Vector3) -> OmniLight3D:
+	var light := OmniLight3D.new()
+	light.light_color = color
+	light.light_energy = 1.0
+	light.omni_range = 3.6
+	light.shadow_enabled = false
+	light.position = at
+	gfx.add_child(light)
+	Game.tune_small_light(light, 0.35, 3.6)
+	return light
+
+
+func _advance_enemy_motion(delta: float) -> void:
+	if not enemy_motion or dead:
+		return
+	var pose := _rig_animation()
+	enemy_motion.step(delta, pose[0], pose[1], hurt_t > 0.0 or _stun_t > 0.0)
+
+
 func _setup() -> void:
 	pass  # 子类实现
 
@@ -138,12 +172,14 @@ func _physics_process(delta: float) -> void:
 			velocity.y -= 30.0 * delta
 		move_and_slide()
 		global_position.z = 0.0
+		_advance_enemy_motion(delta)
 		return
 	if uses_gravity and not is_on_floor():
 		velocity.y -= 30.0 * delta
 	_behave(delta)
 	move_and_slide()
 	global_position.z = 0.0
+	_advance_enemy_motion(delta)
 
 
 func stun(dur: float) -> void:
@@ -265,6 +301,8 @@ func die() -> void:
 	if player_alive():
 		player.add_energy(15.0)
 	Game.play_sfx("enemy_die", -5.0)
+	CombatVFX.debris(get_parent(), global_position + Vector3(0, 0.7, 0), "bone", 3)
+	CombatVFX.smoke(get_parent(), global_position, 1.3)
 	Game.burst(get_parent(), global_position + Vector3(0, 0.8, 0),
 		Color(0.45, 0.2, 0.55), 30, 7.0, 0.1, 0.7)
 	Game.burst(get_parent(), global_position + Vector3(0, 0.8, 0),

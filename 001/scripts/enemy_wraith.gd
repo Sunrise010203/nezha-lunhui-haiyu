@@ -54,6 +54,9 @@ func _setup() -> void:
 
 
 func _build_gfx() -> void:
+	if load_enemy_model("006_wraith", 1.05):
+		_light = make_enemy_light(Color(0.55, 0.25, 1.0), Vector3(0, 0.45, 0.3))
+		return
 	# 半透明紫色幽体球
 	_body_mat = Game.std_mat(Color(0.34, 0.14, 0.58, 0.62),
 		Color(0.5, 0.2, 0.9), 1.4, 0.3)
@@ -133,8 +136,9 @@ func _behave(delta: float) -> void:
 			_update_facing()
 			var p := clampf(state_t / TELE_TIME, 0.0, 1.0)
 			_update_glow(delta, 1.4 + 2.8 * p)
-			gfx.scale = gfx.scale.lerp(Vector3.ONE * (1.0 + 0.28 * p),
-				14.0 * delta)
+			if not enemy_motion:
+				gfx.scale = gfx.scale.lerp(Vector3.ONE * (1.0 + 0.28 * p),
+					14.0 * delta)
 			if state_t >= TELE_TIME:
 				_enter_dash()
 		"dash":
@@ -146,7 +150,8 @@ func _behave(delta: float) -> void:
 				velocity.x = 0.0
 			facing = _dash_dir
 			_update_glow(delta, 3.2)
-			gfx.scale = gfx.scale.lerp(Vector3(1.32, 0.82, 1.04), 16.0 * delta)
+			if not enemy_motion:
+				gfx.scale = gfx.scale.lerp(Vector3(1.32, 0.82, 1.04), 16.0 * delta)
 			_check_dash_hit()
 			if state_t >= DASH_TIME:
 				_enter_recover()
@@ -262,3 +267,11 @@ func _on_hurt() -> void:
 	# 受击不打断循环，只是略微缩短预警/硬直，让连击手感更顺
 	if state == "recover":
 		state_t = maxf(state_t, RECOVER_TIME - 0.25)
+
+
+func _rig_animation() -> Array:
+	match state:
+		"tele": return ["Windup", state_t / TELE_TIME]
+		"dash": return ["Attack", state_t / DASH_TIME]
+		"recover": return ["Recover", state_t / RECOVER_TIME]
+	return super._rig_animation()

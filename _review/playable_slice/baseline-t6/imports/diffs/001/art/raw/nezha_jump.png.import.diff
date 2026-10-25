@@ -1,0 +1,33 @@
+--- HEAD:001/art/raw/nezha_jump.png.import
++++ worktree:001/art/raw/nezha_jump.png.import
+@@ -3,19 +3,20 @@
+ importer="texture"
+ type="CompressedTexture2D"
+ uid="uid://cga7vvf5gw1rr"
+-path="res://.godot/imported/nezha_jump.png-d2b333fcc8e11afde45a63b803de7684.ctex"
++path.s3tc="res://.godot/imported/nezha_jump.png-d2b333fcc8e11afde45a63b803de7684.s3tc.ctex"
+ metadata={
+-"vram_texture": false
++"imported_formats": ["s3tc_bptc"],
++"vram_texture": true
+ }
+ 
+ [deps]
+ 
+ source_file="res://art/raw/nezha_jump.png"
+-dest_files=["res://.godot/imported/nezha_jump.png-d2b333fcc8e11afde45a63b803de7684.ctex"]
++dest_files=["res://.godot/imported/nezha_jump.png-d2b333fcc8e11afde45a63b803de7684.s3tc.ctex"]
+ 
+ [params]
+ 
+-compress/mode=0
++compress/mode=2
+ compress/high_quality=false
+ compress/lossy_quality=0.7
+ compress/uastc_level=0
+@@ -37,4 +38,4 @@
+ process/hdr_as_srgb=false
+ process/hdr_clamp_exposure=false
+ process/size_limit=0
+-detect_3d/compress_to=1
++detect_3d/compress_to=0

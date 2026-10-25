@@ -1,0 +1,432 @@
+{
+  "addons": {
+    "io_anim_bvh": "E:\\blender\\app\\5.1\\scripts\\addons_core\\io_anim_bvh\\__init__.py",
+    "io_curve_svg": "E:\\blender\\app\\5.1\\scripts\\addons_core\\io_curve_svg\\__init__.py",
+    "io_mesh_uv_layout": "E:\\blender\\app\\5.1\\scripts\\addons_core\\io_mesh_uv_layout\\__init__.py",
+    "io_scene_fbx": "E:\\blender\\app\\5.1\\scripts\\addons_core\\io_scene_fbx\\__init__.py",
+    "io_scene_gltf2": "E:\\blender\\app\\5.1\\scripts\\addons_core\\io_scene_gltf2\\__init__.py",
+    "cycles": "E:\\blender\\app\\5.1\\scripts\\addons_core\\cycles\\__init__.py",
+    "pose_library": "E:\\blender\\app\\5.1\\scripts\\addons_core\\pose_library\\__init__.py",
+    "bl_pkg": "E:\\blender\\app\\5.1\\scripts\\addons_core\\bl_pkg\\__init__.py",
+    "addon": "C:\\Users\\Sunrise\\AppData\\Roaming\\Blender Foundation\\Blender\\5.1\\scripts\\addons\\addon.py",
+    "bl_ext.user_default.auto_rig_pro": "C:\\Users\\Sunrise\\AppData\\Roaming\\Blender Foundation\\Blender\\5.1\\extensions\\user_default\\auto_rig_pro\\__init__.py"
+  },
+  "operators": [
+    "action_scale_comp_all",
+    "actions_list_add",
+    "actions_list_add_action",
+    "actions_list_add_batch_actions",
+    "actions_list_move",
+    "actions_list_remove",
+    "actions_list_remove_action",
+    "auto_scale",
+    "batch_retarget",
+    "build_bones_list",
+    "exec_rem_armature_presets",
+    "exec_rem_export_presets",
+    "ge_load_preset",
+    "ge_remove_preset",
+    "ge_save_preset",
+    "import_config_preset",
+    "layers_set_export_preset",
+    "layers_set_import_preset",
+    "mirror_bones_list",
+    "rebind_scale_fix",
+    "remap_disable_all_actions",
+    "remap_enable_all_actions",
+    "remap_export_act_list",
+    "remap_export_preset",
+    "remap_import_act_list",
+    "remap_update",
+    "remove_armature_preset",
+    "retarget",
+    "retarget_bind_only",
+    "retarget_clear_tweaks",
+    "retarget_synchro_select",
+    "save_armature_preset",
+    "toggle_action_remap"
+  ],
+  "properties": [
+    "target_rig",
+    "source_rig",
+    "bones_map",
+    "bones_map_v2",
+    "bones_map_index",
+    "source_nodes_name_string",
+    "remap_source_nodes",
+    "source_action",
+    "arp_remap_show_tweaks",
+    "arp_remap_allow_root_update",
+    "arp_retarget_decoupled_expand_ui",
+    "arp_retarget_in_place",
+    "batch_retarget",
+    "arp_remap_only_containing"
+  ],
+  "controls": {
+    "c_root_master.x": {
+      "head": [
+        0.0,
+        0.005000002682209015,
+        0.8650000095367432
+      ],
+      "tail": [
+        0.0,
+        0.0019999975338578224,
+        0.9899999499320984
+      ],
+      "parent": "c_traj",
+      "constraints": []
+    },
+    "c_root.x": {
+      "head": [
+        0.0,
+        0.0019999975338578224,
+        0.9899999499320984
+      ],
+      "tail": [
+        -4.2904583694419046e-14,
+        0.0049999915063381195,
+        0.8649999499320984
+      ],
+      "parent": "c_root_master.x",
+      "constraints": []
+    },
+    "c_root_bend.x": {
+      "head": [
+        -4.168887457467463e-14,
+        0.0019999912474304438,
+        0.9899999499320984
+      ],
+      "tail": [
+        -4.290458030628726e-14,
+        0.0049999915063381195,
+        0.8649999499320984
+      ],
+      "parent": "root.x",
+      "constraints": []
+    },
+    "c_thigh_fk.l": {
+      "head": [
+        0.08699999004602432,
+        0.007999991066753864,
+        0.8579999208450317
+      ],
+      "tail": [
+        0.11099998652935028,
+        -0.0040000081062316895,
+        0.48499998450279236
+      ],
+      "parent": "c_thigh_b.l",
+      "constraints": []
+    },
+    "c_leg_fk.l": {
+      "head": [
+        0.11099998652935028,
+        -0.0040000081062316895,
+        0.48499998450279236
+      ],
+      "tail": [
+        0.12799999117851257,
+        0.013999996706843376,
+        0.09299993515014648
+      ],
+      "parent": "c_thigh_fk.l",
+      "constraints": []
+    },
+    "c_foot_fk.l": {
+      "head": [
+        0.12799999117851257,
+        0.013999992981553078,
+        0.09299993515014648
+      ],
+      "tail": [
+        0.12799999117851257,
+        -0.039906300604343414,
+        0.09299993515014648
+      ],
+      "parent": "foot_fk_scale_fix.l",
+      "constraints": []
+    },
+    "c_toes_fk.l": {
+      "head": [
+        0.13199998438358307,
+        -0.060999996960163116,
+        0.025999903678894043
+      ],
+      "tail": [
+        0.1339999884366989,
+        -0.11900000274181366,
+        0.021999899297952652
+      ],
+      "parent": "foot_fk.l",
+      "constraints": []
+    },
+    "c_thigh_fk.r": {
+      "head": [
+        -0.08700000494718552,
+        0.007999991998076439,
+        0.8579999208450317
+      ],
+      "tail": [
+        -0.11100000888109207,
+        -0.004000007174909115,
+        0.48499995470046997
+      ],
+      "parent": "c_thigh_b.r",
+      "constraints": []
+    },
+    "c_leg_fk.r": {
+      "head": [
+        -0.11100000888109207,
+        -0.004000007174909115,
+        0.48499995470046997
+      ],
+      "tail": [
+        -0.12800002098083496,
+        0.013999993912875652,
+        0.09299993515014648
+      ],
+      "parent": "c_thigh_fk.r",
+      "constraints": []
+    },
+    "c_foot_fk.r": {
+      "head": [
+        -0.12800002098083496,
+        0.013999990187585354,
+        0.09299993515014648
+      ],
+      "tail": [
+        -0.12800002098083496,
+        -0.03990630432963371,
+        0.09299993515014648
+      ],
+      "parent": "foot_fk_scale_fix.r",
+      "constraints": []
+    },
+    "c_toes_fk.r": {
+      "head": [
+        -0.13200001418590546,
+        -0.06100001186132431,
+        0.025999926030635834
+      ],
+      "tail": [
+        -0.1340000182390213,
+        -0.11900001764297485,
+        0.02199992910027504
+      ],
+      "parent": "foot_fk.r",
+      "constraints": []
+    },
+    "c_spine_01.x": {
+      "head": [
+        0.0,
+        0.0019999975338578224,
+        0.9899999499320984
+      ],
+      "tail": [
+        -4.664842712845437e-17,
+        0.004999997094273567,
+        1.0950000286102295
+      ],
+      "parent": "c_root_master.x",
+      "constraints": []
+    },
+    "c_spine_02.x": {
+      "head": [
+        -4.664842712845437e-17,
+        0.004999997094273567,
+        1.0950000286102295
+      ],
+      "tail": [
+        -4.664843043717682e-17,
+        0.009999996982514858,
+        1.2450000047683716
+      ],
+      "parent": "c_spine_01.x",
+      "constraints": []
+    },
+    "c_shoulder.r": {
+      "head": [
+        -0.03500000014901161,
+        0.007999997586011887,
+        1.215000033378601
+      ],
+      "tail": [
+        -0.12700001895427704,
+        0.0019999961368739605,
+        1.2050000429153442
+      ],
+      "parent": "spine_02.x",
+      "constraints": []
+    },
+    "c_shoulder.l": {
+      "head": [
+        0.03500000014901161,
+        0.007999997586011887,
+        1.215000033378601
+      ],
+      "tail": [
+        0.12700001895427704,
+        0.0019999961368739605,
+        1.2050000429153442
+      ],
+      "parent": "spine_02.x",
+      "constraints": []
+    },
+    "c_arm_fk.l": {
+      "head": [
+        0.12700001895427704,
+        0.0019999961368739605,
+        1.2050000429153442
+      ],
+      "tail": [
+        0.1680000126361847,
+        -0.006000007037073374,
+        1.0449999570846558
+      ],
+      "parent": "spine_02.x",
+      "constraints": [
+        [
+          "COPY_LOCATION",
+          "Copy Location"
+        ]
+      ]
+    },
+    "c_forearm_fk.l": {
+      "head": [
+        0.1680000126361847,
+        -0.006000007037073374,
+        1.0449999570846558
+      ],
+      "tail": [
+        0.20100001990795135,
+        -0.028000004589557648,
+        0.8700000047683716
+      ],
+      "parent": "c_arm_fk.l",
+      "constraints": []
+    },
+    "c_hand_fk.l": {
+      "head": [
+        0.20100001990795135,
+        -0.0280000027269125,
+        0.8700000047683716
+      ],
+      "tail": [
+        0.2070000171661377,
+        -0.03600001707673073,
+        0.7859999537467957
+      ],
+      "parent": "hand_fk_scale_fix.l",
+      "constraints": []
+    },
+    "c_arm_fk.r": {
+      "head": [
+        -0.12700001895427704,
+        0.0019999961368739605,
+        1.2050000429153442
+      ],
+      "tail": [
+        -0.1680000126361847,
+        -0.0060000005178153515,
+        1.0449999570846558
+      ],
+      "parent": "spine_02.x",
+      "constraints": [
+        [
+          "COPY_LOCATION",
+          "Copy Location"
+        ]
+      ]
+    },
+    "c_forearm_fk.r": {
+      "head": [
+        -0.1680000126361847,
+        -0.0060000005178153515,
+        1.0449999570846558
+      ],
+      "tail": [
+        -0.20100001990795135,
+        -0.02800000086426735,
+        0.8700000047683716
+      ],
+      "parent": "c_arm_fk.r",
+      "constraints": []
+    },
+    "c_hand_fk.r": {
+      "head": [
+        -0.20100001990795135,
+        -0.0279999952763319,
+        0.8700000047683716
+      ],
+      "tail": [
+        -0.2070000171661377,
+        -0.03600000962615013,
+        0.7859999537467957
+      ],
+      "parent": "hand_fk_scale_fix.r",
+      "constraints": []
+    },
+    "c_neck.x": {
+      "head": [
+        -4.664843043717682e-17,
+        0.009999996982514858,
+        1.2450000047683716
+      ],
+      "tail": [
+        -4.664843043717682e-17,
+        0.0019999975338578224,
+        1.3049999475479126
+      ],
+      "parent": "spine_02.x",
+      "constraints": [
+        [
+          "COPY_SCALE",
+          "Copy Scale"
+        ]
+      ]
+    },
+    "c_head.x": {
+      "head": [
+        -4.664843043717682e-17,
+        0.0019999975338578224,
+        1.3049999475479126
+      ],
+      "tail": [
+        -4.664843043717682e-17,
+        0.0019999975338578224,
+        1.524999976158142
+      ],
+      "parent": "head_scale_fix.x",
+      "constraints": []
+    },
+    "c_toes_ik.r": {
+      "head": [
+        -0.13200001418590546,
+        -0.061000023037195206,
+        0.025999994948506355
+      ],
+      "tail": [
+        -0.1340000182390213,
+        -0.11900002509355545,
+        0.021999994292855263
+      ],
+      "parent": "toes_end.r",
+      "constraints": []
+    },
+    "c_toes_ik.l": {
+      "head": [
+        0.13200001418590546,
+        -0.06099999323487282,
+        0.026000015437602997
+      ],
+      "tail": [
+        0.1340000182390213,
+        -0.11899999529123306,
+        0.022000014781951904
+      ],
+      "parent": "toes_end.l",
+      "constraints": []
+    }
+  }
+}

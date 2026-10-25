@@ -1,0 +1,20 @@
+{
+ "base": "C:\\Users\\Sunrise\\AppData\\Local\\Temp\\dsh-win-bash-38312-340df269\\nezha_launcher_unit_1792663994",
+ "run1": {
+  "exit": 0,
+  "seconds": 0.845,
+  "stdout": "",
+  "stderr": "",
+  "copied_exists": true,
+  "copied_content": "SOURCE-ONE\n"
+ },
+ "run2": {
+  "exit": 0,
+  "seconds": 0.464,
+  "stdout": "",
+  "stderr": "",
+  "portable_after_second": "SOURCE-ONE\n"
+ },
+ "launcher_log_tail": "PDATA=C:\\Users\\Sunrise\\AppData\\Local\\Temp\\dsh-win-bash-38312-340df269\\nezha_launcher_unit_1792663994\\game\\userdata\r\n[32604093] launching C:\\Users\\Sunrise\\AppData\\Local\\Temp\\dsh-win-bash-38312-340df269\\nezha_launcher_unit_1792663994\\game\\nezha_ch1_playable_r2.exe\r\n[32604171] game pid=36884\r\n[32604843] game exited code=0x00000000\r\n[32604859] launcher dir=C:\\Users\\Sunrise\\AppData\\Local\\Temp\\dsh-win-bash-38312-340df269\\nezha_launcher_unit_1792663994\\game\r\n[32604859] APPDATA=C:\\Users\\Sunrise\\AppData\\Local\\Temp\\dsh-win-bash-38312-340df269\\nezha_launcher_unit_1792663994\\game\\userdata\r\n[32604859] launching C:\\Users\\Sunrise\\AppData\\Local\\Temp\\dsh-win-bash-38312-340df269\\nezha_launcher_unit_1792663994\\game\\nezha_ch1_playable_r2.exe\r\n[32604875] game pid=47220\r\n[32605312] game exited code=0x00000000\r\n",
+ "source_now": "SOURCE-TWO\n"
+}

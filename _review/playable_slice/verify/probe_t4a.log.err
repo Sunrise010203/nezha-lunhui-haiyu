@@ -1,0 +1,12 @@
+ERROR: T4_FAIL charge: no regen while charging (12.50)
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] check (E:/godot_game_by_fable/_review/playable_slice/verify/probe_t4a.gd:20)
+       [1] run (E:/godot_game_by_fable/_review/playable_slice/verify/probe_t4a.gd:216)
+       [2] wait_physics (E:/godot_game_by_fable/_review/playable_slice/verify/probe_t4a.gd:36)
+WARNING: ObjectDB instances leaked at exit (run with --verbose for details).
+   at: cleanup (core/object/object.cpp:2663)
+ERROR: 9 resources still in use at exit (run with --verbose for details).
+   at: clear (core/io/resource.cpp:810)
+ERROR: Pages in use exist at exit in PagedAllocator: N7Variant5Pools12BucketMediumE
+   at: ~PagedAllocator (./core/templates/paged_allocator.h:169)
