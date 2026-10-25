@@ -577,7 +577,7 @@ Blender 与 Godot 的完整日志、性能原始日志 `perf_t6_*.txt`、导入�
 - 远端：`https://github.com/Sunrise010203/nezha-lunhui-haiyu.git`（私有）
 - 跟踪 **1941 个文件**；工作区约 2.99 GB，含 `.git` 约 4.04 GB
 - 单文件最大 `001/art/models/nezha_arp.glb` 81.3 MB（GitHub 提醒线 50 MB，硬限 100 MB）
-- 历史：`d26d3bc` 之后是 2026-10-25 的清理、补推与文档收敛共 8 个提交（`52a5574` … `888abb0`）
+- 历史：`d26d3bc` 之后是 2026-10-25 的清理、补推与文档收敛（自 `52a5574` 起）
 
 ### 9.2 为什么 `art_source/` 不入库
 
