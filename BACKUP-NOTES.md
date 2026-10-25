@@ -5,7 +5,7 @@
 ## 远端与日常备份
 
 - 远端：<https://github.com/Sunrise010203/nezha-lunhui-haiyu>（私有仓库）
-- 默认分支 `main`，首次备份 613 文件 / 252 MB，单文件最大 10.5 MB（`001/art/models/shooter.glb`）
+- 默认分支 `main`。首次备份 613 文件 / 252 MB（2026-10）；2026-10-25 清理后补推至约 1.2 GB，单文件最大 77.6 MB（`001/art/models/nezha_arp.glb`）
 - 一键备份：
 
 ```powershell
@@ -19,21 +19,30 @@ powershell -NoProfile -ExecutionPolicy Bypass -File .\tools\backup.ps1 -Message 
 
 ## 收进来的
 
-- `001/`：Godot 工程本体 —— `scripts/`、`scenes/`、`shaders/`、`autoload/`、`theme/`、`project.godot`、`art/`（glb + 贴图）、`audio/`、`tools/`
-- `tools/blender/`：30+ 个 Blender 无头脚本（减面、探伤、烘焙、接触图）
-- `art_tmp/`：临时生成脚本与素材
+- `001/`：Godot 工程本体 —— `scripts/`、`scenes/`、`shaders/`、`autoload/`、`theme/`、`project.godot`、`art/`（glb + 贴图 + `.import`）、`audio/`、`tools/`
+- `001/art/models/`：ARP 哪吒 / Boss / 小怪 / 第一章废墟的 glb 与贴图（2026-10-25 补推，约 856 MB）
+- `tools/blender/`：40+ 个 Blender 无头脚本（减面、探伤、烘焙、接触图）
 - `_artgen/`：APIMart 生成的源图（章节场景、图标）
-- 根目录设计文档 `.md`、参考图 `ref_*.png`、`nezha_*.glb` 备份
+- `_review/`：评审报告、构建日志、`*.diff` 证据（截图与二进制不入库）
+- 根目录设计文档 `.md`、`nezha_*.glb` 备份
 
 ## 不收的（`.gitignore` 已排除）
 
 | 排除项 | 体积 | 原因 / 重建方式 |
 | --- | --- | --- |
-| `001/.godot/` | ~195 MB | Godot 导入缓存，`godot --import` 自动重建 |
-| `_shots/` | ~339 MB | 迭代期截图，用 `001/tools/capture.gd` 重拍 |
-| `_baseline/` | ~192 MB | 四章基线截图，同上 |
-| `shots_ch4/` | ~24 MB | 第四关专项截图，同上 |
+| `art_source/` | 1.89 GB | Blender 真源；单文件最大 143 MB，超 GitHub 100 MB 硬限制，只留本地 / 网盘 |
+| `001/.godot/` | 1.58 GB | Godot 导入缓存，`godot --import` 自动重建 |
+| `builds/` | 1.07 GB | 试玩包导出产物，按 README「导出与试玩包」重导 |
+| `_review/**/*.{png,pck,exe,npy,cache}` | 2.48 GB | 审阅截图与基线二进制副本，重跑审阅任务即可 |
+| `game_assets/` | 366 MB | 中间件；`glb_game` 已复制进 `001/art/models/glb_game` |
+| `_shots/` | 339 MB | 迭代期截图，用 `001/tools/capture.gd` 重拍 |
+| `_baseline/` | 192 MB | 四章基线截图，同上 |
+| `shots_ch4/` | 24 MB | 第四关专项截图，同上 |
+| `art_assets/*.png` | 60 MB | 生成的概念图，清单与 ledger 保留 |
+| `art_tmp/`、`_tmp_*`、`tools/appdata/` | 180 MB | 本地临时脚本与沙箱运行目录 |
 | 根目录 `shot_*.png` / `game_shot*.png` | ~60 MB | 一次性调试截图 |
+
+> 2026-10-25 的完整删除 / 保留清单见 `CLEANUP-REPORT.md`。
 
 截图重拍（**不要加 `--headless`，否则拿不到画面**）：
 
