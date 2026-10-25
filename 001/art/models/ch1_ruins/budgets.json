@@ -1,0 +1,68 @@
+{
+  "lantern": {
+    "source": "T16_lantern.glb",
+    "before": 57421,
+    "triangles": 2398,
+    "budget": 2400
+  },
+  "pillar_base": {
+    "source": "T17_pillar.glb",
+    "before": 56880,
+    "triangles": 1399,
+    "budget": 1400
+  },
+  "pillar_shaft": {
+    "source": "T18_shaft.glb",
+    "before": 56729,
+    "triangles": 1199,
+    "budget": 1200
+  },
+  "railing": {
+    "source": "T19_balustrade.glb",
+    "before": 58240,
+    "triangles": 1598,
+    "budget": 1600
+  },
+  "post": {
+    "source": "T20_post.glb",
+    "before": 59030,
+    "triangles": 898,
+    "budget": 900
+  },
+  "steps": {
+    "source": "T21_step.glb",
+    "before": 59475,
+    "triangles": 1799,
+    "budget": 1800
+  },
+  "arch": {
+    "source": "T22_arch.glb",
+    "before": 59061,
+    "triangles": 4199,
+    "budget": 4200
+  },
+  "rubble": {
+    "source": "T23_rubble.glb",
+    "before": 58126,
+    "triangles": 849,
+    "budget": 850
+  },
+  "barnacle": {
+    "source": "T24_barnacle.glb",
+    "before": 57982,
+    "triangles": 499,
+    "budget": 500
+  },
+  "capital": {
+    "source": "3.glb",
+    "before": 58068,
+    "triangles": 2598,
+    "budget": 2600
+  },
+  "coral": {
+    "source": "2.glb",
+    "before": 57543,
+    "triangles": 3740,
+    "budget": 1800
+  }
+}
